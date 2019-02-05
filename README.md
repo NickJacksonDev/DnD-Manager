@@ -10,10 +10,11 @@
 *(Paste Vision Statement here)*
 
 # Sprint 1
+* [User Stories]
+* [Requirements]
 * Product Backlog
 * Sprint Backlog
 * Burndown Chart
-* Requirements
 * Design Documents
   * System Architecture
   * Class Diagrams
