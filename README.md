@@ -16,6 +16,7 @@
 * Sprint Backlog
 * Burndown Chart
 * Design Documents
+  * [Data Design](https://docs.google.com/document/d/1QYjD3UI0MlG_QJy867MBFY1zpKTJi5I4bI_s6t0syXE/edit?usp=sharing)
   * System Architecture
   * Class Diagrams
   * Sequence Diagrams
