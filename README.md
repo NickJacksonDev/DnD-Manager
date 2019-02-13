@@ -10,9 +10,8 @@
 *(Paste Vision Statement here)*
 
 # Sprint 1
-* [User Stories](https://docs.google.com/spreadsheets/d/1pM4LNKbn0VARa-6aoJjO_WKt7aaFGWfbQ1u1XvpPESQ/edit?usp=sharing)
 * [Requirements](https://docs.google.com/spreadsheets/d/1gTuvJt6pRhQ97uNCz52Mkvo1T-Q63PJ0XSgve65ibP8/edit?usp=sharing)
-* Product Backlog
+* [Product Backlog](https://docs.google.com/spreadsheets/d/1pM4LNKbn0VARa-6aoJjO_WKt7aaFGWfbQ1u1XvpPESQ/edit?usp=sharing)
 * Sprint Backlog
 * Burndown Chart
 * Design Documents
