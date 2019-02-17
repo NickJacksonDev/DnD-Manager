@@ -13,10 +13,10 @@
 
 
 # Sprint 1
-* [Requirements](https://docs.google.com/spreadsheets/d/1gTuvJt6pRhQ97uNCz52Mkvo1T-Q63PJ0XSgve65ibP8/edit?usp=sharing)
 * [Product Backlog](https://docs.google.com/spreadsheets/d/1pM4LNKbn0VARa-6aoJjO_WKt7aaFGWfbQ1u1XvpPESQ/edit?usp=sharing)
 * Sprint Backlog
-* Burndown Chart
+  * Burndown Chart
+* [Requirements](https://docs.google.com/spreadsheets/d/1gTuvJt6pRhQ97uNCz52Mkvo1T-Q63PJ0XSgve65ibP8/edit?usp=sharing)
 * Design Documents
   * [Data Design](https://docs.google.com/document/d/1QYjD3UI0MlG_QJy867MBFY1zpKTJi5I4bI_s6t0syXE/edit)
   * [System Architecture](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
@@ -28,12 +28,12 @@
 * Product Demonstration
 
 # Sprint 2
-* User Stories
-* Requirements
 * Product Backlog
 * Sprint Backlog
-* Burndown Chart
+  * Burndown Chart
+* Requirements
 * Design Documents
+  * Data Design
   * System Architecture
   * Class Diagrams
   * Sequence Diagrams
@@ -43,12 +43,12 @@
 * Product Demonstration
 
 # Sprint 3
-* User Stories
-* Requirements
 * Product Backlog
 * Sprint Backlog
-* Burndown Chart
+  * Burndown Chart
+* Requirements
 * Design Documents
+  * Data Design
   * System Architecture
   * Class Diagrams
   * Sequence Diagrams
