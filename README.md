@@ -7,9 +7,9 @@
 * Ben Rhiner
 
 ## Vision Statement
- *For tabletop game players and game-masters that want to minimize the trivial aspects of playing and automate sharing information between the party. This game manager is a web-based tabletop game manager app that automates sharing information among the party and fosters communication and organization. Unlike D&D beyond that assists in character creation with a lack of focus on player/game-master interaction and 5etools that is a searchable database of just the rules, this game manager is focused on ensuring the party’s custom information is shared among the players and gamemasters.*
+*For tabletop game players and game-masters that want to minimize the trivial aspects of playing and automate sharing information between the party. This game manager is a web-based tabletop game manager app that automates sharing information among the party and fosters communication and organization. Unlike D&D beyond that assists in character creation with a lack of focus on player/game-master interaction and 5etools that is a searchable database of just the rules, this game manager is focused on ensuring the party’s custom information is shared among the players and gamemasters.*
 
- *This game manager’s ultimate goal is to reduce trivial recordkeeping by automating communication and organization of the party’s information as a whole. This is achieved through live updates and sharing of information among the party through cloud-based services, in addition to the DM maintaining notes that can be made public or private in an organization customized for their campaign.*
+*This game manager’s ultimate goal is to reduce trivial recordkeeping by automating communication and organization of the party’s information as a whole. This is achieved through live updates and sharing of information among the party through cloud-based services, in addition to the DM maintaining notes that can be made public or private in an organization customized for their campaign.*
 
 
 # Sprint 1
