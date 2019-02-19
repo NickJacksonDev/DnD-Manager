@@ -15,7 +15,7 @@
 # Sprint 1
 * [Product Backlog](https://docs.google.com/spreadsheets/d/1pM4LNKbn0VARa-6aoJjO_WKt7aaFGWfbQ1u1XvpPESQ/edit?usp=sharing)
 * [Sprint Backlog](https://docs.google.com/spreadsheets/d/1kSwNj9AX5eNbuktb5aTGljWqAJVrcWliXfjf6ji_MKM/edit?usp=sharing)
-  * Burndown Chart
+  * [Burndown Chart](https://docs.google.com/document/d/1-_eGpnEMTqlTQZ9PR7Idvgc8gjCuF-HovycDQMN_Dac/edit?usp=sharing)
 * [Requirements](https://docs.google.com/spreadsheets/d/1gTuvJt6pRhQ97uNCz52Mkvo1T-Q63PJ0XSgve65ibP8/edit?usp=sharing)
 * Design Documents
   * [Data Design](https://docs.google.com/document/d/1QYjD3UI0MlG_QJy867MBFY1zpKTJi5I4bI_s6t0syXE/edit)
