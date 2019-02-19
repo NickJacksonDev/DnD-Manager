@@ -21,8 +21,6 @@
   * [Data Design](https://docs.google.com/document/d/1QYjD3UI0MlG_QJy867MBFY1zpKTJi5I4bI_s6t0syXE/edit)
   * [System Architecture](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
   * Class Diagrams
-  * Sequence Diagrams
-  * etc.
 * Source Code
 * Test Cases
 * Product Demonstration
