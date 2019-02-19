@@ -22,8 +22,8 @@
   * [System Architecture](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
   * [Class Diagrams](https://drive.google.com/file/d/1Kn8L8AD4Q7S4hYZRatU0C2qe99p2qACq/view?usp=sharing)
 * Source Code
-* Test Cases
-* Product Demonstration
+* [Test Cases](https://docs.google.com/document/d/1jeAmTsOX1DLROMjujJQcMQVDFOtzR25D7ZI6UhZR3LY/edit?usp=sharing)
+* [Product Demonstration](https://youtu.be/6ltb8DO0trQ)
 
 # Sprint 2
 * Product Backlog
