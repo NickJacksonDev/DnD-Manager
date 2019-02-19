@@ -20,7 +20,7 @@
 * Design Documents
   * [Data Design](https://docs.google.com/document/d/1QYjD3UI0MlG_QJy867MBFY1zpKTJi5I4bI_s6t0syXE/edit)
   * [System Architecture](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
-  * Class Diagrams
+  * [Class Diagrams](https://drive.google.com/file/d/1Kn8L8AD4Q7S4hYZRatU0C2qe99p2qACq/view?usp=sharing)
 * Source Code
 * Test Cases
 * Product Demonstration
