@@ -59,7 +59,7 @@ class AbilityScore(models.Model):
 
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
-    classID = models.ForeignKey(unique=True)   # TODO: Research this
+    classID = models.ForeignKey(unique=True)   # TODO: Research this. Maybe use ManyToMany relationship
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
