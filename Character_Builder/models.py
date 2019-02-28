@@ -48,7 +48,7 @@ class Character(models.Model):
 
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
-    characterID = models.foreignKey(unique=True)    # TODO: Need to research this
+    characterID = models.ForeignKey(unique=True)    # TODO: Need to research this
     abilityScoreID = models.IntegerField() # Acts as an enumeration
     abilityScoreValue = models.IntegerField() 
 
@@ -59,13 +59,13 @@ class AbilityScore(models.Model):
 
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
-    classID = models.foreignKey(unique=True)   # TODO: Research this
+    classID = models.ForeignKey(unique=True)   # TODO: Research this
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
 # This class is largely static, like a lookup table
 class CharacterRace(models.Model):
-    raceID = models.foreignKey(unique=True)    # TODO: Research this
+    raceID = models.ForeignKey(unique=True)    # TODO: Research this
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
     abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
