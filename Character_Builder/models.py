@@ -11,7 +11,7 @@ from django.db import models
 # https://docs.djangoproject.com/en/2.1/topics/db/models/
 # can do   fieldName = ___Field(blank = true)  to make this field optional
 # can do   fieldName = ___Field(choices = LIST)  to make it have a dropdown to the choices given
-
+# can do   from geography.models import ZipCode
 
 # Constants
 # Also should I move this next to the class that uses it?
@@ -48,24 +48,32 @@ class Character(models.Model):
 
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
-    characterID = models.ForeignKey(unique=True)    # TODO: Need to research this
-    abilityScoreID = models.IntegerField() # Acts as an enumeration
+    character = models.ForeignKey(Character)    
+
+    # One set has many ability scores. 
+    # However, each ability score may go to multiple sets (like an enumeration)
+    # Thus a manyToMany relationship is used
+    # Note: only one of the two classes should have a manyToMany Field
+    abilityScores = models.ManyToMany(AbilityScore) 
+    # abilityScoreID = models.IntegerField() # Acts as an enumeration
+
     abilityScoreValue = models.IntegerField() 
 
 # This class is static, like a lookup table
 class AbilityScore(models.Model):
-    abilityScoreID = models.foreignKey(unique=True)  # TODO: Again, need to research this
+    # abilityScoreID = models.foreignKey(unique=True)  # TODO: Again, need to research this
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
 
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
-    classID = models.ForeignKey(unique=True)   # TODO: Research this. Maybe use ManyToMany relationship
+    character = models.ForeignKey(Character)   # TODO: Research this. Maybe use ManyToMany relationship
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
 # This class is largely static, like a lookup table
 class CharacterRace(models.Model):
-    raceID = models.ForeignKey(unique=True)    # TODO: Research this
+    character = models.ForeignKey(Character)
+    # raceID = models.ForeignKey(unique=True)    # TODO: Research this
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
     abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
