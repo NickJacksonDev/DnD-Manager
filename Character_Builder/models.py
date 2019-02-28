@@ -8,6 +8,9 @@ from django.db import models
 # Foreign Keys act as a thing that links a class
 # to a parent class that uses it. 
 #  eg: abilityScore's "characterID" is a foreign key
+# https://docs.djangoproject.com/en/2.1/topics/db/models/
+# can do   fieldName = ___Field(blank = true)  to make this field optional
+# can do   fieldName = ___Field(choices = LIST)  to make it have a dropdown to the choices given
 
 
 # Constants
@@ -32,7 +35,7 @@ MAX_LENGTH_RACE_NAME = 255
 
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
-    characterID = models.IntegerField()
+    characterID = models.IntegerField(unique=True)
     raceID = models.IntegerField()
     classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
@@ -45,24 +48,24 @@ class Character(models.Model):
 
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
-    characterID = models.foreignKey()    # TODO: Need to research this
+    characterID = models.foreignKey(unique=True)    # TODO: Need to research this
     abilityScoreID = models.IntegerField() # Acts as an enumeration
     abilityScoreValue = models.IntegerField() 
 
 # This class is static, like a lookup table
 class AbilityScore(models.Model):
-    abilityScoreID = models.foreignKey()  # TODO: Again, need to research this
+    abilityScoreID = models.foreignKey(unique=True)  # TODO: Again, need to research this
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
 
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
-    classID = models.foreignKey()   # TODO: Research this
+    classID = models.foreignKey(unique=True)   # TODO: Research this
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
 # This class is largely static, like a lookup table
 class CharacterRace(models.Model):
-    raceID = models.foreignKey()    # TODO: Research this
+    raceID = models.foreignKey(unique=True)    # TODO: Research this
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
     abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
