@@ -7,7 +7,7 @@ from django.db import models
 # Each model's field acts like a column in said table
 # Foreign Keys act as a thing that links a class
 # to a parent class that uses it. 
-#  eg: 
+#  eg: abilityScore's "characterID" is a foreign key
 
 
 # Description of this model file
@@ -15,3 +15,4 @@ from django.db import models
 
 # As this is in the character builder folder, this will focus on
 # the character information 
+
