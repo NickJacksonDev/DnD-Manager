@@ -10,11 +10,11 @@ from django.db import models
 #  eg: abilityScore's "characterID" is a foreign key
 # https://docs.djangoproject.com/en/2.1/topics/db/models/
 # can do   fieldName = ___Field(blank = true)  to make this field optional
-# can do   fieldName = ___Field(choices = LIST)  to make it have a dropdown to the choices given
+# can do   fieldName = ___Field(choices = LIST_NAME)  to make it have a dropdown to the choices given
 # can do   from geography.models import ZipCode
 
 # Constants
-# Also should I move this next to the class that uses it?
+# Should I move this next to the class that uses it?
 MAX_LENGTH_CHARACTER_NAME = 255
 MAX_LENGTH_ALIGNMENT = 255
 MAX_LENGTH_SIZE = 255
