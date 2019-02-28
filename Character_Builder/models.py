@@ -26,11 +26,21 @@ class Character(models.Model):
     characterID = models.IntegerField()
     raceID = models.IntegerField()
     classID = models.IntegerField()
-    name = models.CharField(max_length=max_length_name)
+    name = models.CharField(max_length = max_length_name)
     abilityScoreSetID = models.IntegerField()
     level = models.IntegerField()
     xp = models.IntegerField()
     hp = models.IntegerField()
-    alignment = models.CharField(max_length = max_length_alignment)
-    size = models.CharField(max_length = max_length_size)
+    alignment = models.CharField(max_length = max_length_alignment) # Use string or an enum?
+    size = models.CharField(max_length = max_length_size) # Use string or enum?
+
+class AbilityScoreSet(models.Model):
+    characterID = models.foreignKey()    # Need to research this
+    abilityScoreID = models.IntegerField() # Acts as an enumeration
+    abilityScoreValue = models.IntegerField() 
+
+class AbilityScore(models.Model):
+    abilityScoreID = models.foreignKey()  # Again, need to research this
+    name = models.CharField(max_length = max_length_name)  # Okay to overload name?    
+
 
