@@ -2,4 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-	return HttpResponse('<h1>Character Builder</h1>')
+    	
+	return render(request, 'Character_Builder/character_builder-home.html', {'title': 'Home'})
