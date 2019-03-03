@@ -66,7 +66,6 @@ class AbilityScoreSet(models.Model):
 
     abilityScoreValue = models.IntegerField() 
 
-    # abilityScoreID = models.foreignKey(unique=True)  # TODO: Again, need to research this
 
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
