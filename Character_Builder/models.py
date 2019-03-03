@@ -46,6 +46,11 @@ class Character(models.Model):
     alignment = models.CharField(max_length = MAX_LENGTH_ALIGNMENT) # Use string or an enum?
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
 
+    # This method returns a string that represents this class.
+    # Similar to toString() from java
+    def __str__(self):
+        return self.characterName
+
 
 # This class is static, like a lookup table
 class AbilityScore(models.Model):
@@ -72,6 +77,7 @@ class CharacterClass(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)   # TODO: Research this. Maybe use ManyToMany relationship
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
+
 
 # This class is largely static, like a lookup table
 class CharacterRace(models.Model):
