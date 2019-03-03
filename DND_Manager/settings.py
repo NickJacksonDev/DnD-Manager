@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'Character_Builder.apps.CharacterBuilderConfig',
     'Users.apps.UsersConfig',
+    'Campaign_Manager.apps.CampaignManagerConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
