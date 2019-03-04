@@ -29,7 +29,7 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'character_builder-home'%}">Character Builder</a>
-              <a class="nav-item nav-link" href="#">Campaign Builder</a>
+              <a class="nav-item nav-link" href="{% url 'campaign_builder-home' %}">Campaign Builder</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -46,6 +46,7 @@
       </nav>
     </header>
 
+<<<<<<< HEAD
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -74,6 +75,9 @@
         </div>
       </div>
     </main>
+=======
+    {% block main %} {%endblock main%}
+>>>>>>> 320c27e2014b41203a89ebb67838c58048f110af
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
