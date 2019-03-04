@@ -23,7 +23,7 @@ class Character(models.Model):
 
     # This method returns the ID that represents the character
     def __str__(self):
-        return (self.characterName, self.characterID)
+        return self.characterName
 
 
 # This class is static, like a lookup table

@@ -6,22 +6,30 @@ MAX_LENGTH_CAMPAIGN_NAME = 255
 
 # Keeps track of individual campaigns
 class Campaign(models.Model):
-    CampaignID = models.IntegerField(unique=True)
-    CampaignName = models.CharField(max_length = MAX_LENGTH_CAMPAIGN_NAME)
-    CampaignDM = models.OneToOneField(CampaignDM, on_delete=models.CASCADE)
-    Party = models.OneToOneField(Party, on_delete=models.CASCADE)
+    campaignID = models.IntegerField(unique=True)
+    campaignName = models.CharField(max_length = MAX_LENGTH_CAMPAIGN_NAME)
+
+    def __str__(self):
+        return self.campaignName
 
 # Keeps track of DMs
 class CampaignDM(models.Model):
-    CampaignDMID = models.IntegerField(unique=True)
-    Character = models.OneToOneField(Character, on_delete=models.CASCADE)
+    campaignDMID = models.IntegerField(unique=True)
+    character = models.OneToOneField(Character, on_delete=models.CASCADE)
+    campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.character.characterName
 
 # Keeps track of parties
 class Party(models.Model):
-    PartyID = models.IntegerField(unique=True)
+    partyID = models.IntegerField(unique=True)
+    campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.campaign.campaignName
 
 # used to allow parties to store mulitple party members
 class PartyCharacter(models.Model):
-    Party = models.ForeignKey(Party, on_delete=models.CASCADE)
-    Character = models.ForeignKey(Character, on_delete=models.CASCADE)
-
+    party = models.ForeignKey(Party, on_delete=models.CASCADE)
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)
