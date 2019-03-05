@@ -1,4 +1,21 @@
 {% extends "Campaign_Manager/campaign_base.html" %}
 {% block content %}
     <h1>Campaign Builder!</h1>
+
+    {% for Campaign in campaigns %}
+
+      <h2>{{ Campaign.campaignName }}</h2>
+      <h2>{{ Campaign.campaignID }}</h2>
+
+    {% endfor %}
+
+    {% for Character in characters %}
+
+      <h2>{{ Character.characterName }}</h2>
+      <p>{{ Character.level }} <br> {{ Character.alignment }}</p>
+
+      <input type="text" class ="form-control" placeholder="Campaign Name" aria-label="Campaign Name">
+      <button type="button" class="btn btn-dark">Add New Campaign</button>
+
+    {% endfor %}
 {% endblock content %}
