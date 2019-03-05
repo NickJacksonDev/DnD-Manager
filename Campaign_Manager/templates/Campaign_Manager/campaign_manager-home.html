@@ -4,18 +4,23 @@
 
     {% for Campaign in campaigns %}
 
-      <h2>{{ Campaign.campaignName }}</h2>
-      <h2>{{ Campaign.campaignID }}</h2>
+		<h2>{{ Campaign.campaignName }}</h2>
+		<h3>Campaign ID: {{ Campaign.campaignID }}</h3>
 
     {% endfor %}
 
     {% for Character in characters %}
 
-      <h2>{{ Character.characterName }}</h2>
-      <p>{{ Character.level }} <br> {{ Character.alignment }}</p>
-
-      <input type="text" class ="form-control" placeholder="Campaign Name" aria-label="Campaign Name">
-      <button type="button" class="btn btn-dark">Add New Campaign</button>
+		<h2>{{ Character.characterName }}</h2>
+		<p>Level: {{ Character.level }} <br>Alignment: {{ Character.alignment }}</p>
+		<form method="post" class="post-form">{% csrf_token %}
+			{{ form }}
+<!--
+			<label for="new_campaign">Add New Campaign: </label>
+			<input id="new_campaign" type="text" class ="form-control" placeholder="Campaign Name" aria-label="Campaign Name" name="campNameIn">
+-->
+			<input type="submit" value="Submit" class="btn btn-dark">
+		</form>
 
     {% endfor %}
 {% endblock content %}
