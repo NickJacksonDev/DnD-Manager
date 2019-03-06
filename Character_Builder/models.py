@@ -40,7 +40,7 @@ class Character(models.Model):
     classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
     abilityScoreSetID = models.IntegerField()
-    level = models.IntegerField()
+    level = models.IntegerField() # may have to split this up into a list as you may have multiple classes...
     xp = models.IntegerField()
     hp = models.IntegerField()
     alignment = models.CharField(max_length = MAX_LENGTH_ALIGNMENT) # Use string or an enum?
