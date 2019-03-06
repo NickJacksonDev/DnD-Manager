@@ -18,6 +18,9 @@ from django.db import models
 MAX_LENGTH_CHARACTER_NAME = 255
 MAX_LENGTH_ALIGNMENT = 255
 MAX_LENGTH_SIZE = 255
+DEFAULT_LEVEL = 0
+DEFAULT_XP = 0
+DEFAULT_HP = 6
 
 MAX_LENGTH_ABILITY_NAME = 255
 
@@ -36,13 +39,14 @@ MAX_LENGTH_RACE_NAME = 255
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     characterID = models.IntegerField(unique=True) # Note that Django has a built-in primary key
-    raceID = models.IntegerField()
-    classID = models.IntegerField()
+    #raceID = models.IntegerField()
+    #classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
     abilityScoreSetID = models.IntegerField()
-    level = models.IntegerField() # may have to split this up into a list as you may have multiple classes...
-    xp = models.IntegerField()
-    hp = models.IntegerField()
+    level = models.IntegerField(default=DEFAULT_LEVEL) # may have to split this up into a list as you may have multiple classes...
+    xp = models.IntegerField(default=DEFAULT_XP)
+    maxHP = models.IntegerField(default=DEFAULT_HP)
+    currentHP = models.IntegerField(default=DEFAULT_HP)
     alignment = models.CharField(max_length = MAX_LENGTH_ALIGNMENT) # Use string or an enum?
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
 
