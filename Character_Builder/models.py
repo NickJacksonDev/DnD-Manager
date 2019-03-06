@@ -38,6 +38,7 @@ MAX_LENGTH_RACE_NAME = 255
 
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     characterID = models.IntegerField(unique=True) # Note that Django has a built-in primary key
     #raceID = models.IntegerField()
     #classID = models.IntegerField()
