@@ -9,18 +9,10 @@
 
     {% endfor %}
 
-    {% for Character in characters %}
+    <form method="post" class="post-form">
+    	{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit" class="btn btn-dark">
+	</form>
 
-		<h2>{{ Character.characterName }}</h2>
-		<p>Level: {{ Character.level }} <br>Alignment: {{ Character.alignment }}</p>
-		<form method="post" class="post-form">{% csrf_token %}
-			{{ form }}
-<!--
-			<label for="new_campaign">Add New Campaign: </label>
-			<input id="new_campaign" type="text" class ="form-control" placeholder="Campaign Name" aria-label="Campaign Name" name="campNameIn">
--->
-			<input type="submit" value="Submit" class="btn btn-dark">
-		</form>
-
-    {% endfor %}
 {% endblock content %}

@@ -3,11 +3,11 @@ from .models import Campaign
 from Character_Builder.models import Character
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from .forms import CampaignForm
+from .forms import CreateCampaignForm
 
 # Create your views here.
 def home(request):
-    form = CampaignForm(request.POST or None)
+    form = CreateCampaignForm(request.POST or None)
 
     if form.is_valid():
         form.save()
