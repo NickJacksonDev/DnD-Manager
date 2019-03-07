@@ -1,0 +1,24 @@
+{% extends "Character_Builder\base.html" %}
+{% block main %}
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <h1>Welcome to DnD Manager!</h1>
+          <blockquote class="blockquote">
+              <p class = "mb-0">This game manager’s ultimate goal is to reduce trivial recordkeeping by automating communication and organization of the party’s information as a whole. This is achieved through live updates and sharing of information among the party through cloud-based services, in addition to the DM maintaining notes that can be made public or private in an organization customized for their campaign.</p>
+          </blockquote>
+        </div>
+      </div>
+
+      {% if user.is_authenticated %}
+
+      {% else %}
+        <div class="row">
+          <div class="col-md-10">
+            <a class="btn btn-dark btn-lg btn-block" href="{% url 'login' %}" role="button">Login Here</a>
+          </div>
+        </div>
+      {% endif %}
+
+    </main>
+{% endblock main%}

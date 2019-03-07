@@ -33,3 +33,4 @@ class Party(models.Model):
 class PartyCharacter(models.Model):
     party = models.ForeignKey(Party, on_delete=models.CASCADE)
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
+    approved = models.BooleanField(default = False, editable = True)

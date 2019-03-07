@@ -89,3 +89,8 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.borderlist {
+    list-style-position:inside;
+    border: 10px solid black;
+}
