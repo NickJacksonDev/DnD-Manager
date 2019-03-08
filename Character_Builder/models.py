@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 # Notes (Django models)
 # Each model acts more or less like a database table
 # Each model's field acts like a column in said table
@@ -62,6 +60,7 @@ class Character(models.Model):
 class AbilityScore(models.Model):
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
 
+    
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)  
@@ -93,5 +92,4 @@ class CharacterRace(models.Model):
     abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
     size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
-
 
