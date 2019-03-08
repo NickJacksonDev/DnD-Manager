@@ -1,4 +1,18 @@
 {% extends "Campaign_Manager/campaign_base.html" %}
 {% block content %}
     <h1>Campaign Builder!</h1>
+
+    {% for Campaign in campaigns %}
+
+		<h2>{{ Campaign.campaignName }}</h2>
+		<h3>Campaign ID: {{ Campaign.campaignID }}</h3>
+
+    {% endfor %}
+
+    <form method="post" class="post-form">
+    	{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit" class="btn btn-dark">
+	</form>
+
 {% endblock content %}
