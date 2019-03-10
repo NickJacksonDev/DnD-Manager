@@ -15,9 +15,18 @@ def newCampaignID():
 
     return newID
 
+# finds a default user
+def defaultUser():
+    default = User.objects.first()
+    
+    if default is None:
+        default = User.objects.create_user('defaultUser', password='djangoproject')
+
+    return default
+
 # Keeps track of individual campaigns
 class Campaign(models.Model):
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
     campaignID = models.IntegerField(unique=True, default=newCampaignID, editable=False)
     campaignName = models.CharField(max_length = MAX_LENGTH_CAMPAIGN_NAME)
 
