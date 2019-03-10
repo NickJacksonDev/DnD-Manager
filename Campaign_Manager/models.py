@@ -4,13 +4,34 @@ from Character_Builder.models import Character
 # Constants
 MAX_LENGTH_CAMPAIGN_NAME = 255
 
+# Automatically creates CampaignIDs
+def newCampaignID():
+    previousCampaign = Campaign.objects.last()
+    if not previousCampaign is None:
+        newID = previousCampaign.CampaignID + 1
+    else:
+        newID = 0
+
+    return newID
+
 # Keeps track of individual campaigns
 class Campaign(models.Model):
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     campaignID = models.IntegerField(unique=True)
     campaignName = models.CharField(max_length = MAX_LENGTH_CAMPAIGN_NAME)
 
     def __str__(self):
         return self.campaignName
+
+# Automatically creates CampaignDMIDs
+def newCampaignDMID():
+    previousCampaignDM = CampaignDM.objects.last()
+    if not previousCampaignDM is None:
+        newID = previousCampaignDM.CampaignDMID + 1
+    else:
+        newID = 0
+
+    return newID
 
 # Keeps track of DMs
 class CampaignDM(models.Model):
@@ -20,6 +41,16 @@ class CampaignDM(models.Model):
 
     def __str__(self):
         return self.character.characterName
+
+# Automatically creates PartyIDs
+def newPartyID():
+    previousParty = Party.objects.last()
+    if not previousParty is None:
+        newID = previousParty.PartyID + 1
+    else:
+        newID = 0
+
+    return newID
 
 # Keeps track of parties
 class Party(models.Model):
