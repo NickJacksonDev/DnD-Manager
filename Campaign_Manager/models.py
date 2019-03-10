@@ -17,7 +17,7 @@ def newCampaignID():
 # Keeps track of individual campaigns
 class Campaign(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    campaignID = models.IntegerField(unique=True)
+    campaignID = models.IntegerField(unique=True, default=newCampaignID, editable=False)
     campaignName = models.CharField(max_length = MAX_LENGTH_CAMPAIGN_NAME)
 
     def __str__(self):
@@ -35,7 +35,7 @@ def newCampaignDMID():
 
 # Keeps track of DMs
 class CampaignDM(models.Model):
-    campaignDMID = models.IntegerField(unique=True)
+    campaignDMID = models.IntegerField(unique=True, default=newCampaignDMID, editable=False)
     character = models.OneToOneField(Character, on_delete=models.CASCADE)
     campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
 
@@ -54,7 +54,7 @@ def newPartyID():
 
 # Keeps track of parties
 class Party(models.Model):
-    partyID = models.IntegerField(unique=True)
+    partyID = models.IntegerField(unique=True, default=newPartyID, editable=False)
     campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
 
     def __str__(self):
