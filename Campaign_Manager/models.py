@@ -1,5 +1,6 @@
 from django.db import models
 from Character_Builder.models import Character
+from django.contrib.auth.models import User
 
 # Constants
 MAX_LENGTH_CAMPAIGN_NAME = 255
