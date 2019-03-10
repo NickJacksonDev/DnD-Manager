@@ -2,11 +2,14 @@
 {% block content %}
     <h1>Campaign Builder!</h1>
 
-    {% for Campaign in campaigns %}
+    {% for dm in campaignDMs %}
+		<h2>{{ dm.campaign }}</h2>
+		<h3>DM: {{ dm }}</h3>
+    {% endfor %}
 
-		<h2>{{ Campaign.campaignName }}</h2>
-		<h3>Campaign ID: {{ Campaign.campaignID }}</h3>
-
+    {% for pc in partyCharacters %}
+		<h2>{{ pc.party }}</h2>
+		<h3>Party Member: {{ pc }}</h3>
     {% endfor %}
 
     <form method="post" class="post-form">

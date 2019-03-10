@@ -75,3 +75,5 @@ class PartyCharacter(models.Model):
     party = models.ForeignKey(Party, on_delete=models.CASCADE)
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return self.character.characterName

@@ -1,10 +1,18 @@
 from django.shortcuts import render
-from .models import Campaign
+from .models import *
 from Character_Builder.models import Character
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .forms import CreateCampaignForm
 from django.views.generic import CreateView
+
+# def organizeCampaigns():
+#     campaignList = Campaign.objects.all()
+
+#     for pc in PartyCharacter.objects.all():
+#         pc = 
+
+#     return campaignList
 
 # Create your views here.
 def home(request):
@@ -14,9 +22,12 @@ def home(request):
         form.save()
 
     context = {
-            'campaigns' : Campaign.objects.all(),
             'title' : 'Campaigns',
+            'campaigns' : Campaign.objects.all(),
             'characters' : Character.objects.all(),
+            'partys' : Party.objects.all(),
+            'partyCharacters' : PartyCharacter.objects.all(),
+            'campaignDMs' : CampaignDM.objects.all(),
             'form' : form,
     }
 

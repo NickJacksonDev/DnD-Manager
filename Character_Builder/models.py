@@ -55,9 +55,28 @@ def newAbilityScoreSetID():
 
     return newID
 
+# finds a default user
+def defaultUser():
+    default = User.objects.first()
+
+    if default is None:
+        default = User.objects.create_user('defaultUser', password='djangoproject')
+
+    return default
+
+# Automatically creates abililtyScoreSetIDs
+def newAbilityScoreSetID():
+    previousCharacter = Character.objects.last()
+    if not previousCharacter is None:
+        newID = previousCharacter.abilityScoreSetID + 1
+    else:
+        newID = 0
+
+    return newID
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
     characterID = models.IntegerField(unique=True, default=newCharacterID) # Note that Django has a built-in primary key
     #raceID = models.IntegerField()
     #classID = models.IntegerField()
@@ -73,7 +92,7 @@ class Character(models.Model):
     # This method returns a string that represents this class.
     # Similar to toString() from java
     def __str__(self):
-        return (self.characterID, self.characterName)
+        return self.characterName
 
 
 # This class is static, like a lookup table
