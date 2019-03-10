@@ -9,7 +9,7 @@ MAX_LENGTH_CAMPAIGN_NAME = 255
 def newCampaignID():
     previousCampaign = Campaign.objects.last()
     if not previousCampaign is None:
-        newID = previousCampaign.CampaignID + 1
+        newID = previousCampaign.campaignID + 1
     else:
         newID = 0
 
@@ -18,7 +18,7 @@ def newCampaignID():
 # finds a default user
 def defaultUser():
     default = User.objects.first()
-    
+
     if default is None:
         default = User.objects.create_user('defaultUser', password='djangoproject')
 
@@ -37,7 +37,7 @@ class Campaign(models.Model):
 def newCampaignDMID():
     previousCampaignDM = CampaignDM.objects.last()
     if not previousCampaignDM is None:
-        newID = previousCampaignDM.CampaignDMID + 1
+        newID = previousCampaignDM.campaignDMID + 1
     else:
         newID = 0
 
@@ -56,7 +56,7 @@ class CampaignDM(models.Model):
 def newPartyID():
     previousParty = Party.objects.last()
     if not previousParty is None:
-        newID = previousParty.PartyID + 1
+        newID = previousParty.partyID + 1
     else:
         newID = 0
 

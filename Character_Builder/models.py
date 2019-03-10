@@ -39,7 +39,7 @@ MAX_LENGTH_RACE_NAME = 255
 def newCharacterID():
     previousCharacter = Character.objects.last()
     if not previousCharacter is None:
-        newID = previousCharacter.CharacterID + 1
+        newID = previousCharacter.characterID + 1
     else:
         newID = 0
 
@@ -49,7 +49,7 @@ def newCharacterID():
 def newAbilityScoreSetID():
     previousAbilityScoreSet = AbilityScoreSet.objects.last()
     if not previousAbilityScoreSet is None:
-        newID = previousAbilityScoreSet.AbilityScoreSetID + 1
+        newID = previousAbilityScoreSet.abilityScoreSetID + 1
     else:
         newID = 0
 
