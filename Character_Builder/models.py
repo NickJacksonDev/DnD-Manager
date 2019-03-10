@@ -35,14 +35,34 @@ MAX_LENGTH_RACE_NAME = 255
 # As this is in the character builder folder, this will focus on
 # the character information 
 
+# Automatically creates CharacterIDs
+def newCharacterID():
+    previousCharacter = Character.objects.last()
+    if not previousCharacter is None:
+        newID = previousCharacter.CharacterID + 1
+    else:
+        newID = 0
+
+    return newID
+
+# Automatically creates AbilityScoreSetIDs
+def newAbilityScoreSetID():
+    previousAbilityScoreSet = AbilityScoreSet.objects.last()
+    if not previousAbilityScoreSet is None:
+        newID = previousAbilityScoreSet.AbilityScoreSetID + 1
+    else:
+        newID = 0
+
+    return newID
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    characterID = models.IntegerField(unique=True) # Note that Django has a built-in primary key
+    characterID = models.IntegerField(unique=True, default=newCharacterID) # Note that Django has a built-in primary key
     #raceID = models.IntegerField()
     #classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
-    abilityScoreSetID = models.IntegerField()
+    abilityScoreSetID = models.IntegerField(unique=True, default=newAbilityScoreSetID)
     level = models.IntegerField(default=DEFAULT_LEVEL) # may have to split this up into a list as you may have multiple classes...
     xp = models.IntegerField(default=DEFAULT_XP)
     maxHP = models.IntegerField(default=DEFAULT_HP)
@@ -59,8 +79,7 @@ class Character(models.Model):
 # This class is static, like a lookup table
 class AbilityScore(models.Model):
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
-
-    
+   
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)  
