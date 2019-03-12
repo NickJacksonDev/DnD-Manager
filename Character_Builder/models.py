@@ -35,14 +35,23 @@ MAX_LENGTH_RACE_NAME = 255
 # As this is in the character builder folder, this will focus on
 # the character information 
 
+# finds a default user
+def defaultUser():
+    default = User.objects.first()
+
+    if default is None:
+        default = User.objects.create_user('defaultUser', password='djangoproject')
+
+    return default
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    characterID = models.IntegerField(unique=True) # Note that Django has a built-in primary key
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
+    characterID = models.AutoField(primary_key=True) # Note that Django has a built-in primary key
     #raceID = models.IntegerField()
     #classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
-    abilityScoreSetID = models.IntegerField()
+    #abilityScoreSetID = models.AutoField(primary_key=True)
     level = models.IntegerField(default=DEFAULT_LEVEL) # may have to split this up into a list as you may have multiple classes...
     xp = models.IntegerField(default=DEFAULT_XP)
     maxHP = models.IntegerField(default=DEFAULT_HP)
@@ -53,16 +62,16 @@ class Character(models.Model):
     # This method returns a string that represents this class.
     # Similar to toString() from java
     def __str__(self):
-        return (self.characterID, self.characterName)
+        return self.characterName
 
 
 # This class is static, like a lookup table
 class AbilityScore(models.Model):
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
-
-    
+   
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
+    abilityScoreSetID = models.AutoField(primary_key=True)
     character = models.ForeignKey(Character, on_delete=models.CASCADE)  
 
     # One set has many ability scores. 

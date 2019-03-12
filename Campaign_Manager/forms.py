@@ -4,4 +4,4 @@ from .models import Campaign
 class CreateCampaignForm(forms.ModelForm):
 	class Meta:
 		model = Campaign
-		fields = ['campaignName', 'campaignID']
+		fields = ['campaignName']

@@ -1,4 +1,23 @@
 {% extends "Character_Builder/Character_base.html" %}
 {% block content %}
     <h1>Character Builder!</h1>
+
+    {% for character in characters %}
+
+		<h2>{{ character.characterName }}</h2>
+		<p>character ID: {{ character.characterID }}<br>
+		Level: {{ character.level }}<br>
+		XP: {{ character.xp }}<br>
+		Max HP: {{ character.maxHP }}<br>
+		Alignment: {{ character.alignment }}<br>
+		Size: {{ character.size }}</p>
+
+    {% endfor %}
+
+    <form method="post" class="post-form">
+    	{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit" class="btn btn-dark">
+	</form>
+
 {% endblock content %}
