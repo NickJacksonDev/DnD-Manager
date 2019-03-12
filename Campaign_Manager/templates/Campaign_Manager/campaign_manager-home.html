@@ -2,6 +2,11 @@
 {% block content %}
     <h1>Campaign Builder!</h1>
 
+    {% for campaign in campaigns %}
+		<h2>{{ campaign.campaignName }}</h2>
+		<h3>ID: {{ campaign.campaignID }}</h3>
+    {% endfor %}
+
     {% for dm in campaignDMs %}
 		<h2>{{ dm.campaign }}</h2>
 		<h3>DM: {{ dm }}</h3>

@@ -35,26 +35,6 @@ MAX_LENGTH_RACE_NAME = 255
 # As this is in the character builder folder, this will focus on
 # the character information 
 
-# Automatically creates CharacterIDs
-def newCharacterID():
-    previousCharacter = Character.objects.last()
-    if not previousCharacter is None:
-        newID = previousCharacter.characterID + 1
-    else:
-        newID = 0
-
-    return newID
-
-# Automatically creates AbilityScoreSetIDs
-def newAbilityScoreSetID():
-    previousAbilityScoreSet = AbilityScoreSet.objects.last()
-    if not previousAbilityScoreSet is None:
-        newID = previousAbilityScoreSet.abilityScoreSetID + 1
-    else:
-        newID = 0
-
-    return newID
-
 # finds a default user
 def defaultUser():
     default = User.objects.first()
@@ -64,24 +44,14 @@ def defaultUser():
 
     return default
 
-# Automatically creates abililtyScoreSetIDs
-def newAbilityScoreSetID():
-    previousCharacter = Character.objects.last()
-    if not previousCharacter is None:
-        newID = previousCharacter.abilityScoreSetID + 1
-    else:
-        newID = 0
-
-    return newID
-
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
-    characterID = models.IntegerField(unique=True, default=newCharacterID) # Note that Django has a built-in primary key
+    characterID = models.AutoField(primary_key=True) # Note that Django has a built-in primary key
     #raceID = models.IntegerField()
     #classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
-    abilityScoreSetID = models.IntegerField(unique=True, default=newAbilityScoreSetID)
+    #abilityScoreSetID = models.AutoField(primary_key=True)
     level = models.IntegerField(default=DEFAULT_LEVEL) # may have to split this up into a list as you may have multiple classes...
     xp = models.IntegerField(default=DEFAULT_XP)
     maxHP = models.IntegerField(default=DEFAULT_HP)
@@ -101,6 +71,7 @@ class AbilityScore(models.Model):
    
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
+    abilityScoreSetID = models.AutoField(primary_key=True)
     character = models.ForeignKey(Character, on_delete=models.CASCADE)  
 
     # One set has many ability scores. 
