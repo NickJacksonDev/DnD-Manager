@@ -79,6 +79,7 @@ class AbilityScoreSet(models.Model):
     # Thus a manyToMany relationship is used
     # Note: only one of the two classes should have a manyToMany Field
     abilityScores = models.ManyToManyField(AbilityScore) 
+
     # abilityScoreID = models.IntegerField() # Acts as an enumeration
 
     abilityScoreValue = models.IntegerField() 
