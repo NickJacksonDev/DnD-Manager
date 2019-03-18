@@ -48,16 +48,20 @@ def defaultUser():
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
     characterID = models.AutoField(primary_key=True) # Note that Django has a built-in primary key
-    #raceID = models.IntegerField()
-    #classID = models.IntegerField()
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
-    #abilityScoreSetID = models.AutoField(primary_key=True)
     level = models.IntegerField(default=DEFAULT_LEVEL) # may have to split this up into a list as you may have multiple classes...
     xp = models.IntegerField(default=DEFAULT_XP)
     maxHP = models.IntegerField(default=DEFAULT_HP)
     currentHP = models.IntegerField(default=DEFAULT_HP)
     alignment = models.CharField(max_length = MAX_LENGTH_ALIGNMENT) # Use string or an enum?
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
+
+
+    # Outdated variables
+    #raceID = models.IntegerField()
+    #classID = models.IntegerField()
+    #abilityScoreSetID = models.AutoField(primary_key=True)
+
 
     # This method returns a string that represents this class.
     # Similar to toString() from java
@@ -88,8 +92,9 @@ class AbilityScoreSet(models.Model):
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
     # TODO: Maybe use ManyToMany relationship, as one character may have multiple 
-    # classes... Oh wait. That's actually something to consider...
+    # classes... Oh wait. That's actually something to consider...    
     character = models.ForeignKey(Character, on_delete=models.CASCADE)   
+    characterID = models.AutoField(primary_key=True)
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
@@ -97,7 +102,7 @@ class CharacterClass(models.Model):
 # This class is largely static, like a lookup table
 class CharacterRace(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
-    # raceID = models.ForeignKey(unique=True)
+    raceID = models.AutoField(primary_key=True)
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
     abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
