@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView
 from .models import Character
 from django.http import HttpResponseRedirect
 from .forms import CreateCharacterForm
@@ -19,6 +20,11 @@ def home(request):
     	
 	return render(request, 'Character_Builder/character_builder-home.html', context)
 	
-	
+# This is a class based view that uses django's built-in
+# ListView view to display the characters
+class CharacterListView(ListView): 
+	model = Character
+	template_name = 'CharacterBuilder/Character_builder-home.html'
+	context_object_name = 'characters'
 
 #def create_character(request):
