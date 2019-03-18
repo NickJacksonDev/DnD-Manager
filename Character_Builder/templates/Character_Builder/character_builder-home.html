@@ -16,7 +16,7 @@
 
     <form method="post" class="post-form">
     	{% csrf_token %}
-		{{ form }}
+			{{ form.as_table }}
 		<input type="submit" value="Submit" class="btn btn-dark">
 	</form>
 
