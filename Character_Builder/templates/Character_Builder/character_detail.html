@@ -1,0 +1,28 @@
+{% extends "Character_Builder/Character_base.html" %}
+
+{% block content %}
+
+  <div>
+    <h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
+  
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a>
+    
+  </div>
+  <p>
+    Created by: {{ character.user }}<br>
+    Character ID: {{ character.characterID }}<br>
+    Level: {{ character.level }}<br>
+    XP: {{ character.xp }}<br>
+    Max HP: {{ character.maxHP }}<br>
+    Alignment: {{ character.alignment }}<br>
+    Size: {{ character.size }}
+
+  </p>
+
+  <!-- Should probably break if the character is not part of the user's characters -->
+  <!-- {% if character.user == user %} -->
+  <!-- This if statement runs even though it's commented out... -->
+  <!-- {% endif %} -->
+
+{% endblock content %}
