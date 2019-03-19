@@ -21,6 +21,7 @@ The software needs to follow the rules of DnD to allow users to create character
 # User Interface Design
 
 [Diagram](https://drive.google.com/file/d/1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa/view?usp=sharing)
+[User Stories](https://docs.google.com/document/d/1NZeqT6CyVsro24gmO0C-WLZbVaCbVZdCNq2G_n58w24/edit?usp=sharing)
 
 # Resource Management
 
