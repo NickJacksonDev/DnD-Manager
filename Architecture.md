@@ -1,6 +1,6 @@
 # Program Organization
 
-You should have a diagram of your high level architecture in this section, along with a description of each component and a table that relates each component to one or more user stories.
+[Link](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
 
 # Major Classes
 
