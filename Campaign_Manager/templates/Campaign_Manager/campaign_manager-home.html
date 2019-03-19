@@ -1,4 +1,26 @@
 {% extends "Campaign_Manager/campaign_base.html" %}
 {% block content %}
     <h1>Campaign Builder!</h1>
+
+    {% for campaign in campaigns %}
+		<h2>{{ campaign.campaignName }}</h2>
+		<h3>ID: {{ campaign.campaignID }}</h3>
+    {% endfor %}
+
+    {% for dm in campaignDMs %}
+		<h2>{{ dm.campaign }}</h2>
+		<h3>DM: {{ dm }}</h3>
+    {% endfor %}
+
+    {% for pc in partyCharacters %}
+		<h2>{{ pc.party }}</h2>
+		<h3>Party Member: {{ pc }}</h3>
+    {% endfor %}
+
+    <form method="post" class="post-form">
+    	{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit" class="btn btn-dark">
+	</form>
+
 {% endblock content %}
