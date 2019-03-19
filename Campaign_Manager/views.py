@@ -6,15 +6,7 @@ from django.http import HttpResponseRedirect
 from .forms import CreateCampaignForm
 from django.views.generic import CreateView
 
-# def organizeCampaigns():
-#     campaignList = Campaign.objects.all()
-
-#     for pc in PartyCharacter.objects.all():
-#         pc = 
-
-#     return campaignList
-
-# Create your views here.
+# Home view
 def home(request):
     form = CreateCampaignForm(request.POST or None)
 
@@ -33,6 +25,7 @@ def home(request):
 
     return render(request, 'Campaign_Manager/campaign_manager-home.html', context)
 
+# Creation form view
 class CampaignCreateView(CreateView):
     model = Campaign
     fields = ['campaignName']
