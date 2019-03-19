@@ -17,16 +17,21 @@ class ItemCreateTestCase(TestCase):
 
 	def test_inventory_character(self):
 		char = Character.objects.get(characterName="Malikar")
-		inv = Inventory.objects.get(character=char)
-		self.assertEqual(inv.character, char)
+		try:
+			Inventory.objects.get(character=char)
+		except:
+			self.fail()
 
 	def test_item_id(self):
 		item = Item.objects.get(itemName="test item")
 		self.assertEqual(item.itemID, 1)
 
 	def test_item_name(self):
-		item = Item.objects.get(itemName="test item")
-		self.assertEqual(item.itemName, "test item")
+		try:
+			Item.objects.get(itemName="test item")
+		except:
+			self.fail()
+		
 
 	def test_item_inventory(self):
 		char = Character.objects.get(characterName="Malikar")

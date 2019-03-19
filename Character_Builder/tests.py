@@ -15,8 +15,10 @@ class CharacterCreateTestCase(TestCase):
 		self.assertEqual(char.characterID, 1)
 
 	def test_character_name(self):
-		char = Character.objects.get(characterName="Malikar")
-		self.assertEqual(char.characterName, "Malikar")
+		try:
+			Character.objects.get(characterName="Malikar")
+		except:
+			self.fail()
 
 	def test_character_level(self):
 		char = Character.objects.get(characterName="Malikar")
