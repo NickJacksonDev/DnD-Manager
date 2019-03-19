@@ -6,7 +6,7 @@
     {% for character in characters %}
 
 			<!-- Should probably break if the character is not part of the user's characters -->
-			{% if character.user == user %}
+			<!-- {% if character.user == user %} -->
 				<div>
 					<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
 				
@@ -25,7 +25,7 @@
 
 				</p>
 
-			{% endif %}
+			<!-- {% endif %} -->
 
     {% endfor %}
 	</form>

@@ -33,13 +33,13 @@ def home(request):
 # It inherits from ListView
 class CharacterListView(ListView): 
 	model = Character
-	template_name = 'CharacterBuilder/Character_builder-home.html'
+	# template_name = 'CharacterBuilder/Character_builder-home.html'
 	context_object_name = 'characters'
 
 
 class CharacterDetailView(DetailView):
 	model = Character
-	# context_object_name = 'characters'
+	context_object_name = 'characters'
 
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
