@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Character
 from django.http import HttpResponseRedirect
 from .forms import CreateCharacterForm
@@ -27,5 +27,10 @@ class CharacterListView(ListView):
 	model = Character
 	template_name = 'CharacterBuilder/Character_builder-home.html'
 	context_object_name = 'characters'
+
+
+class CharacterDetailView(DetailView):
+	model = Character
+	# context_object_name = 'characters'
 
 #def create_character(request):
