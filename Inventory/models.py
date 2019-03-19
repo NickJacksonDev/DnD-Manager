@@ -28,6 +28,7 @@ class Item(models.Model):
     itemID = models.AutoField(primary_key=True)
     itemName = models.CharField(max_length = MAX_LENGTH_ITEM_NAME)
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE, default=defaultInventory)
+    public = models.BooleanField(default=True)
 
     def __str__(self):
         return self.itemName
