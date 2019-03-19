@@ -38,7 +38,9 @@
   * Classes
     * [Class Diagrams](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
     * [Class Descriptions](https://docs.google.com/document/d/1n7qOdXY2i-A0tg3gyodm_GhEKr2NwJpASYI_jcA4ivU/edit?usp=sharing)
-  * [User Interface Diagram](https://drive.google.com/file/d/1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa/view?usp=sharing)
+  * User Interface
+    * [User Interface Diagram](https://drive.google.com/file/d/1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa/view?usp=sharing)
+    * [User Story Relations](https://docs.google.com/document/d/1NZeqT6CyVsro24gmO0C-WLZbVaCbVZdCNq2G_n58w24/edit?usp=sharing)
 * Source Code
 * [Test Cases](https://docs.google.com/document/d/1hySpFXEcgq7yQpKu9dCfXvBHdXgoCP7uj1-dY4Cz4eY/edit?usp=sharing)
 * Product Demonstration
