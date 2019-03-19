@@ -22,6 +22,7 @@ def home(request):
 	
 # This is a class based view that uses django's built-in
 # ListView view to display the characters
+# It inherits from ListView
 class CharacterListView(ListView): 
 	model = Character
 	template_name = 'CharacterBuilder/Character_builder-home.html'
