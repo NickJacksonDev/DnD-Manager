@@ -34,8 +34,6 @@
   * [Data Design](https://docs.google.com/document/d/1E3cikrkHcXE-PxppXv7h1ovNXgMTyPIy-kNyr7d9zvQ/edit?usp=sharing)
   * [System Architecture](https://github.com/NickJacksonDev/DnD-Manager/blob/master/Architecture.md)
   * [Class Diagrams](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
-  * Sequence Diagrams
-  * etc.
 * Source Code
 * [Test Cases](https://docs.google.com/document/d/1hySpFXEcgq7yQpKu9dCfXvBHdXgoCP7uj1-dY4Cz4eY/edit?usp=sharing)
 * Product Demonstration
