@@ -64,6 +64,8 @@ The architecture is feasible for what we are trying to accomplish as we simply n
 
 # Overengineering
 
+As mentioned in error processing and fault tolerance, we will not be allowing errors to be passed through the system. Therefore, the system will lean heavily towards doing the simplest thing possible.
+
 # Build-vs-Buy Decisions
 
 Third Party Systems
@@ -77,5 +79,8 @@ Third Party Systems
 
 # Reuse
 
+We are using Bootstrap and Django to create a lot of what we are working on, but we are creating the code and other components from the ground up. Thus, this is not a concern for the project.
+
 # Change Strategy
 
+To handle changes to the system, we will meet with the team, expand the application, and implement the new features using a test-driven delevopment approach.
