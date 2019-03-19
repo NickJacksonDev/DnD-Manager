@@ -56,6 +56,8 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		form.instance.author = self.request.user 
 		return super().form_valid(form)
 
+
+# Currently commented out the requirement that you are the proper user to edit a character...
 # class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class CharacterEditView(UpdateView):
 	model = Character
