@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CharacterListView
+from .views import CharacterListView, CharacterDetailView
 from . import views
 
 urlpatterns = [
