@@ -4,7 +4,7 @@
 
     {% for character in characters %}
 
-			<h2><a href="#">{{ character.characterName }}</a></h2>
+			<h2><a href="{% url 'character_detail' character.id %}">{{ character.characterName }}</a></h2>
 			<p>
 				Character ID: {{ character.characterID }}<br>
 				Level: {{ character.level }}<br>
