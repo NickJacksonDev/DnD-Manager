@@ -29,6 +29,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='Users/logout.html'), name='logout'),
     path('character_builder/', include('Character_Builder.urls')),
     path('campaign/', include('Campaign_Manager.urls')),
+    path('inventory/', include('Inventory.urls')),
     path('', character_views.home_page, name = "home_page"),
 ]
 
