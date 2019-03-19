@@ -56,7 +56,8 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		form.instance.author = self.request.user 
 		return super().form_valid(form)
 
-class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+# class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CharacterEditView(UpdateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
@@ -73,7 +74,8 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		return False
 
 
-class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+# class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class CharacterDeleteView(DeleteView):
 	model = Character
 	success_url = '/'
 

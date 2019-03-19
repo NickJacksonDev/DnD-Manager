@@ -69,6 +69,7 @@ class Character(models.Model):
     def __str__(self):
         return self.characterName
 
+
     # Should associate a user with the character when initialized
     def save_model(self, request, obj, form, change):
         if obj.user == defaultUser:
@@ -76,6 +77,7 @@ class Character(models.Model):
             obj.user = request.user
         #super().save_model(request, obj, form, change)
     
+
     # When you create/update a character, this is where the 
     # page goes to after you save the character
     def get_absolute_url(self):
