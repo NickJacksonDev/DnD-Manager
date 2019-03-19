@@ -43,9 +43,13 @@ Security for this project will be handled by django and the use of user profiles
 # Build-vs-Buy Decisions
 
 Third Party Systems
+
   Crispy Forms - Renders forms for easier readability of forms
+  
   Bootstrap 4 - This allows us to easily create attractive HTML for the site without having to manually write all HTML
+  
   Pillow - Image handling library
+  
 
 # Reuse
 
