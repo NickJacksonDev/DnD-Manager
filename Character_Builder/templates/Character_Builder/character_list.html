@@ -15,9 +15,21 @@
 				Max HP: {{ character.maxHP }}<br>
 				Alignment: {{ character.alignment }}<br>
 				Size: {{ character.size }}
+				
+				<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.id %}">Update</a>
+				<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.id %}">Delete</a>
+				
 			</p>
 
 			<!-- TODO: Add a button to edit this character -->
+			
+				
+			{% if character.user == user %}
+				<div>
+					<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.id %}">Update</a>
+					<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.id %}">Delete</a>
+				</div>
+			{% endif %}
 
     {% endfor %}
 	</form>
