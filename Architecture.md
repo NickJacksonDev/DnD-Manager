@@ -4,23 +4,23 @@
 
 # Major Classes
 
-You should have an UML class diagram in this section, along with a description of each class and a table that relates each component to one or more user stories. At a minimum, you need 1 diagram of your major classes. You are encouraged to also include more detailed diagrams that include all of your classes. 
+[Link](https://drive.google.com/file/d/1Kn8L8AD4Q7S4hYZRatU0C2qe99p2qACq/view)
 
 # Data Design
 
-If you are using a database, you should have a basic Entity Relationship Diagram (ERD) in this section. This diagram should describe the tables in your database and their relationship to one another (especially primary/foreign keys), including the columns within each table. 
+[Link](https://docs.google.com/document/d/1E3cikrkHcXE-PxppXv7h1ovNXgMTyPIy-kNyr7d9zvQ/edit#heading=h.429iau5szzf7)
 
 # Business Rules
 
-You should list the assumptions, rules, and guidelines from external sources that are impacting your program design. 
-
 # User Interface Design
 
-You should have one or more user interface screens in this section. Each screen should be accompanied by an explaination of the screens purpose and how the user will interact with it. You should relate each screen to one another as the user transitions through the states of your application. You should also have a table that relates each window or component to the support using stories. 
+[Link](https://drive.google.com/open?id=1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa)
 
 # Resource Management
 
 # Security
+
+Security for this project will be handled by django and the use of user profiles requiring a username and password. To access an account and the characters/campaigns contained within will require authentication.
 
 # Performance
 
@@ -42,7 +42,14 @@ You should have one or more user interface screens in this section. Each screen 
 
 # Build-vs-Buy Decisions
 
-This section should list the third party libraries your system is using and describe what those libraries are being used for.
+Third Party Systems
+
+  Crispy Forms - Renders forms for easier readability of forms
+  
+  Bootstrap 4 - This allows us to easily create attractive HTML for the site without having to manually write all HTML
+  
+  Pillow - Image handling library
+  
 
 # Reuse
 

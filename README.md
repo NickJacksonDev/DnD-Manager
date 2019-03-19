@@ -32,7 +32,7 @@
 * Requirements
 * Design Documents
   * Data Design
-  * System Architecture
+  * [System Architecture](https://github.com/NickJacksonDev/DnD-Manager/blob/master/Architecture.md)
   * Class Diagrams
   * Sequence Diagrams
   * etc.
