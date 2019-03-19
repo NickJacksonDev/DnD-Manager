@@ -79,7 +79,7 @@ class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 	def test_func(self):
 		post = self.get_object()
-		if self.request.user == post.author:
+		if self.request.user == post.user:
 			return True
 		return False
 
