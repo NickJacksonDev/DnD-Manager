@@ -6,7 +6,7 @@
 
 			<!-- Should probably break if the character is not part of the user's characters -->
 
-			<h2><a href="{% url 'character-detail' character.id %}">{{ character.characterName }}</a></h2>
+			<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
 			<p>
 				Character ID: {{ character.characterID }}<br>
 				Level: {{ character.level }}<br>
