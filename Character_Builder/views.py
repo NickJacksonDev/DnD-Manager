@@ -42,8 +42,10 @@ class CharacterDetailView(DetailView):
 	# context_object_name = 'characters'
 
 
-class CharacterCreateView(LoginRequiredMixin, CreateView):
-# class CharacterCreateView(CreateView):
+# You no longer need to be logged in to create a character because we can't
+# associate the user with the character just yet
+# class CharacterCreateView(LoginRequiredMixin, CreateView):
+class CharacterCreateView(CreateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
