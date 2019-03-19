@@ -3,12 +3,7 @@
 {% block content %}
     <h1>Characters List!</h1>
 
-		<p>Beginning</p>
-
     {% for character in characters %}
-
-			<p>Hello world: {{ character }}</p>
-
 
 			<div>
 				<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
