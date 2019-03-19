@@ -33,11 +33,11 @@
 * Design Documents
   * [Data Design](https://docs.google.com/document/d/1E3cikrkHcXE-PxppXv7h1ovNXgMTyPIy-kNyr7d9zvQ/edit?usp=sharing)
   * [System Architecture Overview](https://github.com/NickJacksonDev/DnD-Manager/blob/master/Architecture.md)
-   * [Architecture Diagram](https://docs.google.com/drawings/d/1MgBqA1_aYosADHNCrgWPZ0p7me8jpzWHd6jJAV7-gSk/edit?usp=sharing)
-   * [Architecture Description](https://docs.google.com/document/d/1FA4I41uiwIgKB1tqMOyXJnYcXf9lOJA9ilg85u-RlCQ/edit?usp=sharing)
+    * [Architecture Diagram](https://docs.google.com/drawings/d/1MgBqA1_aYosADHNCrgWPZ0p7me8jpzWHd6jJAV7-gSk/edit?usp=sharing)
+    * [Architecture Description](https://docs.google.com/document/d/1FA4I41uiwIgKB1tqMOyXJnYcXf9lOJA9ilg85u-RlCQ/edit?usp=sharing)
   * Classes
-   * [Class Diagrams](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
-   * [Class Descriptions](https://docs.google.com/document/d/1n7qOdXY2i-A0tg3gyodm_GhEKr2NwJpASYI_jcA4ivU/edit?usp=sharing)
+    * [Class Diagrams](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
+    * [Class Descriptions](https://docs.google.com/document/d/1n7qOdXY2i-A0tg3gyodm_GhEKr2NwJpASYI_jcA4ivU/edit?usp=sharing)
   * [User Interface Diagram](https://drive.google.com/file/d/1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa/view?usp=sharing)
 * Source Code
 * [Test Cases](https://docs.google.com/document/d/1hySpFXEcgq7yQpKu9dCfXvBHdXgoCP7uj1-dY4Cz4eY/edit?usp=sharing)
