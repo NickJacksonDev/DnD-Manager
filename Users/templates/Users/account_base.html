@@ -1,6 +1,5 @@
 {% extends "Character_Builder/base.html" %}
 {% block main %}
-
 <main role="main" class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -10,8 +9,14 @@
 					<div class="media-body">
 						<h2 class="account-heading">{{ user.username }}</h2>
 						<p class="text-secondary">{{ user.email }}</p>
+						<div class="border-top pt-3">
+			                <small class="text-muted">
+			                    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+			                </small>
+			            </div>
 					</div>
 				</div>
+				{% block content %}{% endblock content %}
 			</div>
 		</div>
 	</div>

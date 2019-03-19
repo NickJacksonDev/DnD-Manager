@@ -1,5 +1,3 @@
 *.cpython-37*
 db.sqlite3
-Campaign_Manager/migrations/0001_initial.py
-Character_Builder/migrations/0001_initial.py
-Users/migrations/0001_initial.py
+media/profile_pics/*
