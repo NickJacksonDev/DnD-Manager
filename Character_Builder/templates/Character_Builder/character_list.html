@@ -7,7 +7,13 @@
 
 			<!-- Should probably break if the character is not part of the user's characters -->
 
-			<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
+			<div>
+				<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
+			
+				<!-- <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
+				<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a> -->
+				
+			</div>
 			<p>
 				Character ID: {{ character.characterID }}<br>
 				Level: {{ character.level }}<br>
@@ -15,9 +21,7 @@
 				Max HP: {{ character.maxHP }}<br>
 				Alignment: {{ character.alignment }}<br>
 				Size: {{ character.size }}
-				
-				<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.id %}">Update</a>
-				<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.id %}">Delete</a>
+
 				
 			</p>
 
@@ -26,8 +30,8 @@
 				
 			{% if character.user == user %}
 				<div>
-					<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.id %}">Update</a>
-					<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.id %}">Delete</a>
+					<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
+					<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a>
 				</div>
 			{% endif %}
 
