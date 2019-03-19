@@ -1,0 +1,15 @@
+{% extends "Character_Builder/Character_base.html" %}
+{% block content %}
+  <h2>{{ character.characterName }}</h2>
+  <p>
+    Character ID: {{ character.characterID }}<br>
+    Level: {{ character.level }}<br>
+    XP: {{ character.xp }}<br>
+    Max HP: {{ character.maxHP }}<br>
+    Alignment: {{ character.alignment }}<br>
+    Size: {{ character.size }}
+  </p>
+
+  <!-- TODO: Create a button to "edit" -->
+
+{% endblock content %}
