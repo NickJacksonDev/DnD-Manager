@@ -76,6 +76,8 @@ class CharacterEditView(UpdateView):
 		return False
 
 
+# Currently commented out the part where it requires you to be logged into
+# the correct account to delete characters
 # class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CharacterDeleteView(DeleteView):
 	model = Character
