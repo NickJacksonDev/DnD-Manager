@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegistrationForm
+from Campaign_Manager .models import Campaign
+from Character_Builder.models import Character
 
 def register(request):
     if request.method == 'POST':
@@ -16,4 +18,13 @@ def register(request):
     return render(request, 'Users/register.html', {'form': form})
 
 def profile(request):
-    return render(request, 'Users/profile.html')
+
+    context ={
+
+        'campaigns' : Campaign.objects.all(),
+        'characters' : Character.objects.all(),
+        'title' : 'Profile',
+
+    }
+
+    return render(request, 'Users/profile.html', context)

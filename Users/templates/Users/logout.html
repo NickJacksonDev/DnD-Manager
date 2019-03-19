@@ -1,9 +1,15 @@
-{% extends "Character_Builder/Character_base.html" %}
-{% block content %}
-    <h2>You have been Logged out</h2>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <a href="{% url 'login' %}">Log back in</a>
-        </small>
+{% extends "Character_Builder/base.html" %}
+{% block main %}
+<main role="main" class="container">
+	<div class="row">
+		<div class="col-md-12">
+      <h2>You have been Logged out</h2>
+      <div class="border-top pt-3">
+          <small class="text-muted">
+              <a class="btn btn-dark" href="{% url 'login' %}" role="button">Log back in</a>
+          </small>
+      </div>
     </div>
-{% endblock content %}
+  </div>
+</main>
+{% endblock main %}
