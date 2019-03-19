@@ -16,9 +16,13 @@ def home(request):
 			'characters' : Character.objects.all(),
 
 	}
-    	
-	return render(request, 'Character_Builder/character_builder-home.html', context)
-	
-	
 
-#def create_character(request):
+	return render(request, 'Character_Builder/character_builder-home.html', context)
+
+def home_page(request):
+
+    context = {
+            'title' : 'Welcome to DnD Manager!',
+    }
+
+    return render(request, 'Character_Builder/home.html', context)
