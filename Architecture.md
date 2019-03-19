@@ -1,6 +1,6 @@
 # Program Organization
 
-[Graphic](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
+[Diagram](https://docs.google.com/drawings/d/1TUbR1T9_B6WfCYGCicQKSH8qjjn9X43obXvX7nI2Zt0/edit?usp=sharing)
 
 [In-Depth Description](https://docs.google.com/document/d/1FA4I41uiwIgKB1tqMOyXJnYcXf9lOJA9ilg85u-RlCQ/edit?usp=sharing)
 
@@ -8,13 +8,13 @@ The architecture that we have designed for our project is similar to a MVC archi
 
 # Major Classes
 
-[Graphic](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
+[Diagram](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
 
 [Class Descriptions](https://docs.google.com/document/d/1n7qOdXY2i-A0tg3gyodm_GhEKr2NwJpASYI_jcA4ivU/edit?usp=sharing)
 
 # Data Design
 
-[Link](https://docs.google.com/document/d/1E3cikrkHcXE-PxppXv7h1ovNXgMTyPIy-kNyr7d9zvQ/edit?usp=sharing)
+[Database Schemas](https://docs.google.com/document/d/1E3cikrkHcXE-PxppXv7h1ovNXgMTyPIy-kNyr7d9zvQ/edit?usp=sharing)
 
 # Business Rules
 
@@ -22,7 +22,7 @@ The software needs to follow the rules of DnD to allow users to create character
 
 # User Interface Design
 
-[Link](https://drive.google.com/file/d/1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa/view?usp=sharing)
+[Diagram](https://drive.google.com/file/d/1WVBX7nz-pJ9zIM4E0k-gchcGm-XRzGoa/view?usp=sharing)
 
 # Resource Management
 
