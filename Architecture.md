@@ -38,7 +38,7 @@ Performance is not a concern of this project.
 
 # Scalability
 
-Scalability is not a concern of this project.
+Because we are creating a web page style project, if we need to add things in the future to expand on the system we can easily add new pages and features that can acheive this.
 
 # Interoperability
 
@@ -56,7 +56,11 @@ Error processing for this project will be done by sending error messages and wil
 
 # Fault Tolerance
 
+Tolerance for faults will be minimal. If a field is incorrect or void, we will simply reject the field and require the user fill it in properly before allowing them to continue.
+
 # Architectural Feasibility
+
+The architecture is feasible for what we are trying to accomplish as we simply need an interface for a database to hold the user's data.
 
 # Overengineering
 
@@ -64,11 +68,11 @@ Error processing for this project will be done by sending error messages and wil
 
 Third Party Systems
 
-  Crispy Forms - Renders forms for easier readability of forms
+  * Crispy Forms - Renders forms for easier readability of forms
   
-  Bootstrap 4 - This allows us to easily create attractive HTML for the site without having to manually write all HTML
+  * Bootstrap 4 - This allows us to easily create attractive HTML for the site without having to manually write all HTML
   
-  Pillow - Image handling library
+  * Pillow - Image handling library
   
 
 # Reuse
