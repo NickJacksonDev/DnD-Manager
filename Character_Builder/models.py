@@ -47,7 +47,7 @@ def defaultUser():
 
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser, null=True, blank=True)
     characterID = models.AutoField(primary_key=True) # Note that Django has a built-in primary key
     characterName = models.CharField(max_length = MAX_LENGTH_CHARACTER_NAME) # Is this a consistent level of abstraction?
     level = models.IntegerField(default=DEFAULT_LEVEL) # may have to split this up into a list as you may have multiple classes...
@@ -68,6 +68,13 @@ class Character(models.Model):
     # Similar to toString() from java
     def __str__(self):
         return self.characterName
+
+    # Should associate a user with the character when initialized
+    def save_model(self, request, obj, form, change):
+        if obj.user == defaultUser:
+            # Only set user during the first save.
+            obj.user = request.user
+        #super().save_model(request, obj, form, change)
     
     # When you create/update a character, this is where the 
     # page goes to after you save the character

@@ -47,6 +47,9 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
 
+	# def __init__(self, *args, **kwargs):
+	# 	'user' = user
+
 	def form_valid(self, form):
 		# Updates the author of the current form to be the current user
 		form.instance.author = self.request.user 

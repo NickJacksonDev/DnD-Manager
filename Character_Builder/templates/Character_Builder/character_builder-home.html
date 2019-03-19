@@ -8,6 +8,7 @@
 
 			<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
 			<p>
+				Created by: {{ character.user }}<br>
 				Character ID: {{ character.characterID }}<br>
 				Level: {{ character.level }}<br>
 				XP: {{ character.xp }}<br>
