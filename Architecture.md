@@ -4,8 +4,6 @@
 
 [In-Depth Description](https://docs.google.com/document/d/1FA4I41uiwIgKB1tqMOyXJnYcXf9lOJA9ilg85u-RlCQ/edit?usp=sharing)
 
-The architecture that we have designed for our project is similar to a MVC architecture. We will have a database that holds all of the data for the system. This database will be handled by Django's ORM, allowing the information to be handed to the application itself. The application itself will run on the python language. The logic for the system will then be interacted with by Django and Bootstrap to create a GUI interface on a user accessable webpage.
-
 # Major Classes
 
 [Diagram](https://drive.google.com/file/d/1NqDpVnVrYHD-SCcfD8B3sug9F6vCOEDB/view?usp=sharing)
@@ -34,11 +32,11 @@ Security for this project will be handled by django and the use of user profiles
 
 # Performance
 
-Performance is not a concern of this project
+Performance is not a concern of this project.
 
 # Scalability
 
-Scalability is not a concern of this project
+Scalability is not a concern of this project.
 
 # Interoperability
 
@@ -52,7 +50,7 @@ Internationalization and Localization are not a concern for this project. It wil
 
 # Error Processing
 
-Error processing for this project will be done by sending error messages and will be handled inside by Django.
+Error processing for this project will be done by sending error messages and will be handled by Django.
 
 # Fault Tolerance
 
