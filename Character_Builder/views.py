@@ -25,7 +25,7 @@ def home(request):
 			'characters' : Character.objects.all(),
 
 	}
-    	
+
 	return render(request, 'Character_Builder/character_builder-home.html', context)
 	
 # This is a class based view that uses django's built-in
@@ -83,4 +83,10 @@ class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return True
 		return False
 
-#def create_character(request):
+def home_page(request):
+
+    context = {
+            'title' : 'Welcome to DnD Manager!',
+    }
+
+    return render(request, 'Character_Builder/home.html', context)

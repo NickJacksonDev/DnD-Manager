@@ -1,4 +1,4 @@
-{% extends "Character_Builder/Character_base.html" %}
+{% extends "Character_Builder/base.html" %}
 {% load crispy_forms_tags %}
 {% if messages %}
     {% for message in messages %}
@@ -7,22 +7,29 @@
         </div>
     {% endfor %}
 {% endif %}
-{% block content %}
-    <div>
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class = "form-group">
-                <legend class = "border-bottom mb-4">Join Today</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-dark" type="submit">Sign Up</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-            </small>
-        </div>
+{% block main %}
+
+<main role="main" class="container">
+	<div class="row">
+		<div class="col-md-12">
+      <div>
+          <form method="POST">
+              {% csrf_token %}
+              <fieldset class = "form-group">
+                  <legend class = "border-bottom mb-4">Join Today</legend>
+                  {{ form|crispy }}
+              </fieldset>
+              <div class="form-group">
+                  <button class="btn btn-dark" type="submit">Sign Up</button>
+              </div>
+          </form>
+          <div class="border-top pt-3">
+              <small class="text-muted">
+                  Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+              </small>
+          </div>
+      </div>
     </div>
-{% endblock content %}
+  </div>
+</main>
+{% endblock main %}
