@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CharacterClass',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('characterID', models.AutoField(primary_key=True, serialize=False)),
                 ('className', models.CharField(max_length=255)),
                 ('hitDice', models.CharField(max_length=255)),
                 ('character', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Character_Builder.Character')),
@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CharacterRace',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('raceID', models.AutoField(primary_key=True, serialize=False)),
                 ('raceName', models.CharField(max_length=255)),
                 ('abilityScoreBonusSetID', models.IntegerField()),
                 ('speed', models.IntegerField()),
