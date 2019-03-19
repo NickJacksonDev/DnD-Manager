@@ -65,4 +65,7 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		return False
 
 
+class CharacterDeleteView(DeleteView):
+	model = Character
+
 #def create_character(request):
