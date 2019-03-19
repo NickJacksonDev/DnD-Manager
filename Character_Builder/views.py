@@ -39,7 +39,7 @@ class CharacterListView(ListView):
 
 class CharacterDetailView(DetailView):
 	model = Character
-	context_object_name = 'characters'
+	# context_object_name = 'characters'
 
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
