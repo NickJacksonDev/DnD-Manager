@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Notes (Django models)
 # Each model acts more or less like a database table
@@ -67,6 +68,11 @@ class Character(models.Model):
     # Similar to toString() from java
     def __str__(self):
         return self.characterName
+    
+    # When you create/update a character, this is where the 
+    # page goes to after you save the character
+    def get_absolute_url(self):
+        return reverse('character-detail', kwargs={'pk': self.pk})
 
 
 # This class is static, like a lookup table

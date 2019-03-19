@@ -44,6 +44,8 @@ class CharacterDetailView(DetailView):
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
 	model = Character
+	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
+	# exclude = []
 
 	def form_valid(self, form):
 		# Updates the author of the current form to be the current user
@@ -52,6 +54,8 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Character
+	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
+	# exclude = []
 	
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -67,5 +71,12 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Character
+	success_url = '/'
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.author:
+			return True
+		return False
 
 #def create_character(request):
