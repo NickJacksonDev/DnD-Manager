@@ -1,8 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView
-from .models import Character
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+	ListView, 
+	DetailView,
+	CreateView,
+	UpdateView,
+	DeleteView
+)
+
 from django.http import HttpResponseRedirect
+from .models import Character
 from .forms import CreateCharacterForm
 
 def home(request):
@@ -32,5 +40,29 @@ class CharacterListView(ListView):
 class CharacterDetailView(DetailView):
 	model = Character
 	# context_object_name = 'characters'
+
+
+class CharacterCreateView(LoginRequiredMixin, CreateView):
+	model = Character
+
+	def form_valid(self, form):
+		# Updates the author of the current form to be the current user
+		form.instance.author = self.request.user 
+		return super().form_valid(form)
+
+class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	model = Character
+	
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
+	
+	# Tests to ensure the logged-in user is the owner of that character...
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == Character.user:
+			return True
+		return False
+
 
 #def create_character(request):
