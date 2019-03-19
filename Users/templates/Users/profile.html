@@ -1,24 +1,61 @@
-{% extends "Character_Builder/Character_base.html" %}
-{% load crispy_forms_tags %}
+{% extends "Users/account_base.html" %}
 {% block content %}
-	<div class="content-section">
-		<div class="media">
-			<img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-			<div class="media-body">
-				<h2 class="account-heading">{{ user.username }}</h2>
-				<p class="text-secondary">{{ user.email }}</p>
+
+<main role="main" class="container">
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="content-section">
+				<h1>Current Campaigns</h1>
+				<ul class="list-unstyled">
+
+					{% for Campaign in campaigns %}
+						<li class="media">
+							<div class="media-body">
+								<h2>{{ Campaign.campaignName }}</h2>
+								Campaign ID: {{ Campaign.campaignID }}
+							</div>
+						</li>
+					{% endfor %}
+
+				</ul>
 			</div>
+
+			<div class="content-section">
+				<h1>Characters</h1>
+				<ul class="list-unstyled">
+
+					{% for Character in characters %}
+
+							<li class="media ">
+								<div class="media-body">
+									<h4 class="media-heading">{{ Character.characterName }}  Level {{ Character.level }} HP: {{ Character.hp }}</h4>
+									Race: {{ Character.raceID }}
+									Class: {{ Character.classID }}
+									Alignment: {{ Character.alignment }}
+									XP: {{ Character.xp }}
+								</div>
+							</li>
+
+					{% endfor %}
+
+				</ul>
+			</div>
+
+			<div class="content-section">
+				<div class="media">
+					<div class="media-body">
+						<h2 class="account-heading">Friends List</h2>
+						<p class="text-secondary"></p>
+					</div>
+				</div>
+			</div>
+
+
 		</div>
-		<form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class = "form-group">
-                <legend class = "border-bottom mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-dark" type="submit">Update</button>
-            </div>
-        </form>
 	</div>
+</main>
+
+
+
 {% endblock content %}
