@@ -4,9 +4,9 @@
 
     {% for character in characters %}
 
-			<h2>{{ character.characterName }}</h2>
+			<h2><a href="#">{{ character.characterName }}</a></h2>
 			<p>
-				character ID: {{ character.characterID }}<br>
+				Character ID: {{ character.characterID }}<br>
 				Level: {{ character.level }}<br>
 				XP: {{ character.xp }}<br>
 				Max HP: {{ character.maxHP }}<br>
