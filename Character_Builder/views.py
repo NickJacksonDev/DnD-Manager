@@ -43,6 +43,7 @@ class CharacterDetailView(DetailView):
 
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
+# class CharacterCreateView(CreateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
