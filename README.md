@@ -37,7 +37,7 @@
   * Sequence Diagrams
   * etc.
 * Source Code
-* Test Cases
+* [Test Cases](https://docs.google.com/document/d/1hySpFXEcgq7yQpKu9dCfXvBHdXgoCP7uj1-dY4Cz4eY/edit?usp=sharing)
 * Product Demonstration
 
 # Sprint 3
