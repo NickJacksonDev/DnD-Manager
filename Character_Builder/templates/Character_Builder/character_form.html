@@ -13,6 +13,11 @@
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Save</button>
             </div>
+
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Ability Scores</legend>
+                {{ form2|crispy }}
+            </fieldset>
         </form>
     </div>
 {% endblock content %}

@@ -11,7 +11,11 @@ from django.views.generic import (
 
 from django.http import HttpResponseRedirect
 from .models import Character
-from .forms import CreateCharacterForm
+from .forms import (
+	CreateCharacterForm, 
+	EditCharacterForm, 
+	EditAbilityScoresForm 
+)
 
 def home(request):
 	form = CreateCharacterForm(request.POST or None)
@@ -53,10 +57,27 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	# def __init__(self, *args, **kwargs):
 	# 	form.instance.user = self.request.user
 
+	def get_context_data(self, **kwargs):
+		context = super(CharacterCreateView, self).get_context_data(**kwargs)
+		form = CreateCharacterForm(self.request.POST or None)
+		context['form1'] = form
+
+		form2 = EditAbilityScoresForm(self.request.POST or None)
+		context['form2'] = form2
+		return context
+
 	def form_valid(self, form):
 		# Updates the author of the current form to be the current user
 		form.instance.user = self.request.user 
+		form2.instance.character = form.instance
 		return super().form_valid(form)
+	
+
+	# TODO: Lookup how to manage this. Perhaps render a different context
+	# Or a "Sorry, not able to login" screen
+	def form_invalid(self, **kwargs):
+		return self.render_to_response(self.get_context_data(**kwargs))
+
 
 
 class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -76,6 +97,31 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		if self.request.user == Character.user:
 			return True
 		return False
+	
+
+	# def get_context_data(self, **kwargs):
+	# 	context = super(MyClassView, self).get_context_data(**kwargs)
+	# 	if 'form' not in context:
+	# 		context['form'] = self.form_class(request=self.request)
+	# 	if 'form2' not in context:
+	# 		context['form2'] = self.second_form_class(request.self.request)
+	# 	return context
+	
+	# def post(self, request, *args, **kwargs):
+	# 	self.object = self.get_object()
+	# 	if 'form' in request.POST:
+	# 		form_class = self.get_form_class()
+	# 		form_name = 'form'
+	# 	else:
+	# 		form_class = self.second_form_class
+	# 		form_name = 'form2'
+		
+	# 	form = self.get_form(form_class)
+
+	# 	if form.is_valid():
+	# 		return self.form_valid(form)
+	# 	else:
+	# 		return self.form_invalid(**{form_name: form})
 
 
 class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

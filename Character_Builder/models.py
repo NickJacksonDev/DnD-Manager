@@ -29,6 +29,8 @@ MAX_LENGTH_HIT_DICE = 255
 
 MAX_LENGTH_RACE_NAME = 255
 
+DEFAULT_ABILITY_SCORE = 10
+
 
 # Description of this model file
 # Much of this will be based off of the database schemas
@@ -57,6 +59,8 @@ class Character(models.Model):
     alignment = models.CharField(max_length = MAX_LENGTH_ALIGNMENT) # Use string or an enum?
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
     public = models.BooleanField(default=True)
+
+    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE)
 
     # Outdated variables
     #raceID = models.IntegerField()
@@ -97,11 +101,15 @@ class AbilityScoreSet(models.Model):
     # However, each ability score may go to multiple sets (like an enumeration)
     # Thus a manyToMany relationship is used
     # Note: only one of the two classes should have a manyToMany Field
-    abilityScores = models.ManyToManyField(AbilityScore) 
+    # abilityScores = models.ManyToManyField(AbilityScore) 
+    # abilityScoreValue = models.IntegerField() 
 
-    # abilityScoreID = models.IntegerField() # Acts as an enumeration
-
-    abilityScoreValue = models.IntegerField() 
+    strength = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    dexterity = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    constitution = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    intelligence = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    wisdom = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    charisma = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
 
 # This class is largely static, like a lookup table
@@ -116,10 +124,11 @@ class CharacterClass(models.Model):
 
 # This class is largely static, like a lookup table
 class CharacterRace(models.Model):
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE)
     raceID = models.AutoField(primary_key=True)
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
     abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
     size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
+
 
