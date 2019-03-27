@@ -26,23 +26,24 @@
 				<ul class="list-unstyled">
 
 					{% for Character in characters %}
-
-							<li class="media ">
-								<div class="media-body">
-									<h4 class="media-heading">{{ Character.characterName }}  Level {{ Character.level }} HP: {{ Character.hp }}</h4>
-									Race: {{ Character.raceID }}
-									Class: {{ Character.classID }}
-									Alignment: {{ Character.alignment }}
-									XP: {{ Character.xp }}
-								</div>
-							</li>
+							{% if Character.user == user %}
+									<li class="media ">
+										<div class="media-body">
+											<h4 class="media-heading">{{ Character.characterName }}  Level {{ Character.level }} HP: {{ Character.hp }}</h4>
+											Race: {{ Character.raceID }}
+											Class: {{ Character.classID }}
+											Alignment: {{ Character.alignment }}
+											XP: {{ Character.xp }}
+										</div>
+									</li>
+							{% endif %}
 
 					{% endfor %}
 
 				</ul>
 			</div>
 
-		
+
 
 
 		</div>

@@ -9,11 +9,15 @@
 					<div class="media-body">
 						<h2 class="account-heading">{{ user.username }}</h2>
 						<p class="text-secondary">{{ user.email }}</p>
+
+						{% if user.username == request.user.username %}
 						<div class="border-top pt-3">
 			                <small class="text-muted">
 			                    <a href="{% url 'edit_profile' %}">Edit Profile</a>
 			                </small>
-			            </div>
+			      </div>
+
+						{% endif %}
 					</div>
 				</div>
 				{% block content %}{% endblock content %}

@@ -4,14 +4,28 @@
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8">
+        <div class="content-section">
+            <div class="border-bottom pt-3">
+              <h2>Friends</h2>
+            </div>
 
+            {% for friend in friends %}
+                <a href="{% url 'profile_with_pk' pk=friend.pk %}">
+                    <h4>{{ friend.username }}</h4>
+                </a>
+            {% endfor %}
+
+        </div>
 
 
     </div>
 
     <div class="col-md-4">
       <div class="content-section">
-        <h2>Other Users</h2>
+        <div class="border-bottom pt-3">
+            <h2>Other Users</h2>
+        </div>
+
         {% for user in users %}
             <a href="{% url 'profile_with_pk' pk=user.pk %}">
                 <h4>{{ user.username }}</h4>

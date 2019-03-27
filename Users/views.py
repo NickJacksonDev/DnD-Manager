@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from Campaign_Manager .models import Campaign
 from Character_Builder.models import Character
+from .models import Friend
 
 def register(request):
     if request.method == 'POST':
@@ -38,9 +39,15 @@ def profile(request, pk=None ):
     return render(request, 'Users/profile.html', context)
 
 def friends(request):
+
+    user = User.objects.exclude(id=request.user.id)
+    friend, created = Friend.objects.get_or_create(current_user=request.user)
+    friends = friend.users.all()
+
     context = {
         'title' : 'Friends List',
-        'users' : User.objects.exclude(id=request.user.id),
+        'users' : user,
+        'friends': friends,
     }
 
     return render(request, 'Users/friends.html', context)
