@@ -42,20 +42,7 @@
 				</ul>
 			</div>
 
-			<div class="content-section">
-				<div class="media">
-					<div class="media-body">
-						<h2 class="account-heading">Friends List</h2>
-						<p class="text-secondary">
-								{% for user in users %}
-										<a href="{% url 'profile_with_pk' pk=user.pk %}">
-												<h4>{{ user.username }}</h4>
-										</a>
-								{% endfor %}
-						</p>
-					</div>
-				</div>
-			</div>
+		
 
 
 		</div>
