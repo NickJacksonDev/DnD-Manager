@@ -56,7 +56,7 @@ class Character(models.Model):
     currentHP = models.IntegerField(default=DEFAULT_HP)
     alignment = models.CharField(max_length = MAX_LENGTH_ALIGNMENT) # Use string or an enum?
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
-
+    public = models.BooleanField(default=True)
 
     # Outdated variables
     #raceID = models.IntegerField()

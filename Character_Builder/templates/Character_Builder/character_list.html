@@ -5,29 +5,27 @@
 
     {% for character in characters %}
 
-			<div>
-				<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
+			{% if character.user == user %}
+				<!-- Confirmed that user is correctly assigned -->
+				<!-- I would normally put the above in here, but I can't figure out how to
+					assign a user to the character upon first loading so I'll just keep it here -->
 			
-				<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
-				<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a>
+				<div>
+					<h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
 				
-			</div>
-			<p>
-				Created by: {{ character.user }}<br>
-				Character ID: {{ character.characterID }}<br>
-				Level: {{ character.level }}<br>
-				Max HP: {{ character.maxHP }}<br>
+					<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
+					<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a>
+					
+				</div>
+				<p>
+					Level: {{ character.level }}<br>
+					Max HP: {{ character.maxHP }}<br>
+				</p>
+			
+			{% endif %}
 
-			</p>
 
-				
-
-			<!-- {% if character.user == user %} -->
-			<!-- I would normally put the above in here, but I can't figure out how to
-				assign a user to the character upon first loading so I'll just keep it here -->
-			<!-- {% endif %} -->
-
-    {% endfor %}
+		{% endfor %}
 	</form>
 
 {% endblock content %}

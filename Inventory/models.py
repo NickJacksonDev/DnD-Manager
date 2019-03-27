@@ -8,6 +8,10 @@ MAX_LENGTH_ITEM_NAME = 255
 # Creates a default character
 def defaultCharacter():
     default = Character.objects.first()
+
+    if default is None:
+        default = Character.objects.create(characterName='Default Character', alignment='Lawful Good', size='Medium')
+
     return default
 
 # Keeps track of inventories
@@ -21,6 +25,10 @@ class Inventory(models.Model):
 # Creates default inventory
 def defaultInventory():
     default = Inventory.objects.first()
+
+    if default is None:
+        dc = Character.objects.create(characterName='Default Character', alignment='Lawful Good', size='Medium')
+        default = Inventory.objects.create(character=dc)
     return default
 
 # Keeps track of individual items

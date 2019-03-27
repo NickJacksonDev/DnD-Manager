@@ -42,29 +42,29 @@ class CharacterDetailView(DetailView):
 	# context_object_name = 'characters'
 
 
-# You no longer need to be logged in to create a character because we can't
-# associate the user with the character just yet
-# class CharacterCreateView(LoginRequiredMixin, CreateView):
-class CharacterCreateView(CreateView):
+
+class CharacterCreateView(LoginRequiredMixin, CreateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
 
+	login_url = '/login/'
+
 	# def __init__(self, *args, **kwargs):
-	# 	'user' = user
+	# 	form.instance.user = self.request.user
 
 	def form_valid(self, form):
 		# Updates the author of the current form to be the current user
-		form.instance.author = self.request.user 
+		form.instance.user = self.request.user 
 		return super().form_valid(form)
 
 
-# Currently commented out the requirement that you are the proper user to edit a character...
-# class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-class CharacterEditView(UpdateView):
+class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
+
+	login_url = '/login/'
 	
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -72,22 +72,21 @@ class CharacterEditView(UpdateView):
 	
 	# Tests to ensure the logged-in user is the owner of that character...
 	def test_func(self):
-		post = self.get_object()
+		Character = self.get_object()
 		if self.request.user == Character.user:
 			return True
 		return False
 
 
-# Currently commented out the part where it requires you to be logged into
-# the correct account to delete characters
-# class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-class CharacterDeleteView(DeleteView):
+class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Character
 	success_url = '/'
+	login_url = '/login/'
+	fail_url = '/login/' #Works?
 
 	def test_func(self):
-		post = self.get_object()
-		if self.request.user == post.user:
+		Character = self.get_object()
+		if self.request.user == Character.user:
 			return True
 		return False
 
