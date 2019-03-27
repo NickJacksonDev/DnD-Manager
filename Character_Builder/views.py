@@ -76,7 +76,7 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	
 	# Tests to ensure the logged-in user is the owner of that character...
 	def test_func(self):
-		post = self.get_object()
+		Character = self.get_object()
 		if self.request.user == Character.user:
 			return True
 		return False
@@ -92,8 +92,8 @@ class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	fail_url = '/login/' #Works?
 
 	def test_func(self):
-		post = self.get_object()
-		if self.request.user == post.user:
+		Character = self.get_object()
+		if self.request.user == Character.user:
 			return True
 		return False
 
