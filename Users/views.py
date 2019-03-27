@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from Campaign_Manager .models import Campaign
@@ -17,10 +18,17 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'Users/register.html', {'form': form})
 
-def profile(request):
+def profile(request, pk=None ):
+
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
 
     context ={
 
+        'user' : user,
+        'users' : User.objects.exclude(id=request.user.id),
         'campaigns' : Campaign.objects.all(),
         'characters' : Character.objects.all(),
         'title' : 'Profile',
@@ -28,6 +36,14 @@ def profile(request):
     }
 
     return render(request, 'Users/profile.html', context)
+
+def friends(request):
+    context = {
+        'title' : 'Friends List',
+        'users' : User.objects.exclude(id=request.user.id),
+    }
+
+    return render(request, 'Users/friends.html', context)
 
 def edit_profile(request):
     if request.method == 'POST':

@@ -1,0 +1,26 @@
+{% extends "Character_Builder/base.html" %}
+{% block main %}
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+
+
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="content-section">
+        <h2>Other Users</h2>
+        {% for user in users %}
+            <a href="{% url 'profile_with_pk' pk=user.pk %}">
+                <h4>{{ user.username }}</h4>
+            </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock main %}
