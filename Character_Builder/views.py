@@ -42,10 +42,8 @@ class CharacterDetailView(DetailView):
 	# context_object_name = 'characters'
 
 
-# You no longer need to be logged in to create a character because we can't
-# associate the user with the character just yet
+
 class CharacterCreateView(LoginRequiredMixin, CreateView):
-# class CharacterCreateView(CreateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
@@ -61,9 +59,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		return super().form_valid(form)
 
 
-# Currently commented out the requirement that you are the proper user to edit a character...
 class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-# class CharacterEditView(UpdateView):
 	model = Character
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
@@ -82,10 +78,7 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		return False
 
 
-# Currently commented out the part where it requires you to be logged into
-# the correct account to delete characters
 class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-# class CharacterDeleteView(DeleteView):
 	model = Character
 	success_url = '/'
 	login_url = '/login/'
