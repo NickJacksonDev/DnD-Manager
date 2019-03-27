@@ -3,18 +3,6 @@
 {% block content %}
     <h1>Characters List!</h1>
 
-		{% for character in characters %}
-			<!-- For debugging  -->
-			<p>
-				||DEBUGGING so you see all characters||<br>
-				Name: {{ character.characterName }}<br>
-				Created by: {{ character.user }}<br>
-				Character ID: {{ character.characterID }}<br>
-				Level: {{ character.level }}<br>
-				Max HP: {{ character.maxHP }}<br>
-			</p>
-		{% endfor %}
-
     {% for character in characters %}
 
 			{% if character.user == user %}
@@ -30,8 +18,6 @@
 					
 				</div>
 				<p>
-					Created by: {{ character.user }}<br>
-					Character ID: {{ character.characterID }}<br>
 					Level: {{ character.level }}<br>
 					Max HP: {{ character.maxHP }}<br>
 				</p>
