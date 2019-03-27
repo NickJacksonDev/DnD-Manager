@@ -9,11 +9,26 @@
               <h2>Friends</h2>
             </div>
 
-            {% for friend in friends %}
-                <a href="{% url 'profile_with_pk' pk=friend.pk %}">
-                    <h4>{{ friend.username }}</h4>
-                </a>
-            {% endfor %}
+            <div class="">
+                {% for friend in friends %}
+                    <div class="row no-gutters">
+                        <div class="col-sm-9">
+                          <a href="{% url 'profile_with_pk' pk=friend.pk %}">
+                              <h4>{{ friend.username }}</h4>
+                          </a>
+                        </div>
+
+                        <div class="col-sm-3 text-right">
+                          <a href="{% url 'update_friends' operation='remove' pk=friend.pk %}">
+                              Remove Friend
+                          </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
 
         </div>
 
@@ -24,12 +39,15 @@
       <div class="content-section">
         <div class="border-bottom pt-3">
             <h2>Other Users</h2>
+            (Click user to add)
         </div>
 
         {% for user in users %}
-            <a href="{% url 'profile_with_pk' pk=user.pk %}">
-                <h4>{{ user.username }}</h4>
-            </a>
+            {% if not user in friends %}
+                <a href="{% url 'update_friends' operation='add' pk=user.pk %}">
+                    <h4>{{ user.username }}</h4>
+                </a>
+            {% endif %}
         {% endfor %}
       </div>
     </div>

@@ -20,6 +20,7 @@ from Users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
 from Character_Builder import views as character_views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +35,7 @@ urlpatterns = [
     path('campaign/', include('Campaign_Manager.urls')),
     path('inventory/', include('Inventory.urls')),
     path('', character_views.home_page, name = "home_page"),
+    url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$',user_views.update_friends, name='update_friends'),
 ]
 
 if settings.DEBUG:

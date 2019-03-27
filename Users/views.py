@@ -73,3 +73,11 @@ def edit_profile(request):
     }
 
     return render(request, 'Users/edit_profile.html', context)
+
+def update_friends(request, operation, pk):
+    friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+    elif operation == 'remove':
+        Friend.unfriend(request.user, friend)
+    return redirect('friends')
