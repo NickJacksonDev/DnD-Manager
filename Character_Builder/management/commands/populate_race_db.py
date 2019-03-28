@@ -111,5 +111,5 @@ class Command(BaseCommand):
     tiefling.save()
 
 
-  def handle(self, *args, **options)
+  def handle(self, *args, **options):
     self._create_races()
