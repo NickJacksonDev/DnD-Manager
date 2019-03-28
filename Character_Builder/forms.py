@@ -32,7 +32,7 @@ class EditAbilityScoresForm(forms.ModelForm):
 	class Meta:
 		model = AbilityScoreSet
 		fields = [
-			'character',
+			# 'character',
 			'strength',
 			'dexterity',
 			'constitution',

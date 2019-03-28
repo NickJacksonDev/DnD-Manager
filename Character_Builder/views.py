@@ -52,6 +52,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
 	# exclude = []
 
+	# Added for LoginRequiredMixin
 	login_url = '/login/'
 
 	# def __init__(self, *args, **kwargs):
@@ -69,7 +70,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		# Updates the author of the current form to be the current user
 		form.instance.user = self.request.user 
-		form2.instance.character = form.instance
+		# context['form2'].instance.character = form.instance
 		return super().form_valid(form)
 	
 
