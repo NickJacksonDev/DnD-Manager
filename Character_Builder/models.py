@@ -47,6 +47,23 @@ def defaultUser():
 
     return default
 
+# Sets default race to human
+def defaultRace():
+    default = CharacterRace(
+        raceName='Human',
+        speed=30,
+        size='Medium',
+
+        strengthBonus=1,
+        dexterityBonus=1,
+        constitutionBonus=1,
+        intelligenceBonus=1,
+        wisdomBonus=1,
+        charismaBonus=1
+    )
+    default.save()
+    
+    return default
 
 
 # This class is largely static, like a lookup table
@@ -85,7 +102,7 @@ class Character(models.Model):
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
     public = models.BooleanField(default=True)
 
-    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE)
+    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
 
     # Outdated variables
     #raceID = models.IntegerField()

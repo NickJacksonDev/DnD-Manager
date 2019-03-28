@@ -11,7 +11,7 @@ class Command(BaseCommand):
   help = 'our help string comes here'
 
   def _create_races(self):
-    human = Race(
+    human = CharacterRace(
       raceName='Human',
       speed=30,
       size='Medium',
@@ -25,7 +25,7 @@ class Command(BaseCommand):
     )
     human.save()
 
-    dwarf = Race(
+    dwarf = CharacterRace(
       raceName='Dwarf',
       speed=25,
       size='Small',
@@ -40,7 +40,7 @@ class Command(BaseCommand):
     dwarf.save()
 
 
-    elf = Race(
+    elf = CharacterRace(
       raceName='Elf',
       speed=30,
       size='Medium',
@@ -54,7 +54,7 @@ class Command(BaseCommand):
     )
     elf.save()
 
-    gnome = Race(
+    gnome = CharacterRace(
       raceName='Gnome',
       speed=30,
       size='Medium',
@@ -68,7 +68,7 @@ class Command(BaseCommand):
     )
     gnome.save()
 
-    halfling = Race(
+    halfling = CharacterRace(
       raceName='Halfling',
       speed=30, #Not sure if this is fully accurate
       size='Medium',
@@ -82,7 +82,7 @@ class Command(BaseCommand):
     )
     halfling.save()
 
-    halfOrc = Race(
+    halfOrc = CharacterRace(
       raceName='Half-Orc',
       speed=30,
       size='Medium',
@@ -96,7 +96,7 @@ class Command(BaseCommand):
     )
     halfOrc.save()
 
-    tiefling = Race(
+    tiefling = CharacterRace(
       raceName='Tiefling',
       speed=30,
       size='Medium',
