@@ -37,7 +37,6 @@ class Friend(models.Model):
 
 	users = models.ManyToManyField(User, default=defaultUser)
 
-	#NEEDS REVIEW, not sure how to handle on_delete
 	current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.CASCADE)
 
 
