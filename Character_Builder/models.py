@@ -127,8 +127,14 @@ class CharacterRace(models.Model):
     # character = models.ForeignKey(Character, on_delete=models.CASCADE)
     raceID = models.AutoField(primary_key=True)
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
-    abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
+    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
     speed = models.IntegerField()
     size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
 
+    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
