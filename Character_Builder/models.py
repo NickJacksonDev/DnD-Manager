@@ -30,6 +30,7 @@ MAX_LENGTH_HIT_DICE = 255
 MAX_LENGTH_RACE_NAME = 255
 
 DEFAULT_ABILITY_SCORE = 10
+DEFAULT_ABILITY_SCORE_BONUS = 0
 
 
 # Description of this model file
@@ -70,7 +71,6 @@ def defaultRace():
 # Note: because the character has a key to this, it must
 #   be above the Character class
 class CharacterRace(models.Model):
-    # character = models.ForeignKey(Character, on_delete=models.CASCADE)
     raceID = models.AutoField(primary_key=True)
     raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
     speed = models.IntegerField()
@@ -78,15 +78,16 @@ class CharacterRace(models.Model):
 
     # Welp, I'm going to make this simpler and just hard-code
     # the 6 most essential stats
-    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
 
     # Outdated code
     # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE)
     
 
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
