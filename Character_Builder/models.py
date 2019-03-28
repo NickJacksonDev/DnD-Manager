@@ -47,6 +47,31 @@ def defaultUser():
 
     return default
 
+
+
+# This class is largely static, like a lookup table
+# Note: because the character has a key to this, it must
+#   be above the Character class
+class CharacterRace(models.Model):
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE)
+    raceID = models.AutoField(primary_key=True)
+    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
+    speed = models.IntegerField()
+    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
+
+    # Welp, I'm going to make this simpler and just hard-code
+    # the 6 most essential stats
+    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+
+    # Outdated code
+    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
+    
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser, null=True, blank=True)
@@ -120,21 +145,4 @@ class CharacterClass(models.Model):
     characterID = models.AutoField(primary_key=True)
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
-
-
-# This class is largely static, like a lookup table
-class CharacterRace(models.Model):
-    # character = models.ForeignKey(Character, on_delete=models.CASCADE)
-    raceID = models.AutoField(primary_key=True)
-    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
-    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
-    speed = models.IntegerField()
-    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
-
-    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
-    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
