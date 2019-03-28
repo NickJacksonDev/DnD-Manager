@@ -10,7 +10,11 @@ from django.views.generic import (
 )
 
 from django.http import HttpResponseRedirect
-from .models import Character
+from .models import (
+	Character, 
+	AbilityScoreSet,
+	CharacterRace
+)
 from .forms import (
 	CreateCharacterForm, 
 	EditCharacterForm, 
@@ -45,6 +49,13 @@ class CharacterDetailView(DetailView):
 	model = Character
 	# context_object_name = 'characters'
 
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super().get_context_data(**kwargs)
+		# Add in the AbilityScore so it can print that as well
+		# context['abilityScores'] = AbilityScoreSet.objects.get_object(character = character)
+		
+		return context
 
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
@@ -100,29 +111,19 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		return False
 	
 
-	# def get_context_data(self, **kwargs):
-	# 	context = super(MyClassView, self).get_context_data(**kwargs)
-	# 	if 'form' not in context:
-	# 		context['form'] = self.form_class(request=self.request)
-	# 	if 'form2' not in context:
-	# 		context['form2'] = self.second_form_class(request.self.request)
-	# 	return context
-	
-	# def post(self, request, *args, **kwargs):
-	# 	self.object = self.get_object()
-	# 	if 'form' in request.POST:
-	# 		form_class = self.get_form_class()
-	# 		form_name = 'form'
-	# 	else:
-	# 		form_class = self.second_form_class
-	# 		form_name = 'form2'
-		
-	# 	form = self.get_form(form_class)
+	def get_context_data(self, **kwargs):
+		context = super(CharacterEditView, self).get_context_data(**kwargs)
+		form = CreateCharacterForm(self.request.POST or None)
+		context['form1'] = form
 
-	# 	if form.is_valid():
-	# 		return self.form_valid(form)
-	# 	else:
-	# 		return self.form_invalid(**{form_name: form})
+		form2 = EditAbilityScoresForm(self.request.POST or None)
+		context['form2'] = form2
+		return context
+
+	# TODO: Lookup how to manage this. Perhaps render a different context
+	# Or a "Sorry, not able to login" screen
+	def form_invalid(self, **kwargs):
+		return self.render_to_response(self.get_context_data(**kwargs))
 
 
 class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -144,3 +145,13 @@ def home_page(request):
     }
 
     return render(request, 'Character_Builder/home.html', context)
+
+
+# This is a class based view that uses django's built-in
+# ListView view to display the races
+# It inherits from ListView
+class CharacterRaceListView(ListView): 
+	model = CharacterRace
+	# template_name = 'CharacterBuilder/Character_builder-home.html'
+	context_object_name = 'races'
+

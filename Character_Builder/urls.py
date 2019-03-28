@@ -4,7 +4,9 @@ from .views import (
     CharacterDetailView,
     CharacterCreateView,
     CharacterEditView,
-    CharacterDeleteView
+    CharacterDeleteView,
+
+    CharacterRaceListView,
 )
 from . import views
 
@@ -16,4 +18,5 @@ urlpatterns = [
     path('characters/<int:pk>/', CharacterDetailView.as_view(), name='character-detail'),
     path('characters/<int:pk>/edit', CharacterEditView.as_view(), name='character-edit'),
     path('characters/<int:pk>/delete', CharacterDeleteView.as_view(), name='character-delete'),
+    path('races/', CharacterRaceListView.as_view(), name='characterRace-list'),
 ]
