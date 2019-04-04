@@ -1,0 +1,33 @@
+{% extends "Character_Builder/Character_base.html" %}
+
+{% block content %}
+<!--
+  <div>
+    <h2><a href="#">{{ post.title }}</a></h2>
+    <p>{{ post.content }}</p>
+  
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Update</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+    
+  </div>
+-->
+  <article class="media content-section">
+    <div class="media-body">
+      <h4>
+        <a class="article-title">
+          {{ post.title }}
+        </a>
+      </h4>
+      <p class="article-content">{{ post.content }}</p>
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.author }}</a>
+        <small class="text-muted">{{ post.date }}</small>
+      </div>
+      
+	      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Update</a>
+	      <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+	      
+    </div>
+  </article>
+
+{% endblock content %}

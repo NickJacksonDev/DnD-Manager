@@ -1,0 +1,19 @@
+{% extends "Campaign_Manager/campaign_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>Current Campaigns</h1>
+
+    {% for campaign in campaigns %}
+	<br>
+	<article class="media content-section">
+		<div class="media-body">
+		<h3>
+			<a href="{% url 'campaign-detail' campaign.campaignID %}">
+				{{ campaign.campaignName }}
+			</a>
+		</h2>
+		</div>
+	</article>
+	{% endfor %}
+
+{% endblock content %}
