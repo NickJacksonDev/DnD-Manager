@@ -1,0 +1,21 @@
+{% extends "Campaign_Manager/campaign_base.html" %}
+
+{% block content %}
+
+  <div>
+    <h1><a href="{% url 'campaign-detail' campaign.campaignID %}">{{ campaign.campaignName }}</a></h1>
+
+  </div>
+  <p>
+    Created by: {{ campaign.user }}<br>
+    DM: <br>
+    Summary goes here: <br>
+    Party Members Listed here v <br>
+        member 1 <br>
+        member 2 <br>
+        etc.. <br>
+
+
+  </p>
+
+{% endblock content %}

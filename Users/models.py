@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 
+def defaultUser():
+    default = User.objects.first()
+
+    if default is None:
+        default = User.objects.create_user('defaultUser', password='djangoproject')
+
+    return default
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	image = models.ImageField(default='default.png', upload_to='profile_pics')
@@ -26,5 +34,22 @@ class FriendsList(models.Model):
 		return self.owner.username
 
 class Friend(models.Model):
-	FriendsList = models.ForeignKey(FriendsList, on_delete=models.CASCADE)
-	friend = models.OneToOneField(User, on_delete=models.CASCADE)
+
+	users = models.ManyToManyField(User, default=defaultUser)
+
+	current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.CASCADE)
+
+
+	@classmethod
+	def make_friend(cls, current_user, new_friend):
+		friend, created = cls.objects.get_or_create(
+			current_user = current_user
+		)
+		friend.users.add(new_friend)
+
+	@classmethod
+	def unfriend(cls, current_user, new_friend):
+		friend, created = cls.objects.get_or_create(
+			current_user = current_user
+		)
+		friend.users.remove(new_friend)

@@ -31,8 +31,9 @@ ul {
 
 
 
-.site-header .navbar-nav .nav-link.active {
+.site-header .navbar-nav .nav-link:active {
   font-weight: 500;
+  color: #C21616;
 }
 
 .content-section {
@@ -93,4 +94,15 @@ a.article-title:hover {
 .borderlist {
     list-style-position:inside;
     border: 10px solid black;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
