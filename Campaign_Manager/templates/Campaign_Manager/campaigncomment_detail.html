@@ -1,16 +1,7 @@
 {% extends "Character_Builder/Character_base.html" %}
 
 {% block content %}
-<!--
-  <div>
-    <h2><a href="#">{{ post.title }}</a></h2>
-    <p>{{ post.content }}</p>
-  
-    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Update</a>
-    <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
-    
-  </div>
--->
+
   <article class="media content-section">
     <div class="media-body">
       <h4>
@@ -27,8 +18,8 @@
         <small class="text-muted">{{ post.date }}</small>
       </div>
       	{% if user == author %}
-	      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Update</a>
-	      <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+	      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'campaigncomment-edit' post.campaign.campaignID post.slug %}">Update</a>
+	      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'campaigncomment-delete' post.campaign.campaignID post.slug %}">Delete</a>
 	    {% endif %}
     </div>
   </article>

@@ -68,7 +68,6 @@ class CampaignCommentCreateView(CreateView):
         context = super(CampaignCommentCreateView, self).get_context_data(**kwargs)
         campaign=Campaign.objects.get(pk=self.kwargs.get('pk'))
         context['dms']=CampaignDM.objects.filter(campaign=campaign)
-
         return context
 
     def form_valid(self, form):
@@ -94,16 +93,28 @@ class CampaignCommentDetailView(DetailView):
 class CampaignCommentEditView(UpdateView):
     model = CampaignComment
     form_class = CreatePostForm
+
+    def get_context_data(self, **kwargs):
+        context = super(CampaignCommentEditView, self).get_context_data(**kwargs)
+        campaign=Campaign.objects.get(pk=self.kwargs.get('fk'))
+        context['dms']=CampaignDM.objects.filter(campaign=campaign)
+        return context
     
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        f = form.save(commit=False)
+        f.author = self.request.user
+        f.campaign = Campaign.objects.get(campaignID=self.kwargs['fk'])
+        f.save()
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == Character.user:
+        if self.request.user == post.author:
             return True
         return False
+
+    def get_success_url(self):
+        return reverse_lazy('campaign-detail', kwargs={'pk':self.kwargs['fk']})
 
 
 class CampaignCommentDeleteView(DeleteView):
@@ -111,9 +122,9 @@ class CampaignCommentDeleteView(DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.user:
+        if self.request.user == post.author:
             return True
         return False
 
     def get_success_url(self):
-        return reverse_lazy('campaign-detail', kwargs={'pk':self.kwargs['pk']})
+        return reverse_lazy('campaign-detail', kwargs={'pk':self.kwargs['fk']})

@@ -26,9 +26,9 @@ urlpatterns = [
     path('campaigns/<int:fk>/<slug:slug>/',
     	CampaignCommentDetailView.as_view(), name='campaigncomment-detail'),
 
-    path('campaigns/<int:pk>/<slug:slug>/edit',
+    path('campaigns/<int:fk>/<slug:slug>/edit',
     	CampaignCommentEditView.as_view(), name='campaigncomment-edit'),
 
-    path('campaigns/<int:pk>/<slug:slug>/delete',
+    path('campaigns/<int:fk>/<slug:slug>/delete',
     	CampaignCommentDeleteView.as_view(), name='campaigncomment-delete'),
 ]

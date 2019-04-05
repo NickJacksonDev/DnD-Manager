@@ -1,3 +1,4 @@
 *.cpython-37*
 db.sqlite3
 media/profile_pics/*
+media/comment_pics/*
