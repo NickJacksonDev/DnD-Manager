@@ -8,8 +8,10 @@ class CreateCampaignForm(forms.ModelForm):
 
 class CreatePostForm(forms.ModelForm):
 
+	image = forms.ImageField(required=False)
+
 	class Meta:
 		model = CampaignComment
-		fields = ['title', 'content']
+		fields = ['title', 'content', 'image']
 
 

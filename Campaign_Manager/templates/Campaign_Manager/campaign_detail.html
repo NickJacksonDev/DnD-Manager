@@ -19,13 +19,16 @@
   </p>
 
   <h5>
+    {% for dm in dms %}
+      {% if user == dm.character.user %}
       <a href="{% url 'campaign-comment' campaign.campaignID %}">
         Add Comment
       </a>
+      {% endif %}
+    {% endfor %}
   </h5>
 
   {% for post in posts %}
-    {% if post.campaign == campaign %}
       <article class="media content-section">
         <div class="media-body">
           <h4>
@@ -34,12 +37,14 @@
             </a>
           </h4>
           <p class="article-content">{{ post.content }}</p>
+          {% if post.image %}
+            <img src="{{ post.image.url }}">
+          {% endif %}
           <div class="article-metadata">
             <a class="mr-2" href="#">{{ post.author }}</a>
             <small class="text-muted">{{ post.date }}</small>
           </div>
         </div>
       </article>
-    {% endif %}
   {% endfor %}
 {% endblock content %}

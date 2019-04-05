@@ -45,7 +45,9 @@ class CampaignDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
-        context['posts'] = CampaignComment.objects.all()
+        campaign=self.get_object()
+        context['posts'] = CampaignComment.objects.filter(campaign=campaign)
+        context['dms'] = CampaignDM.objects.filter(campaign=campaign)
         return context
 
 
@@ -68,8 +70,10 @@ class CampaignCommentCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
-        form.instance.campaign = Campaign.objects.get(campaignID=self.kwargs['pk'])
+        f = form.save(commit=False)
+        f.author = self.request.user
+        f.campaign = Campaign.objects.get(campaignID=self.kwargs['pk'])
+        f.save()
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -81,9 +85,9 @@ class CampaignCommentDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context=super(CampaignCommentDetailView, self).get_context_data(**kwargs)
-        context['post'] = CampaignComment.objects.get(slug=self.kwargs['slug'])
+        context['post'] = self.get_object()
+        context['author'] = self.get_object().author
         return context
-
 
 class CampaignCommentEditView(UpdateView):
     model = CampaignComment

@@ -4,7 +4,7 @@
 
     <h1>Post A Comment</h1>
 
-    <form method="post" class="post-form">
+    <form method="post" class="post-form" enctype="multipart/form-data">
     	{% csrf_token %}
 		{{ form|crispy }}
 		<input type="submit" value="Post" class="btn btn-dark">
