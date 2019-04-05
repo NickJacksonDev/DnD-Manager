@@ -20,11 +20,14 @@ from Users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
 from Character_Builder import views as character_views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
+    path('profile/(?P<pk>\d+)/', user_views.profile, name='profile_with_pk'),
+    path('friends/', user_views.friends, name='friends'),
     path('edit_profile/', user_views.edit_profile, name='edit_profile'),
     path('login/', auth_views.LoginView.as_view(template_name='Users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='Users/logout.html'), name='logout'),
@@ -32,6 +35,7 @@ urlpatterns = [
     path('campaign/', include('Campaign_Manager.urls')),
     path('inventory/', include('Inventory.urls')),
     path('', character_views.home_page, name = "home_page"),
+    url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$',user_views.update_friends, name='update_friends'),
 ]
 
 if settings.DEBUG:

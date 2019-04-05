@@ -8,6 +8,7 @@ from .views import (
     CampaignCommentEditView,
     CampaignCommentDeleteView,
 )
+from django.urls import path
 from . import views
 
 urlpatterns = [

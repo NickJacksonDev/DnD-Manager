@@ -14,7 +14,6 @@ from django.views.generic import (
     DeleteView
 )
 
-
 def home(request):
     form = CreateCampaignForm(request.POST or None)
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    CharacterListView, 
+    CharacterListView,
     CharacterDetailView,
     CharacterCreateView,
     CharacterEditView,
