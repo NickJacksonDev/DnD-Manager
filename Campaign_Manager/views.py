@@ -66,7 +66,9 @@ class CampaignCommentCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(CampaignCommentCreateView, self).get_context_data(**kwargs)
-        context['campaignID']=Campaign.objects.filter(pk=self.kwargs.get('pk'))
+        campaign=Campaign.objects.get(pk=self.kwargs.get('pk'))
+        context['dms']=CampaignDM.objects.filter(campaign=campaign)
+
         return context
 
     def form_valid(self, form):
