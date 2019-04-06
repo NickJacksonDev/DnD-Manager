@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # Constants
 MAX_LENGTH_CAMPAIGN_NAME = 255
+MAX_EMAIL_LENGTH = 70
 
 # finds a default user
 def defaultUser():
@@ -48,3 +49,6 @@ class PartyCharacter(models.Model):
 
     def __str__(self):
         return self.character.characterName
+
+
+

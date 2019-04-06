@@ -5,6 +5,11 @@
     {% for campaign in campaigns %}
 		<h2>{{ campaign.campaignName }}</h2>
 		<h3>ID: {{ campaign.campaignID }}</h3>
+		<form method="post" class="post-form">
+    	{% csrf_token %}
+		{{ dmForm }}
+		<input type="submit" value="Submit" class="btn btn-dark">
+	</form>
     {% endfor %}
 
     {% for dm in campaignDMs %}
@@ -19,7 +24,7 @@
 
     <form method="post" class="post-form">
     	{% csrf_token %}
-		{{ form }}
+		{{ campaignForm }}
 		<input type="submit" value="Submit" class="btn btn-dark">
 	</form>
 

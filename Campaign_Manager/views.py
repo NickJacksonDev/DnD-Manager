@@ -3,15 +3,15 @@ from .models import *
 from Character_Builder.models import Character
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from .forms import CreateCampaignForm
+from .forms import *
 from django.views.generic import CreateView
 
 # Home view
 def home(request):
-    form = CreateCampaignForm(request.POST or None)
+    campaignForm = CreateCampaignForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
+    if campaignForm.is_valid():
+        campaignForm.save()
 
     context = {
             'title' : 'Campaigns',
@@ -20,7 +20,8 @@ def home(request):
             'partys' : Party.objects.all(),
             'partyCharacters' : PartyCharacter.objects.all(),
             'campaignDMs' : CampaignDM.objects.all(),
-            'form' : form,
+            'campaignform' : campaignForm,
+            'dmform' : dmForm,
     }
 
     return render(request, 'Campaign_Manager/campaign_manager-home.html', context)
