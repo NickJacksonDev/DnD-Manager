@@ -46,7 +46,12 @@ class CampaignDetailView(DetailView):
         context=super().get_context_data(**kwargs)
         campaign=self.get_object()
         context['posts'] = CampaignComment.objects.filter(campaign=campaign)
-        context['dms'] = CampaignDM.objects.filter(campaign=campaign)
+        dms = CampaignDM.objects.filter(campaign=campaign)
+        context['userIsDM'] = False
+        for dm in dms:
+            if dm.user == self.request.user:
+                context['userIsDM'] = True
+
         return context
 
 
@@ -66,7 +71,12 @@ class CampaignCommentCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(CampaignCommentCreateView, self).get_context_data(**kwargs)
         campaign=Campaign.objects.get(pk=self.kwargs.get('pk'))
-        context['dms']=CampaignDM.objects.filter(campaign=campaign)
+        dms = CampaignDM.objects.filter(campaign=campaign)
+        context['userIsDM'] = False
+        for dm in dms:
+            if dm.user == self.request.user:
+                context['userIsDM'] = True
+
         return context
 
     def form_valid(self, form):

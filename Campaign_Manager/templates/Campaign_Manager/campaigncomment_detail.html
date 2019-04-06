@@ -18,9 +18,13 @@
         <small class="text-muted">{{ post.date }}</small>
       </div>
       	{% if user == author %}
-	      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'campaigncomment-edit' post.campaign.campaignID post.slug %}">Update</a>
-	      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'campaigncomment-delete' post.campaign.campaignID post.slug %}">Delete</a>
-	    {% endif %}
+	        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'campaigncomment-edit' post.campaign.campaignID post.slug %}">
+          Update
+          </a>
+	        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'campaigncomment-delete' post.campaign.campaignID post.slug %}">
+          Delete
+          </a>
+	      {% endif %}
     </div>
   </article>
 

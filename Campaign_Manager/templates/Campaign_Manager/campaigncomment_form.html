@@ -3,16 +3,15 @@
 {% block content %}
 
     <h1>Post A Comment</h1>
-    <small class="text-muted">You Must Be A DM To Comment</small>
 
-    {% for dm in dms %}
-    	{% if user == dm.character.user %}
-		    <form method="post" class="post-form" enctype="multipart/form-data">
-		    	{% csrf_token %}
-				{{ form|crispy }}
-				<input type="submit" value="Post" class="btn btn-dark">
-			</form>
-		{% endif %}
-	{% endfor %}
+	{% if userIsDM %}
+		<form method="post" class="post-form" enctype="multipart/form-data">
+	    	{% csrf_token %}
+			{{ form|crispy }}
+			<input type="submit" value="Post" class="btn btn-dark">
+		</form>
+	{% else %}
+	    <small class="text-muted">You Must Be A DM To Comment</small>
+	{% endif %}
 
 {% endblock content %}

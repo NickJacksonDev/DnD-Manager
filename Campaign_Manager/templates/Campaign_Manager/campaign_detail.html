@@ -18,14 +18,13 @@
   </p>
 
   <h5>
-    {% for dm in dms %}
-      {% if user == dm.character.user %}
+      {% if userIsDM %}
       <a href="{% url 'campaign-comment' campaign.campaignID %}">
         Add Comment
       </a>
       {% endif %}
-    {% endfor %}
   </h5>
+
 
   {% for post in posts %}
       <article class="media content-section">

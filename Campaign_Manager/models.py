@@ -26,27 +26,16 @@ class Campaign(models.Model):
 
     def __str__(self):
         return self.campaignName
-
-    '''@property
-    def comments(self):
-        instance = self
-        campaignComments = CampaignComment.objects.get(campaign = instance)
-        return campaignComments
-
-    @property
-    def get_content_type(self):
-        
-        return self._get_content_type'''
     
     
 # Keeps track of DMs
 class CampaignDM(models.Model):
     campaignDMID = models.AutoField(primary_key=True)
-    character = models.OneToOneField(Character, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=defaultUser)
     campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.character.characterName
+        return self.user.username
 
 # Keeps track of parties
 class Party(models.Model):
