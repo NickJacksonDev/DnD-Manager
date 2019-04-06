@@ -1,0 +1,58 @@
+{% extends "Character_Builder/base.html" %}
+{% block main %}
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+        <div class="content-section">
+            <div class="border-bottom pt-3">
+              <h2>Friends</h2>
+            </div>
+
+            <div class="">
+                {% for friend in friends %}
+                    <div class="row no-gutters">
+                        <div class="col-sm-9">
+                          <a href="{% url 'profile_with_pk' pk=friend.pk %}">
+                              <h4>{{ friend.username }}</h4>
+                          </a>
+                        </div>
+
+                        <div class="col-sm-3 text-right">
+                          <a href="{% url 'update_friends' operation='remove' pk=friend.pk %}">
+                              Remove Friend
+                          </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="content-section">
+        <div class="border-bottom pt-3">
+            <h2>Other Users</h2>
+            (Click user to add)
+        </div>
+
+        {% for user in users %}
+            {% if not user in friends %}
+                <a href="{% url 'update_friends' operation='add' pk=user.pk %}">
+                    <h4>{{ user.username }}</h4>
+                </a>
+            {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock main %}
