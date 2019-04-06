@@ -17,6 +17,8 @@ def home(request):
     form = CreateCampaignForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.creator = request.user
+        print(request.user)
         form.save()
 
     context = {
@@ -46,4 +48,5 @@ class CampaignCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
+        print(self.request.user)
         return super().form_valid(form)

@@ -26,15 +26,15 @@ def profile(request, pk=None ):
     else:
         user = request.user
 
-    myCharacters = Character.objects.filter(user=request.user)
-    myCampaigns = Campaign.objects.filter(creator=request.user)
+    myCharacters = Character.objects.filter(user=user)
+    myCampaigns = Campaign.objects.filter(creator=user)
 
     characterCampaigns = None
     for mc in myCharacters:
         if characterCampaigns==None:
             characterCampaigns = PartyCharacter.objects.filter(character=mc)
         else:
-            characterCampaigns += PartyCharacter.objects.filter(character=mc)
+            characterCampaigns |= PartyCharacter.objects.filter(character=mc)
 
     if characterCampaigns != None:
         for cc in characterCampaigns:
