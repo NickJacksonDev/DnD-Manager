@@ -1,0 +1,79 @@
+{% extends "Character_Builder/base.html" %}
+{% block main %}
+
+<main role="main" class="container">
+		<div class="content-section">
+
+				<div class="row media justify-content-center">
+						<img class = "rounded border border-dark" src="{{ campaign.image.url }}" alt="">
+				</div>
+
+				<div class="media">
+
+						<div class="media-body text-center">
+							<h2 class='account-heading'>{{ campaign.campaignName}}</h2>
+							<p>Dungeon Master : </p>
+						</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="content-section">
+								<h1>Description</h1>
+								<p>Campaign Summary</p>
+						</div>
+
+						<div class="content-section">
+							<h1>Party</h1>
+							<ul class="list-unstyled">
+								{% for member in members %}
+
+										<div class="row no-gutters">
+                        <div class="col-sm-9">
+                          <a href="{% url 'profile_with_pk' pk=member.pk %}">
+                              <h4>{{ member.username }}</h4>
+                          </a>
+                        </div>
+
+                        <div class="col-sm-3 text-right">
+                          <a href="{% url 'update_party' operation='remove' pk=member.pk id=campaign.pk%}">
+                              Remove Member
+                          </a>
+                        </div>
+                    </div>
+
+								{% endfor %}
+							</ul>
+						</div>
+
+						<div class="content-section">
+							<h1>Suggested Party Members</h1>
+							{% for friend in friends %}
+							     {% if not friend in members %}
+                    <div class="row no-gutters">
+                        <div class="col-sm-9">
+                          <a href="{% url 'profile_with_pk' pk=friend.pk %}">
+                              <h4>{{ friend.username }}</h4>
+                          </a>
+                        </div>
+
+                        <div class="col-sm-3 text-right">
+                          <a href="{% url 'update_party' operation='add' pk=friend.pk id=campaign.pk%}">
+                              Add Member
+                          </a>
+                        </div>
+                    </div>
+										{% endif %}
+                {% endfor %}
+
+						</div>
+
+					</div>
+				</div>
+		</div>
+</main>
+
+
+
+{% endblock main %}

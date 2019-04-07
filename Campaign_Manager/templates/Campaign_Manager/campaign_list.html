@@ -11,7 +11,7 @@
 					assign a user to the character upon first loading so I'll just keep it here -->
 
 				<div>
-					<h2><a href="{% url 'campaign-detail' campaign.campaignID %}">{{ campaign.campaignName }}</a></h2>
+					<h2><a href="{% url 'overview_with_pk' pk=campaign.pk %}">{{ campaign.campaignName }}</a></h2>
 				</div>
 				<p>
 					campaign summary
