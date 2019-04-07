@@ -13,10 +13,6 @@ from django.urls import reverse
 # can do   fieldName = ___Field(choices = LIST_NAME)  to make it have a dropdown to the choices given
 # can do   from geography.models import ZipCode
 
-# Use the command "python manage.py populate_race_db"
-# and "python manage.py populate_user_db "" 
-# to automate filling in the database
-
 # Constants
 # Should I move this next to the class that uses it?
 MAX_LENGTH_CHARACTER_NAME = 255
@@ -36,10 +32,6 @@ MAX_LENGTH_RACE_NAME = 255
 DEFAULT_ABILITY_SCORE = 10
 DEFAULT_ABILITY_SCORE_BONUS = 0
 
-DEFAULT_SPEED = 30
-DEFAULT_RACE_NAME = 'HumanDefault'
-DEFAULT_SIZE = 'Medium'
-
 
 # Description of this model file
 # Much of this will be based off of the database schemas
@@ -58,7 +50,7 @@ def defaultUser():
 
 # Sets default race to human
 def defaultRace():
-    default, created = CharacterRace.objects.get_or_create(
+    default = CharacterRace(
         raceName='Human',
         speed=30,
         size='Medium',
@@ -68,40 +60,14 @@ def defaultRace():
         constitutionBonus=1,
         intelligenceBonus=1,
         wisdomBonus=1,
-        charismaBonus=1,
+        charismaBonus=1
     )
-    # default.save()
+    default.save()
     
-    # Note: has to return the id, an int value
-    return default.raceID
+    return default
 
 
 
-
-# This class is largely static, like a lookup table
-# Note: because the character has a key to this, it must
-#   be above the Character class
-class CharacterRace(models.Model):
-    raceID = models.AutoField(primary_key=True)
-    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME, default=DEFAULT_RACE_NAME)
-    speed = models.IntegerField(default=DEFAULT_SPEED)
-    size = models.CharField(max_length = MAX_LENGTH_SIZE, default=DEFAULT_SIZE)   # Okay to overload?
-
-    # Welp, I'm going to make this simpler and just hard-code
-    # the 6 most essential stats
-    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-
-    # Outdated code
-    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
-    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.raceName
     
 
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
@@ -179,3 +145,24 @@ class CharacterClass(models.Model):
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
+# This class is largely static, like a lookup table
+# Note: because the character has a key to this, it must
+#   be above the Character class
+class CharacterRace(models.Model):
+    raceID = models.AutoField(primary_key=True)
+    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
+    speed = models.IntegerField()
+    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
+
+    # Welp, I'm going to make this simpler and just hard-code
+    # the 6 most essential stats
+    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+
+    # Outdated code
+    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
