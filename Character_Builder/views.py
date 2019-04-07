@@ -63,7 +63,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 	# Make sure this is updated once you change the form!
 	fields = [
-		'public',
+		#'public',
 		'characterName', 
 		'level', 
 		'xp', 
@@ -71,6 +71,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		'currentHP', 
 		'alignment', 
 		'size',
+		'race',
 
 		'strength',
 		'dexterity',
@@ -91,8 +92,11 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	# The form1 that the html accesses is defined here.
 	def get_context_data(self, **kwargs):
 		context = super(CharacterCreateView, self).get_context_data(**kwargs)
+		
+		# Actually, django has a built in form using the fields above...
+		# So I'm just going to use that built in form.
 		form = CreateCharacterForm(self.request.POST or None)
-		context['form'] = form
+		context['unusedform'] = form
 
 		# form2 = EditAbilityScoresForm(self.request.POST or None)
 		# context['form2'] = form2
@@ -136,6 +140,7 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		'currentHP', 
 		'alignment', 
 		'size',
+		'race',
 
 		'strength',
 		'dexterity',
