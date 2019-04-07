@@ -63,7 +63,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 	# Make sure this is updated once you change the form!
 	fields = [
-		#'public',
+		'public',
 		'characterName', 
 		'level', 
 		'xp', 
