@@ -5,6 +5,7 @@ class CreateCharacterForm(forms.ModelForm):
 	class Meta:
 		model = Character
 		fields = [
+			'public',
 			'characterName', 
 			'level', 
 			'xp', 
@@ -12,22 +13,16 @@ class CreateCharacterForm(forms.ModelForm):
 			'currentHP', 
 			'alignment', 
 			'size',
-			'public'
+
+			'strength',
+			'dexterity',
+			'constitution',
+			'intelligence',
+			'wisdom',
+			'charisma'
 		]
 
-#Don't use this
-class EditCharacterForm(forms.ModelForm):
-	class Meta:
-		model = Character
-		fields = [
-			'characterName', 
-			'level', 
-			'xp', 
-			'maxHP', 
-			'currentHP', 
-			'alignment'
-		]
-
+# Now unused to prevent needing to access another from within a form.
 class EditAbilityScoresForm(forms.ModelForm):
 	class Meta:
 		model = AbilityScoreSet

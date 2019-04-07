@@ -17,7 +17,7 @@ from .models import (
 )
 from .forms import (
 	CreateCharacterForm, 
-	EditCharacterForm, 
+	#EditCharacterForm, 
 	EditAbilityScoresForm 
 )
 
@@ -60,7 +60,25 @@ class CharacterDetailView(DetailView):
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
 	model = Character
-	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
+
+	# Make sure this is updated once you change the form!
+	fields = [
+		'public',
+		'characterName', 
+		'level', 
+		'xp', 
+		'maxHP', 
+		'currentHP', 
+		'alignment', 
+		'size',
+
+		'strength',
+		'dexterity',
+		'constitution',
+		'intelligence',
+		'wisdom',
+		'charisma'
+	]
 	# exclude = []
 
 	# Added for LoginRequiredMixin
@@ -74,10 +92,10 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(CharacterCreateView, self).get_context_data(**kwargs)
 		form = CreateCharacterForm(self.request.POST or None)
-		context['form1'] = form
+		context['form'] = form
 
-		form2 = EditAbilityScoresForm(self.request.POST or None)
-		context['form2'] = form2
+		# form2 = EditAbilityScoresForm(self.request.POST or None)
+		# context['form2'] = form2
 		return context
 
 
@@ -109,7 +127,23 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Character
-	fields = ['characterName', 'level', 'xp', 'maxHP', 'currentHP', 'alignment', 'size']
+	fields = [
+		'public',
+		'characterName', 
+		'level', 
+		'xp', 
+		'maxHP', 
+		'currentHP', 
+		'alignment', 
+		'size',
+
+		'strength',
+		'dexterity',
+		'constitution',
+		'intelligence',
+		'wisdom',
+		'charisma'
+	]
 	# exclude = []
 
 	login_url = '/login/'
@@ -131,11 +165,14 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 		# This grabs the self's request's information that is passed into
 		# the edit view data.
+		# For some reason, it does not properly fill in the information
+		# So I'm currently not using this, instead the character_form.html
+		# uses the 'form' that is built into it.
 		form = CreateCharacterForm(self.request.POST or None)
-		context['form1'] = form
+		context['unusedForm1'] = form
 
-		form2 = EditAbilityScoresForm(self.request.POST or None)
-		context['form2'] = form2
+		# form2 = EditAbilityScoresForm(self.request.POST or None)
+		# context['form2'] = form2
 		return context
 
 	# TODO: Lookup how to manage this. Perhaps render a different context

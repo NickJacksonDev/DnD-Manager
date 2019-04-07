@@ -92,6 +92,13 @@ class Character(models.Model):
     #classID = models.IntegerField()
     #abilityScoreSetID = models.AutoField(primary_key=True)
 
+    strength = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    dexterity = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    constitution = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    intelligence = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    wisdom = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    charisma = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+
 
     # This method returns a string that represents this class.
     # Similar to toString() from java
@@ -118,6 +125,8 @@ class AbilityScore(models.Model):
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
    
 # This class is dynamic, the abilityScoreValues may change
+# Now outdated, refactored so that we don't have to access another form
+# from within a form (there were 2 forms on a page, and you had to access it again)
 class AbilityScoreSet(models.Model):
     abilityScoreSetID = models.AutoField(primary_key=True)
     character = models.ForeignKey(Character, on_delete=models.CASCADE)#, default=defaultCharacter)  
