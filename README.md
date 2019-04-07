@@ -52,10 +52,15 @@
 * Requirements
 * Design Documents
   * Data Design
-  * System Architecture
-  * Class Diagrams
-  * Sequence Diagrams
-  * etc.
+  * System Architecture Overview
+    * Architecture Diagram
+    * Architecture Description
+  * Classes
+    * Class Diagrams
+    * Class Descriptions
+  * User Interface
+    * User Interface Diagram
+    * User Story Relations
 * Source Code
 * Test Cases
 * Product Demonstration
