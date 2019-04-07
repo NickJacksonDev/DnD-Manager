@@ -44,7 +44,7 @@ def defaultUser():
     default = User.objects.first()
 
     if default is None:
-        default = User.objects.create_user('defaultUser', password='djangoproject')
+        default = User.objects.create_user('defaultUser', password='djangoproject')#, 'last_login'=)
 
     return default
 
@@ -184,7 +184,7 @@ class AbilityScoreSet(models.Model):
 class CharacterClass(models.Model):
     # TODO: Maybe use ManyToMany relationship, as one character may have multiple 
     # classes... Oh wait. That's actually something to consider...    
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)   
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True, blank=True)   
     characterID = models.AutoField(primary_key=True)
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
