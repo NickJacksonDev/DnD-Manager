@@ -4,7 +4,7 @@
 
     <h1>Campaign Builder!</h1>
 
-    <form method="post" class="post-form">
+    <form method="POST" class="post-form">
     	{% csrf_token %}
 		{{ form|crispy }}
 		<input type="submit" value="Submit" class="btn btn-dark">
