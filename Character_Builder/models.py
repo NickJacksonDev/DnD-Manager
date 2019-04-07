@@ -13,6 +13,10 @@ from django.urls import reverse
 # can do   fieldName = ___Field(choices = LIST_NAME)  to make it have a dropdown to the choices given
 # can do   from geography.models import ZipCode
 
+# Use the command "python manage.py populate_race_db"
+# and "python manage.py populate_user_db "" 
+# to automate filling in the database
+
 # Constants
 # Should I move this next to the class that uses it?
 MAX_LENGTH_CHARACTER_NAME = 255
@@ -32,6 +36,10 @@ MAX_LENGTH_RACE_NAME = 255
 DEFAULT_ABILITY_SCORE = 10
 DEFAULT_ABILITY_SCORE_BONUS = 0
 
+DEFAULT_SPEED = 30
+DEFAULT_RACE_NAME = 'HumanDefault'
+DEFAULT_SIZE = 'Medium'
+
 
 # Description of this model file
 # Much of this will be based off of the database schemas
@@ -50,7 +58,7 @@ def defaultUser():
 
 # Sets default race to human
 def defaultRace():
-    default = CharacterRace(
+    default, created = CharacterRace.objects.get_or_create(
         raceName='Human',
         speed=30,
         size='Medium',
@@ -62,7 +70,7 @@ def defaultRace():
         wisdomBonus=1,
         charismaBonus=1,
     )
-    default.save()
+    # default.save()
     
     # Note: has to return the id, an int value
     return default.raceID
@@ -75,9 +83,9 @@ def defaultRace():
 #   be above the Character class
 class CharacterRace(models.Model):
     raceID = models.AutoField(primary_key=True)
-    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
-    speed = models.IntegerField()
-    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
+    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME, default=DEFAULT_RACE_NAME)
+    speed = models.IntegerField(default=DEFAULT_SPEED)
+    size = models.CharField(max_length = MAX_LENGTH_SIZE, default=DEFAULT_SIZE)   # Okay to overload?
 
     # Welp, I'm going to make this simpler and just hard-code
     # the 6 most essential stats
@@ -110,7 +118,7 @@ class Character(models.Model):
     public = models.BooleanField(default=True)
 
     # blank=true, null=true means that it's optional
-    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
+    # race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
 
     # Outdated variables
     #raceID = models.IntegerField()
