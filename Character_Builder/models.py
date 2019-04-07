@@ -135,6 +135,12 @@ class AbilityScoreSet(models.Model):
     wisdom = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
     charisma = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
+    # # Needed to save model
+    # def save_model(self, request, obj, form, change):
+    #     # Needed to save the model
+    #     super().save_model(request, obj, form, change)
+
+
 
 # This class is largely static, like a lookup table
 class CharacterClass(models.Model):
