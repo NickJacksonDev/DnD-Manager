@@ -69,6 +69,8 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	# def __init__(self, *args, **kwargs):
 	# 	form.instance.user = self.request.user
 
+	# This gets the context which it passes to the html.
+	# The form1 that the html accesses is defined here.
 	def get_context_data(self, **kwargs):
 		context = super(CharacterCreateView, self).get_context_data(**kwargs)
 		form = CreateCharacterForm(self.request.POST or None)
@@ -77,6 +79,19 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		form2 = EditAbilityScoresForm(self.request.POST or None)
 		context['form2'] = form2
 		return context
+
+
+	# def get_context_data(self, **kwargs):
+  #       context = super(CampaignCommentCreateView, self).get_context_data(**kwargs)
+  #       campaign=Campaign.objects.get(pk=self.kwargs.get('pk'))
+  #       dms = CampaignDM.objects.filter(campaign=campaign)
+  #       context['userIsDM'] = False
+  #       for dm in dms:
+  #           if dm.user == self.request.user:
+  #               context['userIsDM'] = True
+
+  #       return context
+
 
 	def form_valid(self, form):
 		# Updates the author of the current form to be the current user
@@ -113,6 +128,9 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(CharacterEditView, self).get_context_data(**kwargs)
+
+		# This grabs the self's request's information that is passed into
+		# the edit view data.
 		form = CreateCharacterForm(self.request.POST or None)
 		context['form1'] = form
 

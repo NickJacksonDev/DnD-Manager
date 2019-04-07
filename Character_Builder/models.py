@@ -66,7 +66,8 @@ def defaultRace():
     
     return default
 
-
+# def defaultCharacter():
+#     default = 
 
     
 
@@ -119,7 +120,7 @@ class AbilityScore(models.Model):
 # This class is dynamic, the abilityScoreValues may change
 class AbilityScoreSet(models.Model):
     abilityScoreSetID = models.AutoField(primary_key=True)
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)  
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)#, default=defaultCharacter)  
 
     # One set has many ability scores. 
     # However, each ability score may go to multiple sets (like an enumeration)
@@ -135,10 +136,12 @@ class AbilityScoreSet(models.Model):
     wisdom = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
     charisma = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
-    # # Needed to save model
-    # def save_model(self, request, obj, form, change):
-    #     # Needed to save the model
-    #     super().save_model(request, obj, form, change)
+    # Needed to save model
+    def save_model(self, request, obj, form, change):
+        # Updates the character to be the one it's associated with
+        # if obj.character = defaultCharacter :
+
+        super().save_model(request, obj, form, change)
 
 
 
