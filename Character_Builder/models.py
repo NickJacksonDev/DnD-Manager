@@ -60,40 +60,14 @@ def defaultRace():
         constitutionBonus=1,
         intelligenceBonus=1,
         wisdomBonus=1,
-        charismaBonus=1,
+        charismaBonus=1
     )
     default.save()
     
-    # Note: has to return the id, an int value
-    return default.raceID
+    return default
 
 
 
-
-# This class is largely static, like a lookup table
-# Note: because the character has a key to this, it must
-#   be above the Character class
-class CharacterRace(models.Model):
-    raceID = models.AutoField(primary_key=True)
-    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
-    speed = models.IntegerField()
-    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
-
-    # Welp, I'm going to make this simpler and just hard-code
-    # the 6 most essential stats
-    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
-
-    # Outdated code
-    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
-    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.raceName
     
 
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
@@ -110,7 +84,7 @@ class Character(models.Model):
     public = models.BooleanField(default=True)
 
     # blank=true, null=true means that it's optional
-    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
+    # race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
 
     # Outdated variables
     #raceID = models.IntegerField()
@@ -171,3 +145,24 @@ class CharacterClass(models.Model):
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 
+# This class is largely static, like a lookup table
+# Note: because the character has a key to this, it must
+#   be above the Character class
+class CharacterRace(models.Model):
+    raceID = models.AutoField(primary_key=True)
+    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
+    speed = models.IntegerField()
+    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
+
+    # Welp, I'm going to make this simpler and just hard-code
+    # the 6 most essential stats
+    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+
+    # Outdated code
+    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
