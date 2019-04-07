@@ -1,25 +1,20 @@
 {% extends "Campaign_Manager/campaign_base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <h1>Current Campaigns</h1>
 
     {% for campaign in campaigns %}
-
-
-				<!-- Confirmed that user is correctly assigned -->
-				<!-- I would normally put the above in here, but I can't figure out how to
-					assign a user to the character upon first loading so I'll just keep it here -->
-
-				<div>
-					<h2><a href="{% url 'campaign-detail' campaign.campaignID %}">{{ campaign.campaignName }}</a></h2>
-				</div>
-				<p>
-					campaign summary
-				</p>
-
-
-
-		{% endfor %}
-	</form>
+	<br>
+	<article class="media content-section">
+		<div class="media-body">
+		<h3>
+			<a href="{% url 'campaign-detail' campaign.campaignID %}">
+				{{ campaign.campaignName }}
+			</a>
+		</h2>
+		</div>
+	</article>
+	{% endfor %}
 
 {% endblock content %}

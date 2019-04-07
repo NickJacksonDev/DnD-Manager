@@ -1,26 +1,50 @@
 {% extends "Campaign_Manager/campaign_base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <h1>Campaign Builder!</h1>
+    <h1>My Campaigns</h1>
 
     {% for campaign in campaigns %}
-		<h2>{{ campaign.campaignName }}</h2>
-		<h3>ID: {{ campaign.campaignID }}</h3>
+		<br>
+		<article class="media content-section">
+			<div class="media-body">
+			<h4><a class="article-title" href="{% url 'campaign-detail' campaign.campaignID %}">{{ campaign.campaignName }}</a></h2>
+				{% for post in posts %}
+					{% if post.campaign == campaign %}
+						<article class="media content-section">
+							<div class="media-body">
+								<h4><a class="article-title" href="#">{{ post.title }}</a></h2>
+								<p class="article-content">{{ post.content }}</p>
+								<div class="article-metadata">
+								  <a class="mr-2" href="#">{{ post.author }}</a>
+								  <small class="text-muted">{{ post.date }}</small>
+								</div>
+							</div>
+						</article>
+					{% endif %}
+				{% endfor %}
+				<article class="media content-section">
+					<div class="media-body">
+						<form method="post" class="post-form">
+					    	{% csrf_token %}
+							{{ form|crispy }}
+							<input type="submit" value="Submit" class="btn btn-dark">
+						</form>
+					</div>
+				</article>
+			</div>
+		</article>
     {% endfor %}
 
     {% for dm in campaignDMs %}
 		<h2>{{ dm.campaign }}</h2>
 		<h3>DM: {{ dm }}</h3>
-    {% endfor %}
+	{% endfor %}
 
-    {% for pc in partyCharacters %}
+	{% for pc in partyCharacters %}
 		<h2>{{ pc.party }}</h2>
 		<h3>Party Member: {{ pc }}</h3>
-    {% endfor %}
+	{% endfor %}
 
-    <form method="post" class="post-form">
-    	{% csrf_token %}
-		{{ form }}
-		<input type="submit" value="Submit" class="btn btn-dark">
-	</form>
+    
 
 {% endblock content %}
