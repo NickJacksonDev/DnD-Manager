@@ -12,7 +12,7 @@
 					{% for Campaign in campaigns %}
 						<li class="media">
 							<div class="media-body">
-								<h2>{{ Campaign.campaignName }}</h2>
+								<h4><a href="{% url 'campaign-detail' Campaign.campaignID %}">{{ Campaign.campaignName }}</a></h4>
 								Campaign ID: {{ Campaign.campaignID }}
 							</div>
 						</li>
@@ -29,7 +29,8 @@
 							{% if Character.user == user %}
 									<li class="media ">
 										<div class="media-body">
-											<h4 class="media-heading">{{ Character.characterName }}  Level {{ Character.level }} HP: {{ Character.hp }}</h4>
+											<h4 class="media-heading">
+												<a href="{% url 'character-detail' Character.characterID %}">{{ Character.characterName }}</a>  Level {{ Character.level }} HP: {{ Character.hp }}</h4>
 											Race: {{ Character.raceID }}
 											Class: {{ Character.classID }}
 											Alignment: {{ Character.alignment }}

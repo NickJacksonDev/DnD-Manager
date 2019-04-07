@@ -18,6 +18,7 @@ def home(request):
     form = CreateCampaignForm(request.POST or None)
 
     if form.is_valid():
+        form.instance.creator = request.user
         form.save()
 
     context = {
