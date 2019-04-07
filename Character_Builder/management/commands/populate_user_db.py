@@ -2,8 +2,6 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 
 # Populates the user base with 2 simple default users
-# To run this, use "python manage.py populate_user_db"
-
 class Command(BaseCommand):
   # args = '<foo bar ...>'
   help = 'Populate the user base with two simple default users'
