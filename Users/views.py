@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from Campaign_Manager .models import Campaign
 from Character_Builder.models import Character
+from .models import Friend
 
 def register(request):
     if request.method == 'POST':
@@ -17,10 +19,17 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'Users/register.html', {'form': form})
 
-def profile(request):
+def profile(request, pk=None ):
+
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
 
     context ={
 
+        'user' : user,
+        'users' : User.objects.exclude(id=request.user.id),
         'campaigns' : Campaign.objects.all(),
         'characters' : Character.objects.all(),
         'title' : 'Profile',
@@ -28,6 +37,20 @@ def profile(request):
     }
 
     return render(request, 'Users/profile.html', context)
+
+def friends(request):
+
+    user = User.objects.exclude(id=request.user.id)
+    friend, created = Friend.objects.get_or_create(current_user=request.user)
+    friends = friend.users.all()
+
+    context = {
+        'title' : 'Friends List',
+        'users' : user,
+        'friends': friends,
+    }
+
+    return render(request, 'Users/friends.html', context)
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -50,3 +73,11 @@ def edit_profile(request):
     }
 
     return render(request, 'Users/edit_profile.html', context)
+
+def update_friends(request, operation, pk):
+    friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+    elif operation == 'remove':
+        Friend.unfriend(request.user, friend)
+    return redirect('friends')

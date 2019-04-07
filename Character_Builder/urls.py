@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    CharacterListView, 
+    CharacterListView,
     CharacterDetailView,
     CharacterCreateView,
     CharacterEditView,
@@ -20,3 +20,4 @@ urlpatterns = [
     path('characters/<int:pk>/delete', CharacterDeleteView.as_view(), name='character-delete'),
     path('races/', CharacterRaceListView.as_view(), name='characterRace-list'),
 ]
+
