@@ -26,6 +26,11 @@ class Campaign(models.Model):
 
     def __str__(self):
         return self.campaignName
+
+    # When you create/update a campaign, this is where the 
+    # page goes to after you save the campaign
+    def get_absolute_url(self):
+        return reverse('campaign-detail', kwargs={'pk': self.pk})
     
     
 # Keeps track of DMs
