@@ -1,10 +1,11 @@
 {% extends "Campaign_Manager/campaign_base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
   <div>
-    <h1><a href="{% url 'campaign-detail' campaign.campaignID %}">{{ campaign.campaignName }}</a></h1>
-
+    <h1>
+      {{ campaign.campaignName }}
+    </h1>
   </div>
   <p>
     Created by: {{ campaign.user }}<br>
@@ -14,8 +15,34 @@
         member 1 <br>
         member 2 <br>
         etc.. <br>
-
-
   </p>
 
+  <h5>
+      {% if userIsDM %}
+      <a href="{% url 'campaign-comment' campaign.campaignID %}">
+        Add Comment
+      </a>
+      {% endif %}
+  </h5>
+
+
+  {% for post in posts %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h4>
+            <a class="article-title" href="{% url 'campaigncomment-detail' campaign.campaignID post.slug %}">
+              {{ post.title }}
+            </a>
+          </h4>
+          <p class="article-content">{{ post.content }}</p>
+          {% if post.image %}
+            <img src="{{ post.image.url }}">
+          {% endif %}
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ post.author }}</a>
+            <small class="text-muted">{{ post.date }}</small>
+          </div>
+        </div>
+      </article>
+  {% endfor %}
 {% endblock content %}

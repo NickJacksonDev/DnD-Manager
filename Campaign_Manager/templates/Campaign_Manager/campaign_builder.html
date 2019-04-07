@@ -1,0 +1,13 @@
+{% extends "Campaign_Manager/campaign_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <h1>Campaign Builder!</h1>
+
+    <form method="post" class="post-form">
+    	{% csrf_token %}
+		{{ form|crispy }}
+		<input type="submit" value="Submit" class="btn btn-dark">
+	</form>
+
+{% endblock content %}
