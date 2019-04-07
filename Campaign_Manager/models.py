@@ -1,6 +1,9 @@
 from django.db import models
 from Character_Builder.models import Character
 from django.contrib.auth.models import User
+from django.utils import timezone
+from django.utils.text import slugify
+from django.urls import reverse
 from PIL import Image
 
 
@@ -40,11 +43,11 @@ class Campaign(models.Model):
 # Keeps track of DMs
 class CampaignDM(models.Model):
     campaignDMID = models.AutoField(primary_key=True)
-    character = models.OneToOneField(Character, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=defaultUser)
     campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.character.characterName
+        return self.user.username
 
 
 # used to allow parties to store mulitple party members
@@ -83,3 +86,27 @@ class Party(models.Model):
 
     def __str__(self):
         return self.campaign.campaignName
+
+class CampaignComment(models.Model):
+    title = models.CharField(max_length = 100)
+    content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
+    date = models.DateTimeField(default=timezone.now)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    image = models.ImageField(null=True, upload_to='comment_pics')
+    slug = models.SlugField(default=slugify("Default Slug"))
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title + '' + str(self.date))
+        super(CampaignComment, self).save(*args, **kwargs)
+
+        if self.image != None:
+            image = Image.open(self.image.path)
+
+            if image.width > 500 or image.height > 500:
+                output_size = (500, 500)
+                image.thumbnail(output_size)
+                image.save(self.image.path)
+
+    def __str__(self):
+        return self.slug

@@ -1,0 +1,31 @@
+{% extends "Character_Builder/Character_base.html" %}
+
+{% block content %}
+
+  <article class="media content-section">
+    <div class="media-body">
+      <h4>
+        <a class="article-title">
+          {{ post.title }}
+        </a>
+      </h4>
+      <p class="article-content">{{ post.content }}</p>
+      {% if post.image %}
+        <img src="{{ post.image.url }}">
+      {% endif %}
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.author }}</a>
+        <small class="text-muted">{{ post.date }}</small>
+      </div>
+      	{% if user == author %}
+	        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'campaigncomment-edit' post.campaign.campaignID post.slug %}">
+          Update
+          </a>
+	        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'campaigncomment-delete' post.campaign.campaignID post.slug %}">
+          Delete
+          </a>
+	      {% endif %}
+    </div>
+  </article>
+
+{% endblock content %}
