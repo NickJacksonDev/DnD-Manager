@@ -11,19 +11,23 @@ class Command(BaseCommand):
   help = 'our help string comes here'
 
   def _create_races(self):
-    human = CharacterRace(
-      raceName='Human',
-      speed=30,
-      size='Medium',
+    
+    # # Because the models has a built-in defaultRace
+    # # that is called before running this script as it is migrating
+    # # this race is commented out.
+    # human = CharacterRace(
+    #   raceName='Human',
+    #   speed=30,
+    #   size='Medium',
 
-      strengthBonus=1,
-      dexterityBonus=1,
-      constitutionBonus=1,
-      intelligenceBonus=1,
-      wisdomBonus=1,
-      charismaBonus=1
-    )
-    human.save()
+    #   strengthBonus=1,
+    #   dexterityBonus=1,
+    #   constitutionBonus=1,
+    #   intelligenceBonus=1,
+    #   wisdomBonus=1,
+    #   charismaBonus=1
+    # )
+    # human.save()
 
     dwarf = CharacterRace(
       raceName='Dwarf',
