@@ -5,7 +5,6 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 
-
 class Migration(migrations.Migration):
 
     initial = True
@@ -25,6 +24,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+
             name='CampaignDM',
             fields=[
                 ('campaignDMID', models.AutoField(primary_key=True, serialize=False)),
