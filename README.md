@@ -50,17 +50,18 @@
 * [Sprint Backlog](https://docs.google.com/spreadsheets/d/1fUKUxqtg4JkbHNHFF-oZBy5y-RowhtRdM0Aj0t6JSWU/edit?usp=sharing)
   * [Burndown Chart](https://docs.google.com/document/d/14EaDMDu6UjNrwlDF0L1FxrIARe3oWlqZVHWuSyc8J7Y/edit?usp=sharing)
 * [Requirements](https://docs.google.com/spreadsheets/d/1N1CPy_iaRu0dj6hx-nkWUPKK_pFIlQ1c-Mawc0ftHAs/edit?usp=sharing)
-* Design Documents
-  * [Data Design](https://docs.google.com/document/d/1luUCUrMzw5AgNp7mY7Sc9mi2SCJleE6BTxNjuhC9a_s/edit?usp=sharing)
-  * System Architecture Overview
-    * [Architecture Diagram](https://docs.google.com/drawings/d/1QB8_oTkLlWlGW-ZIlmnDqP8lbqBihxm7guUMsRQxpFs/edit?usp=sharing)
-    * [Architecture Description](https://docs.google.com/document/d/1PfuGnhexS1KiL8sTXMu0RO_MVArG7sSLIJT3LDr3kNE/edit?usp=sharing)
-  * Classes
-    * [Class Diagrams](https://drive.google.com/file/d/1-mnnTIaG9umsVRBlkadUle6McMipODDV/view?usp=sharing)
-    * [Class Descriptions](https://docs.google.com/document/d/1Sz1qP_hNL0tkByMlr58MUXH_xwITuTcloRjZduedv9E/edit?usp=sharing)
-  * User Interface
-    * [User Interface Diagram](https://drive.google.com/file/d/14GJEFWQ_2_uggGBrMssqrSDOC16sWf8y/view?usp=sharing)
-    * [User Story Relations](https://docs.google.com/document/d/1gBH1nNC6jHg3AjiZ9-_l93y2HP8Zjsq4H2v9jQA58WE/edit?usp=sharing)
+* [Design Documents (Combined Document)](https://docs.google.com/document/d/1s8nar8XPxwj1na15H7PedzE4kgNBds71AkfJFWZuHKA/edit?usp=sharing)
+  * Individual Links (If Opening Separate Windows is Preferred)
+    * [Data Design](https://docs.google.com/document/d/1luUCUrMzw5AgNp7mY7Sc9mi2SCJleE6BTxNjuhC9a_s/edit?usp=sharing)
+    * System Architecture Overview
+      * [Architecture Diagram](https://docs.google.com/drawings/d/1QB8_oTkLlWlGW-ZIlmnDqP8lbqBihxm7guUMsRQxpFs/edit?usp=sharing)
+      * [Architecture Description](https://docs.google.com/document/d/1PfuGnhexS1KiL8sTXMu0RO_MVArG7sSLIJT3LDr3kNE/edit?usp=sharing)
+    * Classes
+      * [Class Diagrams](https://drive.google.com/file/d/1-mnnTIaG9umsVRBlkadUle6McMipODDV/view?usp=sharing)
+      * [Class Descriptions](https://docs.google.com/document/d/1Sz1qP_hNL0tkByMlr58MUXH_xwITuTcloRjZduedv9E/edit?usp=sharing)
+    * User Interface
+      * [User Interface Diagram](https://drive.google.com/file/d/14GJEFWQ_2_uggGBrMssqrSDOC16sWf8y/view?usp=sharing)
+      * [User Story Relations](https://docs.google.com/document/d/1gBH1nNC6jHg3AjiZ9-_l93y2HP8Zjsq4H2v9jQA58WE/edit?usp=sharing)
 * Source Code
 * [Test Cases](https://docs.google.com/document/d/1hpWtMmyitNWu-DH_e-ypOIHVHwBIGMqULYviUlygRm8/edit?usp=sharing)
 * [Product Demonstration](https://youtu.be/CoPPveRnor8)
