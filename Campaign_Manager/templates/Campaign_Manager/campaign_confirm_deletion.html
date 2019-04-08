@@ -1,0 +1,15 @@
+{% extends "Character_Builder/Character_base.html" %}
+
+{% block content %}
+    <div class="content-section">
+
+        <legend class="border-bottom mb-4">Delete Campaign</legend>
+        <h2>Are you sure you want to delete the campaign: "{{ campaign.campaignName }}"</h2>
+
+        <div class="form-group">
+            <a class="btn btn-outline-danger" href="{% url 'campaign-delete' pk=campaign.pk %}">Yes, Delete</a>
+            <a class="btn btn-outline-secondary" href="{% url 'overview_with_pk' pk=campaign.pk %}">Cancel</a>
+        </div>
+
+    </div>
+{% endblock content %}

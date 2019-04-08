@@ -12,7 +12,12 @@
 
 						<div class="media-body text-center">
 							<h2 class='account-heading'>{{ campaign.campaignName}}</h2>
-							<p>Dungeon Master : </p>
+							<p>Dungeon Master :
+								{% for dm in dms%}
+								    {{dm.user.username}}
+								{% endfor %}
+							</p>
+
 						</div>
 				</div>
 
@@ -69,9 +74,47 @@
 
 						</div>
 
+<div class="content-section">
+							<h1>Comments</h1>
+							{% if userIsDM%}
+							<h5>
+								<a href="{% url 'campaign-comment' campaign.campaignID %}">
+                    Add Comment
+                </a>
+							</h5>
+							{% endif %}
+
+							{% for post in posts %}
+						      <article class="media content-section">
+						        <div class="media-body">
+						          <h4>
+						            <a class="article-title" href="{% url 'campaigncomment-detail' campaign.campaignID post.slug %}">
+						              {{ post.title }}
+						            </a>
+						          </h4>
+						          <p class="article-content">{{ post.content }}</p>
+						          {% if post.image %}
+						            <img src="{{ post.image.url }}">
+						          {% endif %}
+						          <div class="article-metadata">
+						            <a class="mr-2" href="#">{{ post.author }}</a>
+						            <small class="text-muted">{{ post.date }}</small>
+						          </div>
+						        </div>
+						      </article>
+						  {% endfor %}
+
+						</div>
+
 					</div>
 				</div>
 		</div>
+
+    {% if userIsDM %}
+	    <div class="content-section text-center">
+				<a href="{% url 'confirm-delete' campaign.pk %}" class="btn btn-danger">Delete Campaign</a>
+	    </div>
+    {% endif %}
 </main>
 
 

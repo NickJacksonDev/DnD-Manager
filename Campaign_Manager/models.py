@@ -30,16 +30,28 @@ class Campaign(models.Model):
     def __str__(self):
         return self.campaignName
 
-    # When you create/update a campaign, this is where the 
-    # page goes to after you save the campaign
+    def save(self, **kwargs):
+        super().save()
+
+        image = Image.open(self.image.path)
+
+        if image.width > 900 or image.height > 600:
+            output_size = (900, 600)
+            image.thumbnail(output_size)
+            image.save(self.image.path)
+
+        dm, created = CampaignDM.objects.get_or_create(campaign = self)
+        if  dm == defaultUser:
+            dm.user = request.user
+
     def get_absolute_url(self):
-        return reverse('campaign-detail', kwargs={'pk': self.pk})
-    
-    
+        return reverse('overview_with_pk', kwargs={'pk': self.pk})
+
+
 # Keeps track of DMs
 class CampaignDM(models.Model):
     campaignDMID = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=defaultUser)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser)
     campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
 
     def __str__(self):

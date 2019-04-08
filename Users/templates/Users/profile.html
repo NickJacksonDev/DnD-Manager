@@ -12,7 +12,7 @@
 					{% for Campaign in campaigns %}
 						<li class="media">
 							<div class="media-body">
-								<h4><a href="{% url 'campaign-detail' Campaign.campaignID %}">{{ Campaign.campaignName }}</a></h4>
+								<h4><a href="{% url 'overview_with_pk' Campaign.campaignID %}">{{ Campaign.campaignName }}</a></h4>
 								Campaign ID: {{ Campaign.campaignID }}
 							</div>
 						</li>

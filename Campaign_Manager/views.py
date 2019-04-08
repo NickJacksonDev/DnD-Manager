@@ -14,6 +14,7 @@ from django.views.generic import (
     DeleteView
 )
 from Users.models import *
+from .urls import *
 
 def home(request):
     form = CreateCampaignForm(request.POST or None)
@@ -21,6 +22,8 @@ def home(request):
     if form.is_valid():
         form.instance.creator = request.user
         form.save()
+        return HttpResponseRedirect(reverse('campaign-list'))
+
 
 
     context = {
@@ -45,6 +48,12 @@ def overview(request, pk=None ):
     members = party.members.all()
     friend, created = Friend.objects.get_or_create(current_user=request.user)
     friends = friend.users.all()
+    posts = CampaignComment.objects.filter(campaign = campaign)
+    dms = CampaignDM.objects.filter(campaign = campaign)
+    userIsDM = False
+    for dm in dms:
+        if dm.user == request.user:
+            userIsDM = True
 
 
     context ={
@@ -56,6 +65,9 @@ def overview(request, pk=None ):
         'title' : 'Overview',
         'members' : members,
         'friends' : friends,
+        'dms' : dms,
+        'userIsDM' : userIsDM,
+        'posts' : posts,
 
     }
 
@@ -70,6 +82,22 @@ def update_party(request, operation, pk, id):
         Party.remove_member(campaign, new_member)
     return redirect('overview_with_pk', pk=campaign.pk)
 
+def confirmDeletion(request, pk):
+    campaign = Campaign.objects.get(pk=pk)
+
+    context = {
+        'campaign' : campaign,
+
+    }
+
+    return render(request, 'Campaign_Manager/campaign_confirm_deletion.html', context)
+
+
+def deleteCampaign(request, pk):
+    campaign = Campaign.objects.get(pk=pk)
+    #Campaign.objects.delete(campaign)
+    campaign.delete()
+    return redirect('campaign-list')
 
 class CampaignListView(ListView):
     model = Campaign
@@ -124,7 +152,7 @@ class CampaignCommentCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('campaign-detail', kwargs={'pk':self.kwargs['pk']})
+        return reverse_lazy('overview_with_pk', kwargs={'pk':self.kwargs['pk']})
 
 
 class CampaignCommentDetailView(DetailView):
@@ -160,11 +188,17 @@ class CampaignCommentEditView(UpdateView):
         return False
 
     def get_success_url(self):
-        return reverse_lazy('campaign-detail', kwargs={'pk':self.kwargs['fk']})
+        return reverse_lazy('overview_with_pk', kwargs={'pk':self.kwargs['fk']})
 
 
 class CampaignCommentDeleteView(DeleteView):
     model = CampaignComment
+
+    def get_context_data(self, **kwargs):
+        context=super(CampaignCommentDeleteView, self).get_context_data(**kwargs)
+        context['post'] = self.get_object()
+        context['author'] = self.get_object().author
+        return context
 
     def test_func(self):
         post = self.get_object()
@@ -173,4 +207,4 @@ class CampaignCommentDeleteView(DeleteView):
         return False
 
     def get_success_url(self):
-        return reverse_lazy('campaign-detail', kwargs={'pk':self.kwargs['fk']})
+        return reverse_lazy('overview_with_pk', kwargs={'pk':self.kwargs['fk']})

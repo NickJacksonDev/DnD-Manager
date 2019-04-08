@@ -45,11 +45,17 @@
                 <a class="nav-item nav-link dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-pressed="true" aria-haspopup="true" aria-expanded="false">
                   Campaigns
                 </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="{% url 'campaign-list'%}">Campaign List</a>
-                  <a class="dropdown-item" href="{% url 'campaign_builder-home' %}">Campaign Builder</a>
-                </div>
+                {% if user.is_authenticated %}
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'campaign-list'%}">Campaign List</a>
+                    <a class="dropdown-item" href="{% url 'campaign_builder-home' %}">Campaign Builder</a>
+                  </div>
+                {% else %}
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'login'%}">Campaign List</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Campaign Builder</a>
+                  </div>
+                {% endif %}
               </div>
 
               <div class="dropdown show">
