@@ -7,6 +7,7 @@ from .views import (
     CharacterDeleteView,
 
     CharacterRaceListView,
+    CharacterClassListView,
 )
 from . import views
 
@@ -31,5 +32,8 @@ urlpatterns = [
         
     path('races/', 
         CharacterRaceListView.as_view(), name='characterRace-list'),
+
+    path('classes/', 
+        CharacterClassListView.as_view(), name='characterClass-list'),
 ]
 

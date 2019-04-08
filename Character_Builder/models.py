@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import datetime
 
 # Notes (Django models)
 # Each model acts more or less like a database table
@@ -32,6 +33,8 @@ MAX_LENGTH_RACE_NAME = 255
 DEFAULT_ABILITY_SCORE = 10
 DEFAULT_ABILITY_SCORE_BONUS = 0
 
+DEFAULT_DATETIME = datetime.min
+
 
 # Description of this model file
 # Much of this will be based off of the database schemas
@@ -44,7 +47,7 @@ def defaultUser():
     default = User.objects.first()
 
     if default is None:
-        default = User.objects.create_user('defaultUser', password='djangoproject')
+        default = User.objects.create_user('defaultUser', password='djangoproject', last_login=DEFAULT_DATETIME)
 
     return default
 
@@ -69,6 +72,19 @@ def defaultRace():
     
     # Returns the primary key, not the race itself
     return default.raceID
+
+# Sets default class to fighter
+def defaultClass():
+    default = CharacterClass.objects.first()
+
+    if default is None:
+        default = CharacterClass(
+            className='Fighter',
+            hitDice='d8'
+        )
+        default.save()
+    
+    return default.characterID
 
 
 # This class is largely static, like a lookup table
@@ -97,6 +113,24 @@ class CharacterRace(models.Model):
         return self.raceName
 
 
+
+# This class is largely static, like a lookup table
+class CharacterClass(models.Model):
+    # TODO: Maybe use ManyToMany relationship, as one character may have multiple 
+    # classes... Oh wait. That's actually something to consider...    
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True, blank=True)   
+    characterID = models.AutoField(primary_key=True)
+    className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
+    hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
+
+    def __str__(self):
+        return self.className
+
+
+
+
+
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser, null=True, blank=True)
@@ -111,7 +145,15 @@ class Character(models.Model):
     public = models.BooleanField(default=True)
 
     # blank=true, null=true means that it's optional
-    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
+    # Since race and class are constant, you DO NOT want to delete them upon
+    # deleting this character.
+    # Also, when restarting the database, it's important to only add one
+    # foreign key per migration. As such, there are currently 3
+    # foreign keys in character: User, race, and characterClass.
+    # The current solution: comment out all but 1, make and migrate, then repeat
+    # one at a time.
+    race = models.ForeignKey(CharacterRace, on_delete=models.PROTECT, default=defaultRace, null=True, blank=True)
+    characterClass = models.ForeignKey(CharacterClass, on_delete=models.PROTECT, default=defaultClass, null=True, blank=True)
 
     # Outdated variables
     #raceID = models.IntegerField()
@@ -180,12 +222,4 @@ class AbilityScoreSet(models.Model):
 
 
 
-# This class is largely static, like a lookup table
-class CharacterClass(models.Model):
-    # TODO: Maybe use ManyToMany relationship, as one character may have multiple 
-    # classes... Oh wait. That's actually something to consider...    
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)   
-    characterID = models.AutoField(primary_key=True)
-    className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
-    hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
 

@@ -13,7 +13,8 @@ from django.http import HttpResponseRedirect
 from .models import (
 	Character, 
 	AbilityScoreSet,
-	CharacterRace
+	CharacterRace,
+	CharacterClass
 )
 from .forms import (
 	CreateCharacterForm, 
@@ -63,15 +64,16 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 	# Make sure this is updated once you change the form!
 	fields = [
-		#'public',
+		'public',
 		'characterName', 
+		'race',
+		'characterClass',
 		'level', 
 		'xp', 
 		'maxHP', 
 		'currentHP', 
 		'alignment', 
 		'size',
-		'race',
 
 		'strength',
 		'dexterity',
@@ -119,6 +121,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		# Updates the author of the current form to be the current user
 		form.instance.user = self.request.user 
 		# context['form2'].instance.character = form.instance
+		
 		return super().form_valid(form)
 	
 
@@ -134,13 +137,14 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	fields = [
 		'public',
 		'characterName', 
+		'race',
+		'characterClass',
 		'level', 
 		'xp', 
 		'maxHP', 
 		'currentHP', 
 		'alignment', 
 		'size',
-		'race',
 
 		'strength',
 		'dexterity',
@@ -214,4 +218,12 @@ class CharacterRaceListView(ListView):
 	model = CharacterRace
 	# template_name = 'CharacterBuilder/Character_builder-home.html'
 	context_object_name = 'races'
+
+# This is a class based view that uses django's built-in
+# ListView view to display the classes
+# It inherits from ListView
+class CharacterClassListView(ListView): 
+	model = CharacterClass
+	# template_name = 'CharacterBuilder/Character_builder-home.html'
+	context_object_name = 'classes'
 

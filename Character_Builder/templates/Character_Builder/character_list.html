@@ -6,7 +6,8 @@
 
 	    {% for character in characters %}
 
-				{% if character.user == user %}
+			{% if character.user == user %}
+				<div class="content-section">
 					<!-- Confirmed that user is correctly assigned -->
 					<!-- I would normally put the above in here, but I can't figure out how to
 						assign a user to the character upon first loading so I'll just keep it here -->
@@ -20,10 +21,13 @@
 					</div>
 					<p>
 						Level: {{ character.level }}<br>
-						Max HP: {{ character.maxHP }}<br>
+						HP: {{ character.currentHP }}/{{ character.maxHP }}<br>
 					</p>
-				
-				{% endif %}
+
+				</div>
+			
+			{% endif %}
+
 
 
 			{% endfor %}

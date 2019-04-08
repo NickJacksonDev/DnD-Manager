@@ -1,0 +1,21 @@
+{% extends "Character_Builder/Character_base.html" %}
+
+{% block content %}
+    <h1>Class List</h1>
+
+    {% for class in classes %}
+      <div class="content-section">   
+        <div>
+          <h2>{{ class.className }}</h2>
+        </div>
+        <p>
+          Hit Die: {{ class.hitDice }}<br>
+        </p>
+
+      </div>
+      
+			
+		{% endfor %}
+	</form>
+
+{% endblock content %}
