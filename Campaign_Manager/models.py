@@ -40,9 +40,7 @@ class Campaign(models.Model):
             image.thumbnail(output_size)
             image.save(self.image.path)
 
-        dm, created = CampaignDM.objects.get_or_create(campaign = self)
-        if  dm.user == defaultUser:
-            dm.user = request.user
+        dm, created = CampaignDM.objects.get_or_create(campaign=self, user=self.creator)
 
     def get_absolute_url(self):
         return reverse('overview_with_pk', kwargs={'pk': self.pk})
