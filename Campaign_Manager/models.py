@@ -41,7 +41,7 @@ class Campaign(models.Model):
             image.save(self.image.path)
 
         dm, created = CampaignDM.objects.get_or_create(campaign = self)
-        if  dm == defaultUser:
+        if  dm.user == defaultUser:
             dm.user = request.user
 
     def get_absolute_url(self):
