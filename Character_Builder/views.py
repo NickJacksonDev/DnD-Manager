@@ -66,13 +66,14 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 	fields = [
 		'public',
 		'characterName', 
+		'race',
+		'characterClass',
 		'level', 
 		'xp', 
 		'maxHP', 
 		'currentHP', 
 		'alignment', 
 		'size',
-		'race',
 
 		'strength',
 		'dexterity',
@@ -120,6 +121,7 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 		# Updates the author of the current form to be the current user
 		form.instance.user = self.request.user 
 		# context['form2'].instance.character = form.instance
+		
 		return super().form_valid(form)
 	
 
@@ -135,13 +137,14 @@ class CharacterEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	fields = [
 		'public',
 		'characterName', 
+		'race',
+		'characterClass',
 		'level', 
 		'xp', 
 		'maxHP', 
 		'currentHP', 
 		'alignment', 
 		'size',
-		'race',
 
 		'strength',
 		'dexterity',

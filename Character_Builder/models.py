@@ -113,6 +113,24 @@ class CharacterRace(models.Model):
         return self.raceName
 
 
+
+# This class is largely static, like a lookup table
+class CharacterClass(models.Model):
+    # TODO: Maybe use ManyToMany relationship, as one character may have multiple 
+    # classes... Oh wait. That's actually something to consider...    
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True, blank=True)   
+    characterID = models.AutoField(primary_key=True)
+    className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
+    hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
+
+    def __str__(self):
+        return self.className
+
+
+
+
+
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser, null=True, blank=True)
@@ -127,7 +145,10 @@ class Character(models.Model):
     public = models.BooleanField(default=True)
 
     # blank=true, null=true means that it's optional
-    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
+    # Since race and class are constant, you DO NOT want to delete them upon
+    # deleting this character.
+    race = models.ForeignKey(CharacterRace, on_delete=models.PROTECT, default=defaultRace, null=True, blank=True)
+    characterClass = models.ForeignKey(CharacterClass, on_delete=models.PROTECT, default=defaultClass, null=True, blank=True)
 
     # Outdated variables
     #raceID = models.IntegerField()
@@ -196,15 +217,4 @@ class AbilityScoreSet(models.Model):
 
 
 
-# This class is largely static, like a lookup table
-class CharacterClass(models.Model):
-    # TODO: Maybe use ManyToMany relationship, as one character may have multiple 
-    # classes... Oh wait. That's actually something to consider...    
-    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True, blank=True)   
-    characterID = models.AutoField(primary_key=True)
-    className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
-    hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
-
-    def __str__(self):
-        return self.className
 

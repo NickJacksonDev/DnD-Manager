@@ -9,11 +9,13 @@ class Command(BaseCommand):
   help = 'Populate the Class data base'
 
   def _create_classes(self):
-    fighter = CharacterClass(
-      className='Fighter',
-      hitDice='d10'
-    )
-    fighter.save()
+    # As fighter was declared as the "default class", it 
+    # is therefore commented out here to prevent redundancy.
+    # fighter = CharacterClass(
+    #   className='Fighter',
+    #   hitDice='d10'
+    # )
+    # fighter.save()
 
     barbarian = CharacterClass(
       className='Barbarian',
