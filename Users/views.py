@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
-from Campaign_Manager .models import Campaign, PartyCharacter
+from Campaign_Manager .models import Campaign, Party, PartyCharacter
 from Character_Builder.models import Character
 from .models import Friend
 
@@ -27,6 +27,7 @@ def profile(request, pk=None ):
         user = request.user
 
     myCharacters = Character.objects.filter(user=user)
+    allCampaigns = Campaign.objects.all()
     myCampaigns = Campaign.objects.filter(creator=user)
 
     characterCampaigns = None
@@ -40,6 +41,17 @@ def profile(request, pk=None ):
         for cc in characterCampaigns:
             primaryKey=cc.party.campaign.pk
             myCampaigns |= Campaign.objects.filter(pk=primaryKey)
+
+    for camp in allCampaigns:
+        parties = Party.objects.filter(campaign=camp)
+
+        for party in parties:
+            for mem in party.members.all():
+                for char in myCharacters:
+                    if mem == char:
+                        campSet = Campaign.objects.filter(pk=camp.pk)
+                        myCampaigns |= campSet
+
 
     context ={
 

@@ -77,7 +77,6 @@ def overview(request, pk=None ):
         'userIsDM' : userIsDM,
         'posts' : posts,
         'friendCharacters' : friendCharacters,
-
     }
 
     return render(request, 'Campaign_Manager/overview.html', context)
@@ -180,7 +179,13 @@ class CampaignCommentEditView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(CampaignCommentEditView, self).get_context_data(**kwargs)
         campaign=Campaign.objects.get(pk=self.kwargs.get('fk'))
-        context['dms']=CampaignDM.objects.filter(campaign=campaign)
+        dms = CampaignDM.objects.filter(campaign=campaign)
+        context['userIsDM'] = False
+        for dm in dms:
+            if dm.user == self.request.user:
+                context['userIsDM'] = True
+
+        return context
         return context
 
     def form_valid(self, form):
