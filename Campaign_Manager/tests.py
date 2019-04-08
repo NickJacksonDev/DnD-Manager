@@ -21,28 +21,20 @@ class CampaignCreateTestCase(TestCase):
 class CampaignDMCreateTestCase(TestCase):
     def setUp(self):
         Campaign.objects.create(campaignName="The Mountain")
-        Character.objects.create(characterName="Malikar", alignment="Lawful Evil", size="Medium")
         camp = Campaign.objects.get(campaignName="The Mountain")
-        char = Character.objects.get(characterName="Malikar")
-        CampaignDM.objects.create(character=char, campaign=camp)
-
-    def test_campaign_dm_character(self):
-        char = Character.objects.get(characterName="Malikar")
-        try:
-            CampaignDM.objects.get(character=char)
-        except:
-            self.fail()
+        CampaignDM.objects.create(campaign=camp)
 
     def test_campaign_dm_id(self):
-        char = Character.objects.get(characterName="Malikar")
-        dm = CampaignDM.objects.get(character=char)
+        camp = Campaign.objects.get(campaignName="The Mountain")
+        dm = CampaignDM.objects.get(campaign=camp)
         self.assertEqual(dm.campaignDMID, 1)
 
     def test_campaign_dm_campaign(self):
-        char = Character.objects.get(characterName="Malikar")
         camp = Campaign.objects.get(campaignName="The Mountain")
-        dm = CampaignDM.objects.get(character=char)
-        self.assertEqual(dm.campaign, camp)
+        try:
+            dm = CampaignDM.objects.get(campaign=camp)
+        except:
+            self.fail()
 
 class PartyCreateTestCase(TestCase):
     def setUp(self):
@@ -59,31 +51,6 @@ class PartyCreateTestCase(TestCase):
         camp = Campaign.objects.get(campaignName="The Mountain")
         try:
             Party.objects.get(campaign=camp)
-        except:
-            self.fail()
-
-class PartyCharacterCreateTestCase(TestCase):
-    def setUp(self):
-        Campaign.objects.create(campaignName="The Mountain")
-        Character.objects.create(characterName="Malikar", alignment="Lawful Evil", size="Medium")
-        camp = Campaign.objects.get(campaignName="The Mountain")
-        char = Character.objects.get(characterName="Malikar")
-        Party.objects.create(campaign=camp)
-        par = Party.objects.get(campaign=camp)
-        PartyCharacter.objects.create(character=char, party=par)
-
-    def test_party_character_party(self):
-        camp = Campaign.objects.get(campaignName="The Mountain")
-        par = Party.objects.get(campaign=camp)
-        pc = PartyCharacter.objects.get(party=par)
-        self.assertEqual(pc.party, par)
-
-    def test_party_character_character(self):
-        camp = Campaign.objects.get(campaignName="The Mountain")
-        par = Party.objects.get(campaign=camp)
-        char = Character.objects.get(characterName="Malikar")
-        try:
-            PartyCharacter.objects.get(character=char)
         except:
             self.fail()
 

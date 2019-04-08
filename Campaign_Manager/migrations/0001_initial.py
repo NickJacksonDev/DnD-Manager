@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('campaignID', models.AutoField(primary_key=True, serialize=False)),
                 ('campaignName', models.CharField(max_length=255)),
+                ('image', models.ImageField(default='default_campaign.jpg', upload_to='campaign_pics')),
                 ('creator', models.ForeignKey(default=Campaign_Manager.models.defaultUser, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
@@ -50,7 +51,8 @@ class Migration(migrations.Migration):
             name='Party',
             fields=[
                 ('partyID', models.AutoField(primary_key=True, serialize=False)),
-                ('campaign', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='Campaign_Manager.Campaign')),
+                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='campaign', to='Campaign_Manager.Campaign')),
+                ('members', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -59,7 +61,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('approved', models.BooleanField(default=False)),
                 ('character', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Character_Builder.Character')),
-                ('party', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Campaign_Manager.Party')),
             ],
         ),
     ]

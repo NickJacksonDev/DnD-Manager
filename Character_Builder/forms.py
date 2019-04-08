@@ -13,7 +13,6 @@ class CreateCharacterForm(forms.ModelForm):
 			'currentHP', 
 			'alignment', 
 			'size',
-
 			'strength',
 			'dexterity',
 			'constitution',

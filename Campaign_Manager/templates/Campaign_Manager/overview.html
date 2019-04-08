@@ -1,0 +1,122 @@
+{% extends "Character_Builder/base.html" %}
+{% block main %}
+
+<main role="main" class="container">
+		<div class="content-section">
+
+				<div class="row media justify-content-center">
+						<img class = "rounded border border-dark" src="{{ campaign.image.url }}" alt="">
+				</div>
+
+				<div class="media">
+
+						<div class="media-body text-center">
+							<h2 class='account-heading'>{{ campaign.campaignName}}</h2>
+							<p>Dungeon Master :
+								{% for dm in dms%}
+								    {{dm.user.username}}
+								{% endfor %}
+							</p>
+
+						</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="content-section">
+								<h1>Description</h1>
+								<p>Campaign Summary</p>
+						</div>
+
+						<div class="content-section">
+							<h1>Party</h1>
+							<ul class="list-unstyled">
+								{% for member in members %}
+
+										<div class="row no-gutters">
+                        <div class="col-sm-9">
+                          <a href="{% url 'profile_with_pk' pk=member.pk %}">
+                              <h4>{{ member.username }}</h4>
+                          </a>
+                        </div>
+
+                        <div class="col-sm-3 text-right">
+                          <a href="{% url 'update_party' operation='remove' pk=member.pk id=campaign.pk%}">
+                              Remove Member
+                          </a>
+                        </div>
+                    </div>
+
+								{% endfor %}
+							</ul>
+						</div>
+
+						<div class="content-section">
+							<h1>Suggested Party Members</h1>
+							{% for friend in friends %}
+							     {% if not friend in members %}
+                    <div class="row no-gutters">
+                        <div class="col-sm-9">
+                          <a href="{% url 'profile_with_pk' pk=friend.pk %}">
+                              <h4>{{ friend.username }}</h4>
+                          </a>
+                        </div>
+
+                        <div class="col-sm-3 text-right">
+                          <a href="{% url 'update_party' operation='add' pk=friend.pk id=campaign.pk%}">
+                              Add Member
+                          </a>
+                        </div>
+                    </div>
+										{% endif %}
+                {% endfor %}
+
+						</div>
+
+<div class="content-section">
+							<h1>Comments</h1>
+							{% if userIsDM%}
+							<h5>
+								<a href="{% url 'campaign-comment' campaign.campaignID %}">
+                    Add Comment
+                </a>
+							</h5>
+							{% endif %}
+
+							{% for post in posts %}
+						      <article class="media content-section">
+						        <div class="media-body">
+						          <h4>
+						            <a class="article-title" href="{% url 'campaigncomment-detail' campaign.campaignID post.slug %}">
+						              {{ post.title }}
+						            </a>
+						          </h4>
+						          <p class="article-content">{{ post.content }}</p>
+						          {% if post.image %}
+						            <img src="{{ post.image.url }}">
+						          {% endif %}
+						          <div class="article-metadata">
+						            <a class="mr-2" href="#">{{ post.author }}</a>
+						            <small class="text-muted">{{ post.date }}</small>
+						          </div>
+						        </div>
+						      </article>
+						  {% endfor %}
+
+						</div>
+
+					</div>
+				</div>
+		</div>
+
+    {% if userIsDM %}
+	    <div class="content-section text-center">
+				<a href="{% url 'confirm-delete' campaign.pk %}" class="btn btn-danger">Delete Campaign</a>
+	    </div>
+    {% endif %}
+</main>
+
+
+
+{% endblock main %}

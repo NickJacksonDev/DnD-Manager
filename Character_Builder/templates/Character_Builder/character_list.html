@@ -1,9 +1,10 @@
 {% extends "Character_Builder/Character_base.html" %}
 
 {% block content %}
-    <h1>Characters List!</h1>
+	<div class="content-section">
+	    <h1>Characters List!</h1>
 
-    {% for character in characters %}
+	    {% for character in characters %}
 
 			{% if character.user == user %}
 				<div class="content-section">
@@ -28,7 +29,8 @@
 			{% endif %}
 
 
-		{% endfor %}
-	</form>
 
+			{% endfor %}
+		</form>
+	</div>
 {% endblock content %}
