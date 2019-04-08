@@ -13,10 +13,3 @@ class CreateCharacterForm(forms.ModelForm):
 			'alignment', 
 			'size'
 		]
-
-class EditCharacterForm(forms.ModelForm):
-	class Meta:
-		model = Character
-		fields = [
-
-		]

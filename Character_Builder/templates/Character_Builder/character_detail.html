@@ -1,7 +1,7 @@
 {% extends "Character_Builder/Character_base.html" %}
 
 {% block content %}
-
+<div class="content-section">
   <div>
     <h1><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h1>
   
@@ -24,5 +24,5 @@
   <!-- {% if character.user == user %} -->
   <!-- This if statement runs even though it's commented out... -->
   <!-- {% endif %} -->
-
+</div>
 {% endblock content %}
