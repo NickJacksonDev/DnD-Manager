@@ -73,6 +73,19 @@ def defaultRace():
     # Returns the primary key, not the race itself
     return default.raceID
 
+# Sets default class to fighter
+def defaultClass():
+    default = CharacterClass.objects.first()
+
+    if default is None:
+        default = CharacterClass(
+            characterName='Fighter',
+            hitDice='d8'
+        )
+        default.save()
+    
+    return default.characterID
+
 
 # This class is largely static, like a lookup table
 # Note: because the character has a key to this, it must
@@ -191,4 +204,7 @@ class CharacterClass(models.Model):
     characterID = models.AutoField(primary_key=True)
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
+
+    def __str__(self):
+        return self.className
 
