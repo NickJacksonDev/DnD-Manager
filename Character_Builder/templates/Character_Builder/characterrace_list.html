@@ -4,21 +4,22 @@
     <h1>Race List</h1>
 
     {% for race in races %}
-    
-      <div>
-        <h2>{{ race.raceName }}</h2>
+      <div class="content-section">   
+        <div>
+          <h2>{{ race.raceName }}</h2>
+        </div>
+        <p>
+          Strength Bonus: {{ race.strengthBonus }}<br>
+          Dexterity Bonus: {{ race.dexterityBonus }}<br>
+          Constitution Bonus: {{ race.constitutionBonus }}<br>
+          Intelligence Bonus: {{ race.intelligenceBonus }}<br>
+          Wisdom Bonus: {{ race.wisdomBonus }}<br>
+          Charisma bonus: {{ race.charismaBonus }}<br>
+        </p>
+
       </div>
-      <p>
-        Strength Bonus: {{ race.strengthBonus }}<br>
-        Dexterity Bonus: {{ race.dexterityBonus }}<br>
-        Constitution Bonus: {{ race.constitutionBonus }}<br>
-        Intelligence Bonus: {{ race.intelligenceBonus }}<br>
-        Wisdom Bonus: {{ race.wisdomBonus }}<br>
-        Charisma bonus: {{ race.charismaBonus }}<br>
-      </p>
+      
 			
-
-
 		{% endfor %}
 	</form>
 
