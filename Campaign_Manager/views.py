@@ -25,6 +25,7 @@ def home(request):
         return HttpResponseRedirect(reverse('campaign-list'))
 
 
+
     context = {
             'title' : 'Campaigns',
             'campaigns' : Campaign.objects.all(),

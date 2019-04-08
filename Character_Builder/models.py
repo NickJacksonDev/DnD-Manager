@@ -138,7 +138,7 @@ class Character(models.Model):
             # Only set user during the first save.
             obj.user = request.user
         #super().save_model(request, obj, form, change)
-    
+        
 
     # When you create/update a character, this is where the 
     # page goes to after you save the character
