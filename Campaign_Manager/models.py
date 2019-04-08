@@ -30,16 +30,12 @@ class Campaign(models.Model):
     def __str__(self):
         return self.campaignName
 
-    def save(self, **kwargs):
-        super().save()
-
-        image = Image.open(self.image.path)
-
-        if image.width > 900 or image.height > 600:
-            output_size = (900, 600)
-            image.thumbnail(output_size)
-            image.save(self.image.path)
-
+    # When you create/update a campaign, this is where the 
+    # page goes to after you save the campaign
+    def get_absolute_url(self):
+        return reverse('campaign-detail', kwargs={'pk': self.pk})
+    
+    
 # Keeps track of DMs
 class CampaignDM(models.Model):
     campaignDMID = models.AutoField(primary_key=True)

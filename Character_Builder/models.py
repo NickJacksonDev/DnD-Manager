@@ -29,6 +29,9 @@ MAX_LENGTH_HIT_DICE = 255
 
 MAX_LENGTH_RACE_NAME = 255
 
+DEFAULT_ABILITY_SCORE = 10
+DEFAULT_ABILITY_SCORE_BONUS = 0
+
 
 # Description of this model file
 # Much of this will be based off of the database schemas
@@ -45,6 +48,55 @@ def defaultUser():
 
     return default
 
+# Sets default race to human
+def defaultRace():
+    default = CharacterRace.objects.first()
+    
+    if default is None:
+        default = CharacterRace(
+            raceName='Human',
+            speed=30,
+            size='Medium',
+
+            strengthBonus=1,
+            dexterityBonus=1,
+            constitutionBonus=1,
+            intelligenceBonus=1,
+            wisdomBonus=1,
+            charismaBonus=1
+        )
+        default.save()
+    
+    # Returns the primary key, not the race itself
+    return default.raceID
+
+
+# This class is largely static, like a lookup table
+# Note: because the character has a key to this, it must
+#   be above the Character class
+class CharacterRace(models.Model):
+    raceID = models.AutoField(primary_key=True)
+    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
+    speed = models.IntegerField()
+    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
+
+    # Welp, I'm going to make this simpler and just hard-code
+    # the 6 most essential stats
+    strengthBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    dexterityBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    constitutionBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    intelligenceBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    wisdomBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+    charismaBonus = models.IntegerField(default=DEFAULT_ABILITY_SCORE_BONUS)
+
+    # Outdated code
+    # abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
+    # character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.raceName
+
+
 # This class is dynamic, the level, xp, hp, alignment, and (rarely) size may change
 class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=defaultUser, null=True, blank=True)
@@ -58,10 +110,20 @@ class Character(models.Model):
     size = models.CharField(max_length = MAX_LENGTH_SIZE) # Use string or enum?
     public = models.BooleanField(default=True)
 
+    # blank=true, null=true means that it's optional
+    race = models.ForeignKey(CharacterRace, on_delete=models.CASCADE, default=defaultRace, null=True, blank=True)
+
     # Outdated variables
     #raceID = models.IntegerField()
     #classID = models.IntegerField()
     #abilityScoreSetID = models.AutoField(primary_key=True)
+
+    strength = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    dexterity = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    constitution = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    intelligence = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    wisdom = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    charisma = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
 
     # This method returns a string that represents this class.
@@ -89,19 +151,33 @@ class AbilityScore(models.Model):
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
    
 # This class is dynamic, the abilityScoreValues may change
+# Now outdated, refactored so that we don't have to access another form
+# from within a form (there were 2 forms on a page, and you had to access it again)
 class AbilityScoreSet(models.Model):
     abilityScoreSetID = models.AutoField(primary_key=True)
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)  
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)#, default=defaultCharacter)  
 
     # One set has many ability scores. 
     # However, each ability score may go to multiple sets (like an enumeration)
     # Thus a manyToMany relationship is used
     # Note: only one of the two classes should have a manyToMany Field
-    abilityScores = models.ManyToManyField(AbilityScore) 
+    # abilityScores = models.ManyToManyField(AbilityScore) 
+    # abilityScoreValue = models.IntegerField() 
 
-    # abilityScoreID = models.IntegerField() # Acts as an enumeration
+    strength = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    dexterity = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    constitution = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    intelligence = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    wisdom = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
+    charisma = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
 
-    abilityScoreValue = models.IntegerField() 
+    # Needed to save model
+    def save_model(self, request, obj, form, change):
+        # Updates the character to be the one it's associated with
+        # if obj.character = defaultCharacter :
+
+        super().save_model(request, obj, form, change)
+
 
 
 # This class is largely static, like a lookup table
@@ -112,14 +188,4 @@ class CharacterClass(models.Model):
     characterID = models.AutoField(primary_key=True)
     className = models.CharField(max_length = MAX_LENGTH_CLASS_NAME)
     hitDice = models.CharField(max_length = MAX_LENGTH_HIT_DICE)
-
-
-# This class is largely static, like a lookup table
-class CharacterRace(models.Model):
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)
-    raceID = models.AutoField(primary_key=True)
-    raceName = models.CharField(max_length = MAX_LENGTH_RACE_NAME)
-    abilityScoreBonusSetID = models.IntegerField()  # Same level of abstraction?
-    speed = models.IntegerField()
-    size = models.CharField(max_length = MAX_LENGTH_SIZE)   # Okay to overload?
 
