@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import datetime
 
 # Notes (Django models)
 # Each model acts more or less like a database table
@@ -32,6 +33,8 @@ MAX_LENGTH_RACE_NAME = 255
 DEFAULT_ABILITY_SCORE = 10
 DEFAULT_ABILITY_SCORE_BONUS = 0
 
+DEFAULT_DATETIME = datetime.min
+
 
 # Description of this model file
 # Much of this will be based off of the database schemas
@@ -44,7 +47,7 @@ def defaultUser():
     default = User.objects.first()
 
     if default is None:
-        default = User.objects.create_user('defaultUser', password='djangoproject')#, 'last_login'=)
+        default = User.objects.create_user('defaultUser', password='djangoproject', last_login=DEFAULT_DATETIME)
 
     return default
 
