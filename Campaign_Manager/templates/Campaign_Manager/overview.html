@@ -37,7 +37,7 @@
 										<div class="row no-gutters">
                         <div class="col-sm-9">
                           <a href="{% url 'profile_with_pk' pk=member.pk %}">
-                              <h4>{{ member.username }}</h4>
+                              <h4>{{ member.characterName }}</h4>
                           </a>
                         </div>
 
@@ -54,23 +54,24 @@
 
 						<div class="content-section">
 							<h1>Suggested Party Members</h1>
-							{% for friend in friends %}
-							     {% if not friend in members %}
+							{% for character in friendCharacters %}
+							     {% if not character in members %}
+
                     <div class="row no-gutters">
                         <div class="col-sm-9">
-                          <a href="{% url 'profile_with_pk' pk=friend.pk %}">
-                              <h4>{{ friend.username }}</h4>
+                          <a href="{% url 'profile_with_pk' pk=character.user.pk %}">
+                              <h4>{{ character.characterName }} : {{ character.user.username }} </h4>
                           </a>
                         </div>
 
                         <div class="col-sm-3 text-right">
-                          <a href="{% url 'update_party' operation='add' pk=friend.pk id=campaign.pk%}">
+                          <a href="{% url 'update_party' operation='add' pk=character.pk id=campaign.pk%}">
                               Add Member
                           </a>
                         </div>
                     </div>
 										{% endif %}
-                {% endfor %}
+									{% endfor %}
 
 						</div>
 

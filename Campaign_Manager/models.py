@@ -40,9 +40,7 @@ class Campaign(models.Model):
             image.thumbnail(output_size)
             image.save(self.image.path)
 
-        dm, created = CampaignDM.objects.get_or_create(campaign = self)
-        if  dm == defaultUser:
-            dm.user = request.user
+        dm, created = CampaignDM.objects.get_or_create(campaign=self, user=self.creator)
 
     def get_absolute_url(self):
         return reverse('overview_with_pk', kwargs={'pk': self.pk})
@@ -76,7 +74,7 @@ class Party(models.Model):
     partyID = models.AutoField(primary_key=True)
     #campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
     campaign = models.ForeignKey(Campaign, related_name='campaign', on_delete=models.CASCADE)
-    members = models.ManyToManyField(User)
+    members = models.ManyToManyField(Character)
 
     @classmethod
     def add_member(cls, campaign, new_member):

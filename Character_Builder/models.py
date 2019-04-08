@@ -7,7 +7,7 @@ from datetime import datetime
 # Each model acts more or less like a database table
 # Each model's field acts like a column in said table
 # Foreign Keys act as a thing that links a class
-# to a parent class that uses it. 
+# to a parent class that uses it.
 #  eg: abilityScore's "characterID" is a foreign key
 # https://docs.djangoproject.com/en/2.1/topics/db/models/
 # can do   fieldName = ___Field(blank = true)  to make this field optional
@@ -40,7 +40,7 @@ DEFAULT_DATETIME = datetime.min
 # Much of this will be based off of the database schemas
 
 # As this is in the character builder folder, this will focus on
-# the character information 
+# the character information
 
 # finds a default user
 def defaultUser():
@@ -54,7 +54,7 @@ def defaultUser():
 # Sets default race to human
 def defaultRace():
     default = CharacterRace.objects.first()
-    
+
     if default is None:
         default = CharacterRace(
             raceName='Human',
@@ -69,7 +69,7 @@ def defaultRace():
             charismaBonus=1
         )
         default.save()
-    
+
     # Returns the primary key, not the race itself
     return default.raceID
 
@@ -180,9 +180,9 @@ class Character(models.Model):
             # Only set user during the first save.
             obj.user = request.user
         #super().save_model(request, obj, form, change)
-        
 
-    # When you create/update a character, this is where the 
+
+    # When you create/update a character, this is where the
     # page goes to after you save the character
     def get_absolute_url(self):
         return reverse('character-detail', kwargs={'pk': self.pk})
@@ -191,20 +191,20 @@ class Character(models.Model):
 # This class is static, like a lookup table
 class AbilityScore(models.Model):
     abilityName = models.CharField(max_length = MAX_LENGTH_ABILITY_NAME)
-   
+
 # This class is dynamic, the abilityScoreValues may change
 # Now outdated, refactored so that we don't have to access another form
 # from within a form (there were 2 forms on a page, and you had to access it again)
 class AbilityScoreSet(models.Model):
     abilityScoreSetID = models.AutoField(primary_key=True)
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)#, default=defaultCharacter)  
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)#, default=defaultCharacter)
 
-    # One set has many ability scores. 
+    # One set has many ability scores.
     # However, each ability score may go to multiple sets (like an enumeration)
     # Thus a manyToMany relationship is used
     # Note: only one of the two classes should have a manyToMany Field
-    # abilityScores = models.ManyToManyField(AbilityScore) 
-    # abilityScoreValue = models.IntegerField() 
+    # abilityScores = models.ManyToManyField(AbilityScore)
+    # abilityScoreValue = models.IntegerField()
 
     strength = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
     dexterity = models.IntegerField(default=DEFAULT_ABILITY_SCORE)
@@ -219,7 +219,4 @@ class AbilityScoreSet(models.Model):
         # if obj.character = defaultCharacter :
 
         super().save_model(request, obj, form, change)
-
-
-
 

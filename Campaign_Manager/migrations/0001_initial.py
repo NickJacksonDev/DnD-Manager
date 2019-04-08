@@ -12,8 +12,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('Character_Builder', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('partyID', models.AutoField(primary_key=True, serialize=False)),
                 ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='campaign', to='Campaign_Manager.Campaign')),
-                ('members', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+                ('members', models.ManyToManyField(to='Character_Builder.Character')),
             ],
         ),
         migrations.CreateModel(

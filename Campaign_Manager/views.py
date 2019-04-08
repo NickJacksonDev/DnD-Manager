@@ -48,6 +48,14 @@ def overview(request, pk=None ):
     members = party.members.all()
     friend, created = Friend.objects.get_or_create(current_user=request.user)
     friends = friend.users.all()
+    friends |= User.objects.filter(pk = request.user.pk)
+
+    friendCharacters = None
+    for friend in friends:
+        if friendCharacters == None:
+            friendCharacters = Character.objects.filter(user = friend)
+        else:
+            friendCharacters |= Character.objects.filter(user = friend)
     posts = CampaignComment.objects.filter(campaign = campaign)
     dms = CampaignDM.objects.filter(campaign = campaign)
     userIsDM = False
@@ -68,13 +76,14 @@ def overview(request, pk=None ):
         'dms' : dms,
         'userIsDM' : userIsDM,
         'posts' : posts,
+        'friendCharacters' : friendCharacters,
 
     }
 
     return render(request, 'Campaign_Manager/overview.html', context)
 
 def update_party(request, operation, pk, id):
-    new_member = User.objects.get(pk=pk)
+    new_member = Character.objects.get(pk=pk)
     campaign = Campaign.objects.get(pk=id)
     if operation == 'add':
         Party.add_member(campaign, new_member)
