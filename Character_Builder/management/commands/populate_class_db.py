@@ -10,77 +10,77 @@ class Command(BaseCommand):
 
   def _create_classes(self):
     fighter = CharacterClass(
-      characterName='Fighter',
+      className='Fighter',
       hitDice='d10'
     )
     fighter.save()
 
     barbarian = CharacterClass(
-      characterName='Barbarian',
+      className='Barbarian',
       hitDice='d12'
     )
     barbarian.save()
 
     bard = CharacterClass(
-      characterName='Bard',
+      className='Bard',
       hitDice='d8'
     )
     bard.save()
 
     cleric = CharacterClass(
-      characterName='Cleric',
+      className='Cleric',
       hitDice='d8'
     )
     cleric.save()
 
     druid = CharacterClass(
-      characterName='Druid',
+      className='Druid',
       hitDice='d8'
     )
     druid.save()
 
     monk = CharacterClass(
-      characterName='Monk',
+      className='Monk',
       hitDice='d8'
     )
     monk.save()
 
     paladin = CharacterClass(
-      characterName='Paladin',
+      className='Paladin',
       hitDice='d10'
     )
     paladin.save()
 
     ranger = CharacterClass(
-      characterName='Ranger',
+      className='Ranger',
       hitDice='d10'
     )
     ranger.save()
 
     rogue = CharacterClass(
-      characterName='Rogue',
+      className='Rogue',
       hitDice='d8'
     )
     rogue.save()
 
     sorcerer = CharacterClass(
-      characterName='Sorcerer',
+      className='Sorcerer',
       hitDice='d6'
     )
     sorcerer.save()
 
     warlock = CharacterClass(
-      characterName='Warlock',
+      className='Warlock',
       hitDice='d8'
     )
     warlock.save()
 
     wizard = CharacterClass(
-      characterName='Wizard',
+      className='Wizard',
       hitDice='d6'
     )
     wizard.save()
-    
+
 
   def handle(self, *args, **options):
     self._create_classes()

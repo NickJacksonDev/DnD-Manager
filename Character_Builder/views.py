@@ -13,7 +13,8 @@ from django.http import HttpResponseRedirect
 from .models import (
 	Character, 
 	AbilityScoreSet,
-	CharacterRace
+	CharacterRace,
+	CharacterClass
 )
 from .forms import (
 	CreateCharacterForm, 
@@ -214,4 +215,12 @@ class CharacterRaceListView(ListView):
 	model = CharacterRace
 	# template_name = 'CharacterBuilder/Character_builder-home.html'
 	context_object_name = 'races'
+
+# This is a class based view that uses django's built-in
+# ListView view to display the classes
+# It inherits from ListView
+class CharacterClassListView(ListView): 
+	model = CharacterClass
+	# template_name = 'CharacterBuilder/Character_builder-home.html'
+	context_object_name = 'classes'
 

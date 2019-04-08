@@ -79,7 +79,7 @@ def defaultClass():
 
     if default is None:
         default = CharacterClass(
-            characterName='Fighter',
+            className='Fighter',
             hitDice='d8'
         )
         default.save()
