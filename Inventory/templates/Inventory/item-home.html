@@ -3,13 +3,20 @@
     <h1>Inventory</h1>
 
     {% for item in items %}
-		<h2>{{ item.itemName }}</h2>
-		<h3>ID: {{ item.itemID }}</h3>
+
+			<!-- Should probably break if the item is not part of the user's items -->
+
+			<h2><a href="{% url 'item-detail' item.itemID %}">{{ item.itemName }}</a></h2>
+			<p>
+				Created by: {{ item.user }}<br>
+				Item ID: {{ item.itemID }}<br>
+			</p>
+
     {% endfor %}
 
     <form method="post" class="post-form">
     	{% csrf_token %}
-		{{ form }}
+			<table>{{ form.as_table }}</table>
 		<input type="submit" value="Submit" class="btn btn-dark">
 	</form>
 

@@ -52,8 +52,17 @@
                 </div>
               </div>
 
+              <div class="dropdown show">
+                <a class="nav-item nav-link dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-pressed="true" aria-haspopup="true" aria-expanded="false">
+                  Inventory
+                </a>
 
-              <a class="nav-item nav-link" href="{% url 'inventory-home'%}">Inventory</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="{% url 'item-list'%}">Inventory</a>
+                  <a class="dropdown-item" href="{% url 'item-create' %}">Add an Item</a>
+                </div>
+              </div>
+              
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">

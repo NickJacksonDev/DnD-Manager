@@ -9,7 +9,7 @@
 	<article class="media content-section">
 		<div class="media-body">
 		<h3>
-			<a href="{% url 'campaign-detail' campaign.campaignID %}">
+			<a href="{% url 'overview_with_pk' pk=campaign.pk %}">
 				{{ campaign.campaignName }}
 			</a>
 		</h2>

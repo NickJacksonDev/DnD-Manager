@@ -1,4 +1,4 @@
-from django.urls import path, reverse
+from django.urls import path, reverse, re_path
 from django.utils.text import slugify
 from .views import (
     CampaignListView,
@@ -10,6 +10,8 @@ from .views import (
 )
 from django.urls import path
 from . import views
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('',
@@ -21,7 +23,7 @@ urlpatterns = [
     path('campaigns/<int:pk>/',
     	CampaignDetailView.as_view(), name='campaign-detail'),
 
-    path('campaigns/<int:pk>/AddComment/', 
+    path('campaigns/<int:pk>/AddComment/',
     	CampaignCommentCreateView.as_view(), name='campaign-comment'),
 
     path('campaigns/<int:fk>/<slug:slug>/',
@@ -32,4 +34,7 @@ urlpatterns = [
 
     path('campaigns/<int:fk>/<slug:slug>/delete',
     	CampaignCommentDeleteView.as_view(), name='campaigncomment-delete'),
+
+    re_path('campaigns/(?P<pk>\d+)/', views.overview, name='overview_with_pk'),
+    re_path(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/(?P<id>\d+)/$', views.update_party, name='update_party'),
 ]
