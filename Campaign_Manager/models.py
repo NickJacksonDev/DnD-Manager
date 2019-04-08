@@ -76,7 +76,7 @@ class Party(models.Model):
     partyID = models.AutoField(primary_key=True)
     #campaign = models.OneToOneField(Campaign, on_delete=models.CASCADE)
     campaign = models.ForeignKey(Campaign, related_name='campaign', on_delete=models.CASCADE)
-    members = models.ManyToManyField(User)
+    members = models.ManyToManyField(Character)
 
     @classmethod
     def add_member(cls, campaign, new_member):
