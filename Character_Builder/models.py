@@ -147,6 +147,11 @@ class Character(models.Model):
     # blank=true, null=true means that it's optional
     # Since race and class are constant, you DO NOT want to delete them upon
     # deleting this character.
+    # Also, when restarting the database, it's important to only add one
+    # foreign key per migration. As such, there are currently 3
+    # foreign keys in character: User, race, and characterClass.
+    # The current solution: comment out all but 1, make and migrate, then repeat
+    # one at a time.
     race = models.ForeignKey(CharacterRace, on_delete=models.PROTECT, default=defaultRace, null=True, blank=True)
     characterClass = models.ForeignKey(CharacterClass, on_delete=models.PROTECT, default=defaultClass, null=True, blank=True)
 

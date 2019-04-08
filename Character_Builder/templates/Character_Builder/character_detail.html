@@ -3,37 +3,34 @@
 {% block content %}
   <div class="content-section">
     <h1>Character Details</h1>
-    <div>
-      <h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
-
-  <div class="content-section">
-    <h1>Character Details</h1>
-    <div>
-      <h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
-    
-      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
-      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a>
+    <div class="content-section">
+      <div>
+        <h2><a href="{% url 'character-detail' character.characterID %}">{{ character.characterName }}</a></h2>
       
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'character-edit' character.characterID %}">Update</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'character-delete' character.characterID %}">Delete</a>
+        
+      </div>
+      <p>
+        <!-- Created by: {{ character.user }}<br>
+        Character ID: {{ character.characterID }}<br> -->
+        Level: {{ character.level }}<br>
+        Race: {{ character.race }}<br>
+        XP: {{ character.xp }}<br>
+        HP: {{ character.currentHP }}/{{ character.maxHP }}<br>
+        Alignment: {{ character.alignment }}<br>
+        Size: {{ character.size }}<br>
+
+        <h5>Ability Scores</h5>
+        Strength: {{ character.strength }}<br>
+        Dexterity: {{ character.dexterity }}<br>
+        Constitution: {{ character.constitution }}<br>
+        Intelligence: {{ character.intelligence }}<br>
+        Wisdom: {{ character.wisdom }}<br>
+        Charisma: {{ character.charisma }}<br>
+
+      </p>
     </div>
-    <p>
-      <!-- Created by: {{ character.user }}<br>
-      Character ID: {{ character.characterID }}<br> -->
-      Level: {{ character.level }}<br>
-      Race: {{ character.race }}<br>
-      XP: {{ character.xp }}<br>
-      HP: {{ character.currentHP }}/{{ character.maxHP }}<br>
-      Alignment: {{ character.alignment }}<br>
-      Size: {{ character.size }}<br>
-
-      <h5>Ability Scores</h5>
-      Strength: {{ character.strength }}<br>
-      Dexterity: {{ character.dexterity }}<br>
-      Constitution: {{ character.constitution }}<br>
-      Intelligence: {{ character.intelligence }}<br>
-      Wisdom: {{ character.wisdom }}<br>
-      Charisma: {{ character.charisma }}<br>
-
-    </p>
   </div>
   <!-- Should probably break if the character is not part of the user's characters -->
   <!-- {% if character.user == user %} -->
@@ -44,5 +41,4 @@
     <!-- {% if character.user == user %} -->
     <!-- This if statement runs even though it's commented out... -->
     <!-- {% endif %} -->
-  </div>
 {% endblock content %}
